@@ -10,7 +10,12 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         randomizarColores();
+        setLocationRelativeTo(null);
     }
+
+    ArrayList<JLabel> colorBlanco = new ArrayList();
+    ArrayList<JLabel> colorRojo = new ArrayList();
+    ArrayList<JLabel> colorVerde = new ArrayList();
 
     private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
 
@@ -43,18 +48,29 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             if (greenCount < greenLabels) {
                 label.setBackground(Color.GREEN);
                 greenCount++;
+                colorVerde.add(label);
             } else if (redCount < redLabels) {
                 label.setBackground(Color.RED);
                 redCount++;
+                colorRojo.add(label);
             } else if (whiteCount < whiteLabels) {
                 label.setBackground(Color.WHITE);
                 whiteCount++;
+                colorBlanco.add(label);
             } else {
                 // Si se han asignado todas las etiquetas requeridas, se asigna un color aleatorio de los definidos
-                label.setBackground(colores[rand.nextInt(colores.length)]);
+                int randomIndex = rand.nextInt(colores.length);
+                label.setBackground(colores[randomIndex]);
+                
+                if (colores[randomIndex] == Color.GREEN) {
+                    colorVerde.add(label);
+                } else if (colores[randomIndex] == Color.RED) {
+                    colorRojo.add(label);
+                } else if (colores[randomIndex] == Color.WHITE) {
+                    colorBlanco.add(label);
+                }
             }
         }
-
         // Asegura que lblMatriz3 siempre sea azul
         CeroCero.setBackground(Color.BLUE);
     }
@@ -148,9 +164,15 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         CeroSeis = new javax.swing.JLabel();
         UnoUno = new javax.swing.JLabel();
         PanelArriba = new javax.swing.JPanel();
+        PanelDerecha = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -552,16 +574,30 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                .addComponent(PanelFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(PanelFila, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelColumna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(PanelMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelColumna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout PanelArribaLayout = new javax.swing.GroupLayout(PanelArriba);
+        PanelArriba.setLayout(PanelArribaLayout);
+        PanelArribaLayout.setHorizontalGroup(
+            PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        PanelArribaLayout.setVerticalGroup(
+            PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
         );
 
         jLabel9.setText("Posiciones recorridas:");
 
         jLabel10.setText("Posiciones limpiadas:");
+
+        jLabel11.setText("Posicion del robot:");
 
         jButton1.setText("Reniciar Matriz");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -570,31 +606,71 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout PanelArribaLayout = new javax.swing.GroupLayout(PanelArriba);
-        PanelArriba.setLayout(PanelArribaLayout);
-        PanelArribaLayout.setHorizontalGroup(
-            PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelArribaLayout.createSequentialGroup()
-                .addContainerGap(296, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(120, 120, 120))
-            .addGroup(PanelArribaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jLabel12.setText("No se pudo mover por:");
+
+        jLabel13.setText("        0,0");
+        jLabel13.setToolTipText("");
+        jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jLabel14.setText("        0");
+        jLabel14.setToolTipText("");
+        jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jLabel15.setText("        0");
+        jLabel15.setToolTipText("");
+        jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        javax.swing.GroupLayout PanelDerechaLayout = new javax.swing.GroupLayout(PanelDerecha);
+        PanelDerecha.setLayout(PanelDerechaLayout);
+        PanelDerechaLayout.setHorizontalGroup(
+            PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelDerechaLayout.createSequentialGroup()
+                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDerechaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jButton1)
+                            .addGroup(PanelDerechaLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel11))))
+                    .addGroup(PanelDerechaLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelDerechaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel10))
+                    .addGroup(PanelDerechaLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelDerechaLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelDerechaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel12)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
-        PanelArribaLayout.setVerticalGroup(
-            PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelArribaLayout.createSequentialGroup()
+        PanelDerechaLayout.setVerticalGroup(
+            PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelDerechaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addGap(5, 5, 5)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -602,21 +678,21 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(PanelArriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 152, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelArriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PanelDerecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelArriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PanelArriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(PanelDerecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -626,7 +702,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         randomizarColores();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -678,6 +753,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private javax.swing.JLabel DosUno;
     private javax.swing.JPanel PanelArriba;
     private javax.swing.JPanel PanelColumna;
+    private javax.swing.JPanel PanelDerecha;
     private javax.swing.JPanel PanelFila;
     private javax.swing.JPanel PanelMatriz;
     private javax.swing.JPanel PanelPrincipal;
@@ -716,6 +792,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
