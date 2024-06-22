@@ -12,7 +12,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         randomizarColores();
     }
 
-    private final Color[] colores = {Color.WHITE, Color.RED, Color.BLUE, Color.GREEN};
+    private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
 
     private void randomizarColores() {
         List<JLabel> labels = new ArrayList<>();
@@ -20,7 +20,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         // Agrega todas las etiquetas al arreglo excepto lblMatriz3
         for (java.awt.Component comp : PanelMatriz.getComponents()) {
-            if (comp instanceof JLabel && comp != lblMatriz3) {
+            if (comp instanceof JLabel && comp != CeroCero) {
                 labels.add((JLabel) comp);
             }
         }
@@ -40,25 +40,23 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         int whiteCount = 0;
 
         for (JLabel label : labels) {
-            Color colorAleatorio = null;
             if (greenCount < greenLabels) {
-                colorAleatorio = Color.GREEN;
+                label.setBackground(Color.GREEN);
                 greenCount++;
             } else if (redCount < redLabels) {
-                colorAleatorio = Color.RED;
+                label.setBackground(Color.RED);
                 redCount++;
             } else if (whiteCount < whiteLabels) {
-                colorAleatorio = Color.WHITE;
+                label.setBackground(Color.WHITE);
                 whiteCount++;
             } else {
                 // Si se han asignado todas las etiquetas requeridas, se asigna un color aleatorio de los definidos
-                colorAleatorio = colores[rand.nextInt(colores.length)];
+                label.setBackground(colores[rand.nextInt(colores.length)]);
             }
-            label.setBackground(colorAleatorio);
         }
 
         // Asegura que lblMatriz3 siempre sea azul
-        lblMatriz3.setBackground(Color.BLUE);
+        CeroCero.setBackground(Color.BLUE);
     }
 
     @SuppressWarnings("unchecked")
@@ -85,70 +83,74 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         PanelMatriz = new javax.swing.JPanel();
-        lblMatriz3 = new javax.swing.JLabel();
-        lblMatriz1 = new javax.swing.JLabel();
-        lblMatriz4 = new javax.swing.JLabel();
-        lblMatriz2 = new javax.swing.JLabel();
-        lblMatriz5 = new javax.swing.JLabel();
-        lblMatriz7 = new javax.swing.JLabel();
-        lblMatriz6 = new javax.swing.JLabel();
-        lblMatriz8 = new javax.swing.JLabel();
-        lblMatriz9 = new javax.swing.JLabel();
-        lblMatriz10 = new javax.swing.JLabel();
-        lblMatriz11 = new javax.swing.JLabel();
-        lblMatriz12 = new javax.swing.JLabel();
-        lblMatriz13 = new javax.swing.JLabel();
-        lblMatriz14 = new javax.swing.JLabel();
-        lblMatriz15 = new javax.swing.JLabel();
-        lblMatriz16 = new javax.swing.JLabel();
-        lblMatriz17 = new javax.swing.JLabel();
-        lblMatriz18 = new javax.swing.JLabel();
-        lblMatriz19 = new javax.swing.JLabel();
-        lblMatriz20 = new javax.swing.JLabel();
-        lblMatriz21 = new javax.swing.JLabel();
-        lblMatriz22 = new javax.swing.JLabel();
-        lblMatriz23 = new javax.swing.JLabel();
-        lblMatriz24 = new javax.swing.JLabel();
-        lblMatriz25 = new javax.swing.JLabel();
-        lblMatriz26 = new javax.swing.JLabel();
-        lblMatriz27 = new javax.swing.JLabel();
-        lblMatriz28 = new javax.swing.JLabel();
-        lblMatriz29 = new javax.swing.JLabel();
-        lblMatriz30 = new javax.swing.JLabel();
-        lblMatriz31 = new javax.swing.JLabel();
-        lblMatriz32 = new javax.swing.JLabel();
-        lblMatriz33 = new javax.swing.JLabel();
-        lblMatriz34 = new javax.swing.JLabel();
-        lblMatriz35 = new javax.swing.JLabel();
-        lblMatriz36 = new javax.swing.JLabel();
-        lblMatriz37 = new javax.swing.JLabel();
-        lblMatriz38 = new javax.swing.JLabel();
-        lblMatriz39 = new javax.swing.JLabel();
-        lblMatriz40 = new javax.swing.JLabel();
-        lblMatriz41 = new javax.swing.JLabel();
-        lblMatriz42 = new javax.swing.JLabel();
-        lblMatriz43 = new javax.swing.JLabel();
-        lblMatriz44 = new javax.swing.JLabel();
-        lblMatriz45 = new javax.swing.JLabel();
-        lblMatriz46 = new javax.swing.JLabel();
-        lblMatriz47 = new javax.swing.JLabel();
-        lblMatriz48 = new javax.swing.JLabel();
-        lblMatriz49 = new javax.swing.JLabel();
-        lblMatriz50 = new javax.swing.JLabel();
-        lblMatriz51 = new javax.swing.JLabel();
-        lblMatriz52 = new javax.swing.JLabel();
-        lblMatriz53 = new javax.swing.JLabel();
-        lblMatriz54 = new javax.swing.JLabel();
-        lblMatriz55 = new javax.swing.JLabel();
-        lblMatriz56 = new javax.swing.JLabel();
-        lblMatriz57 = new javax.swing.JLabel();
-        lblMatriz58 = new javax.swing.JLabel();
-        lblMatriz59 = new javax.swing.JLabel();
-        lblMatriz60 = new javax.swing.JLabel();
-        lblMatriz61 = new javax.swing.JLabel();
-        lblMatriz62 = new javax.swing.JLabel();
-        lblMatriz63 = new javax.swing.JLabel();
-        lblMatriz64 = new javax.swing.JLabel();
+        DosCero = new javax.swing.JLabel();
+        SieteCero = new javax.swing.JLabel();
+        UnoCuatro = new javax.swing.JLabel();
+        SeisCero = new javax.swing.JLabel();
+        CincoCero = new javax.swing.JLabel();
+        CuatroCero = new javax.swing.JLabel();
+        UnoCero = new javax.swing.JLabel();
+        TresCero = new javax.swing.JLabel();
+        CeroCero = new javax.swing.JLabel();
+        UnoTres = new javax.swing.JLabel();
+        UnoDos = new javax.swing.JLabel();
+        DosDos = new javax.swing.JLabel();
+        UnoSeis = new javax.swing.JLabel();
+        UnoCinco = new javax.swing.JLabel();
+        DosUno = new javax.swing.JLabel();
+        UnoSiete = new javax.swing.JLabel();
+        DosCuatro = new javax.swing.JLabel();
+        DosTres = new javax.swing.JLabel();
+        DosSeis = new javax.swing.JLabel();
+        DosCinco = new javax.swing.JLabel();
+        TresDos = new javax.swing.JLabel();
+        DosSiete = new javax.swing.JLabel();
+        TresUno = new javax.swing.JLabel();
+        TresCuatro = new javax.swing.JLabel();
+        TresTres = new javax.swing.JLabel();
+        CuatroDos = new javax.swing.JLabel();
+        TresSeis = new javax.swing.JLabel();
+        TresCinco = new javax.swing.JLabel();
+        CuatroUno = new javax.swing.JLabel();
+        TresSiete = new javax.swing.JLabel();
+        CuatroCuatro = new javax.swing.JLabel();
+        CuatroTres = new javax.swing.JLabel();
+        CincoDos = new javax.swing.JLabel();
+        CuatroSeis = new javax.swing.JLabel();
+        CuatroCinco = new javax.swing.JLabel();
+        CincoUno = new javax.swing.JLabel();
+        CuatroSiete = new javax.swing.JLabel();
+        CincoCuatro = new javax.swing.JLabel();
+        CincoTres = new javax.swing.JLabel();
+        SeisDos = new javax.swing.JLabel();
+        CincoSeis = new javax.swing.JLabel();
+        CincoCinco = new javax.swing.JLabel();
+        SeisUno = new javax.swing.JLabel();
+        CincoSiete = new javax.swing.JLabel();
+        SeisCuatro = new javax.swing.JLabel();
+        SeisTres = new javax.swing.JLabel();
+        SeisSeis = new javax.swing.JLabel();
+        SeisCinco = new javax.swing.JLabel();
+        SieteDos = new javax.swing.JLabel();
+        SieteUno = new javax.swing.JLabel();
+        SieteCuatro = new javax.swing.JLabel();
+        SeisSiete = new javax.swing.JLabel();
+        SieteTres = new javax.swing.JLabel();
+        SieteSeis = new javax.swing.JLabel();
+        SieteCinco = new javax.swing.JLabel();
+        CeroDos = new javax.swing.JLabel();
+        SieteSiete = new javax.swing.JLabel();
+        CeroUno = new javax.swing.JLabel();
+        CeroCuatro = new javax.swing.JLabel();
+        CeroTres = new javax.swing.JLabel();
+        CeroCinco = new javax.swing.JLabel();
+        CeroSiete = new javax.swing.JLabel();
+        CeroSeis = new javax.swing.JLabel();
+        UnoUno = new javax.swing.JLabel();
+        PanelArriba = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -185,355 +187,355 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelColumna.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 18, -1));
 
         jLabel2.setText("1");
-        PanelColumna.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        PanelColumna.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         jLabel3.setText("7");
-        PanelColumna.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 10, 20));
+        PanelColumna.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 10, 20));
 
         jLabel4.setText("2");
-        PanelColumna.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 10, 20));
+        PanelColumna.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 10, 20));
 
         jLabel5.setText("3");
-        PanelColumna.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 10, 20));
+        PanelColumna.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 10, 20));
 
         jLabel6.setText("4");
-        PanelColumna.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 10, 20));
+        PanelColumna.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 10, 20));
 
         jLabel7.setText("5");
-        PanelColumna.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 10, 20));
+        PanelColumna.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 10, 20));
 
         jLabel8.setText("6");
-        PanelColumna.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 10, 20));
+        PanelColumna.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 10, 20));
 
         PanelMatriz.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblMatriz3.setBackground(new java.awt.Color(0, 153, 153));
-        lblMatriz3.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz3.setOpaque(true);
-        PanelMatriz.add(lblMatriz3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 46));
+        DosCero.setBackground(new java.awt.Color(0, 153, 51));
+        DosCero.setBorder(new javax.swing.border.MatteBorder(null));
+        DosCero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosCero.setOpaque(true);
+        PanelMatriz.add(DosCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 60, 50));
 
-        lblMatriz1.setBackground(new java.awt.Color(255, 51, 51));
-        lblMatriz1.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz1.setOpaque(true);
-        PanelMatriz.add(lblMatriz1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 60, 46));
+        SieteCero.setBackground(new java.awt.Color(153, 153, 153));
+        SieteCero.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteCero.setOpaque(true);
+        PanelMatriz.add(SieteCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 60, 50));
 
-        lblMatriz4.setBackground(new java.awt.Color(0, 153, 51));
-        lblMatriz4.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblMatriz4.setOpaque(true);
-        PanelMatriz.add(lblMatriz4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 60, 46));
+        UnoCuatro.setBackground(new java.awt.Color(255, 51, 51));
+        UnoCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoCuatro.setOpaque(true);
+        PanelMatriz.add(UnoCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 60, 50));
 
-        lblMatriz2.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz2.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz2.setOpaque(true);
-        PanelMatriz.add(lblMatriz2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 60, 46));
+        SeisCero.setBackground(new java.awt.Color(153, 153, 153));
+        SeisCero.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisCero.setOpaque(true);
+        PanelMatriz.add(SeisCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 60, 50));
 
-        lblMatriz5.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz5.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz5.setOpaque(true);
-        PanelMatriz.add(lblMatriz5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 60, 46));
+        CincoCero.setBackground(new java.awt.Color(153, 153, 153));
+        CincoCero.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoCero.setOpaque(true);
+        PanelMatriz.add(CincoCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 60, 50));
 
-        lblMatriz7.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz7.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz7.setOpaque(true);
-        PanelMatriz.add(lblMatriz7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 60, 46));
+        CuatroCero.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroCero.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroCero.setOpaque(true);
+        PanelMatriz.add(CuatroCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 60, 50));
 
-        lblMatriz6.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz6.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz6.setOpaque(true);
-        PanelMatriz.add(lblMatriz6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 60, 46));
+        UnoCero.setBackground(new java.awt.Color(255, 51, 51));
+        UnoCero.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoCero.setOpaque(true);
+        PanelMatriz.add(UnoCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 60, 50));
 
-        lblMatriz8.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz8.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz8.setOpaque(true);
-        PanelMatriz.add(lblMatriz8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 60, 46));
+        TresCero.setBackground(new java.awt.Color(153, 153, 153));
+        TresCero.setBorder(new javax.swing.border.MatteBorder(null));
+        TresCero.setOpaque(true);
+        PanelMatriz.add(TresCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 60, 50));
 
-        lblMatriz9.setBackground(new java.awt.Color(255, 51, 51));
-        lblMatriz9.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz9.setOpaque(true);
-        PanelMatriz.add(lblMatriz9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 60, 46));
+        CeroCero.setBackground(new java.awt.Color(0, 153, 153));
+        CeroCero.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroCero.setOpaque(true);
+        PanelMatriz.add(CeroCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
 
-        lblMatriz10.setBackground(new java.awt.Color(255, 51, 51));
-        lblMatriz10.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz10.setOpaque(true);
-        PanelMatriz.add(lblMatriz10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 60, 46));
+        UnoTres.setBackground(new java.awt.Color(255, 51, 51));
+        UnoTres.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoTres.setOpaque(true);
+        PanelMatriz.add(UnoTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 60, 50));
 
-        lblMatriz11.setBackground(new java.awt.Color(255, 51, 51));
-        lblMatriz11.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz11.setOpaque(true);
-        PanelMatriz.add(lblMatriz11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 60, 46));
+        UnoDos.setBackground(new java.awt.Color(255, 51, 51));
+        UnoDos.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoDos.setOpaque(true);
+        PanelMatriz.add(UnoDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 60, 50));
 
-        lblMatriz12.setBackground(new java.awt.Color(255, 51, 51));
-        lblMatriz12.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz12.setOpaque(true);
-        PanelMatriz.add(lblMatriz12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 60, 46));
+        DosDos.setBackground(new java.awt.Color(0, 153, 51));
+        DosDos.setBorder(new javax.swing.border.MatteBorder(null));
+        DosDos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosDos.setOpaque(true);
+        PanelMatriz.add(DosDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 60, 50));
 
-        lblMatriz13.setBackground(new java.awt.Color(255, 51, 51));
-        lblMatriz13.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz13.setOpaque(true);
-        PanelMatriz.add(lblMatriz13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 60, 46));
+        UnoSeis.setBackground(new java.awt.Color(255, 51, 51));
+        UnoSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoSeis.setOpaque(true);
+        PanelMatriz.add(UnoSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 60, 50));
 
-        lblMatriz14.setBackground(new java.awt.Color(255, 51, 51));
-        lblMatriz14.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz14.setOpaque(true);
-        PanelMatriz.add(lblMatriz14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 60, 46));
+        UnoCinco.setBackground(new java.awt.Color(255, 51, 51));
+        UnoCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoCinco.setOpaque(true);
+        PanelMatriz.add(UnoCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 60, 50));
 
-        lblMatriz15.setBackground(new java.awt.Color(255, 51, 51));
-        lblMatriz15.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz15.setOpaque(true);
-        PanelMatriz.add(lblMatriz15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 60, 46));
+        DosUno.setBackground(new java.awt.Color(0, 153, 51));
+        DosUno.setBorder(new javax.swing.border.MatteBorder(null));
+        DosUno.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosUno.setOpaque(true);
+        PanelMatriz.add(DosUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 60, 50));
 
-        lblMatriz16.setBackground(new java.awt.Color(0, 153, 51));
-        lblMatriz16.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblMatriz16.setOpaque(true);
-        PanelMatriz.add(lblMatriz16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 60, 46));
+        UnoSiete.setBackground(new java.awt.Color(255, 51, 51));
+        UnoSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoSiete.setOpaque(true);
+        PanelMatriz.add(UnoSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 60, 46));
 
-        lblMatriz17.setBackground(new java.awt.Color(0, 153, 51));
-        lblMatriz17.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblMatriz17.setOpaque(true);
-        PanelMatriz.add(lblMatriz17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 60, 46));
+        DosCuatro.setBackground(new java.awt.Color(0, 153, 51));
+        DosCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        DosCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosCuatro.setOpaque(true);
+        PanelMatriz.add(DosCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 60, 50));
 
-        lblMatriz18.setBackground(new java.awt.Color(0, 153, 51));
-        lblMatriz18.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblMatriz18.setOpaque(true);
-        PanelMatriz.add(lblMatriz18, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 60, 46));
+        DosTres.setBackground(new java.awt.Color(0, 153, 51));
+        DosTres.setBorder(new javax.swing.border.MatteBorder(null));
+        DosTres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosTres.setOpaque(true);
+        PanelMatriz.add(DosTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 60, 50));
 
-        lblMatriz19.setBackground(new java.awt.Color(0, 153, 51));
-        lblMatriz19.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz19.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblMatriz19.setOpaque(true);
-        PanelMatriz.add(lblMatriz19, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 46));
+        DosSeis.setBackground(new java.awt.Color(0, 153, 51));
+        DosSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        DosSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosSeis.setOpaque(true);
+        PanelMatriz.add(DosSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 60, 50));
 
-        lblMatriz20.setBackground(new java.awt.Color(0, 153, 51));
-        lblMatriz20.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz20.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblMatriz20.setOpaque(true);
-        PanelMatriz.add(lblMatriz20, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 60, 46));
+        DosCinco.setBackground(new java.awt.Color(0, 153, 51));
+        DosCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        DosCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosCinco.setOpaque(true);
+        PanelMatriz.add(DosCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 60, 50));
 
-        lblMatriz21.setBackground(new java.awt.Color(0, 153, 51));
-        lblMatriz21.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz21.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblMatriz21.setOpaque(true);
-        PanelMatriz.add(lblMatriz21, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 60, 46));
+        TresDos.setBackground(new java.awt.Color(153, 153, 153));
+        TresDos.setBorder(new javax.swing.border.MatteBorder(null));
+        TresDos.setOpaque(true);
+        PanelMatriz.add(TresDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 60, 50));
 
-        lblMatriz22.setBackground(new java.awt.Color(0, 153, 51));
-        lblMatriz22.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz22.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblMatriz22.setOpaque(true);
-        PanelMatriz.add(lblMatriz22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 60, 46));
+        DosSiete.setBackground(new java.awt.Color(0, 153, 51));
+        DosSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        DosSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosSiete.setOpaque(true);
+        PanelMatriz.add(DosSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 60, 46));
 
-        lblMatriz23.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz23.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz23.setOpaque(true);
-        PanelMatriz.add(lblMatriz23, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 60, 46));
+        TresUno.setBackground(new java.awt.Color(153, 153, 153));
+        TresUno.setBorder(new javax.swing.border.MatteBorder(null));
+        TresUno.setOpaque(true);
+        PanelMatriz.add(TresUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 60, 50));
 
-        lblMatriz24.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz24.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz24.setOpaque(true);
-        PanelMatriz.add(lblMatriz24, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 60, 46));
+        TresCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        TresCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        TresCuatro.setOpaque(true);
+        PanelMatriz.add(TresCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 60, 50));
 
-        lblMatriz25.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz25.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz25.setOpaque(true);
-        PanelMatriz.add(lblMatriz25, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 60, 46));
+        TresTres.setBackground(new java.awt.Color(153, 153, 153));
+        TresTres.setBorder(new javax.swing.border.MatteBorder(null));
+        TresTres.setOpaque(true);
+        PanelMatriz.add(TresTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 60, 50));
 
-        lblMatriz26.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz26.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz26.setOpaque(true);
-        PanelMatriz.add(lblMatriz26, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 60, 46));
+        CuatroDos.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroDos.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroDos.setOpaque(true);
+        PanelMatriz.add(CuatroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 60, 50));
 
-        lblMatriz27.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz27.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz27.setOpaque(true);
-        PanelMatriz.add(lblMatriz27, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 60, 46));
+        TresSeis.setBackground(new java.awt.Color(153, 153, 153));
+        TresSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        TresSeis.setOpaque(true);
+        PanelMatriz.add(TresSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 60, 50));
 
-        lblMatriz28.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz28.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz28.setOpaque(true);
-        PanelMatriz.add(lblMatriz28, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 60, 46));
+        TresCinco.setBackground(new java.awt.Color(153, 153, 153));
+        TresCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        TresCinco.setOpaque(true);
+        PanelMatriz.add(TresCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 60, 50));
 
-        lblMatriz29.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz29.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz29.setOpaque(true);
-        PanelMatriz.add(lblMatriz29, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 60, 46));
+        CuatroUno.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroUno.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroUno.setOpaque(true);
+        PanelMatriz.add(CuatroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 60, 50));
 
-        lblMatriz30.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz30.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz30.setOpaque(true);
-        PanelMatriz.add(lblMatriz30, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 60, 46));
+        TresSiete.setBackground(new java.awt.Color(153, 153, 153));
+        TresSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        TresSiete.setOpaque(true);
+        PanelMatriz.add(TresSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 60, 46));
 
-        lblMatriz31.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz31.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz31.setOpaque(true);
-        PanelMatriz.add(lblMatriz31, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 60, 46));
+        CuatroCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroCuatro.setOpaque(true);
+        PanelMatriz.add(CuatroCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 60, 50));
 
-        lblMatriz32.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz32.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz32.setOpaque(true);
-        PanelMatriz.add(lblMatriz32, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 60, 46));
+        CuatroTres.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroTres.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroTres.setOpaque(true);
+        PanelMatriz.add(CuatroTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 60, 50));
 
-        lblMatriz33.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz33.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz33.setOpaque(true);
-        PanelMatriz.add(lblMatriz33, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 60, 46));
+        CincoDos.setBackground(new java.awt.Color(153, 153, 153));
+        CincoDos.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoDos.setOpaque(true);
+        PanelMatriz.add(CincoDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 60, 50));
 
-        lblMatriz34.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz34.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz34.setOpaque(true);
-        PanelMatriz.add(lblMatriz34, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 60, 46));
+        CuatroSeis.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroSeis.setOpaque(true);
+        PanelMatriz.add(CuatroSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 60, 50));
 
-        lblMatriz35.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz35.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz35.setOpaque(true);
-        PanelMatriz.add(lblMatriz35, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 60, 46));
+        CuatroCinco.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroCinco.setOpaque(true);
+        PanelMatriz.add(CuatroCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 60, 50));
 
-        lblMatriz36.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz36.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz36.setOpaque(true);
-        PanelMatriz.add(lblMatriz36, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 60, 46));
+        CincoUno.setBackground(new java.awt.Color(153, 153, 153));
+        CincoUno.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoUno.setOpaque(true);
+        PanelMatriz.add(CincoUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 60, 50));
 
-        lblMatriz37.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz37.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz37.setOpaque(true);
-        PanelMatriz.add(lblMatriz37, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 60, 46));
+        CuatroSiete.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroSiete.setOpaque(true);
+        PanelMatriz.add(CuatroSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 60, 46));
 
-        lblMatriz38.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz38.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz38.setOpaque(true);
-        PanelMatriz.add(lblMatriz38, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 60, 46));
+        CincoCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        CincoCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoCuatro.setOpaque(true);
+        PanelMatriz.add(CincoCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 60, 50));
 
-        lblMatriz39.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz39.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz39.setOpaque(true);
-        PanelMatriz.add(lblMatriz39, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 60, 46));
+        CincoTres.setBackground(new java.awt.Color(153, 153, 153));
+        CincoTres.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoTres.setOpaque(true);
+        PanelMatriz.add(CincoTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 60, 50));
 
-        lblMatriz40.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz40.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz40.setOpaque(true);
-        PanelMatriz.add(lblMatriz40, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 60, 46));
+        SeisDos.setBackground(new java.awt.Color(153, 153, 153));
+        SeisDos.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisDos.setOpaque(true);
+        PanelMatriz.add(SeisDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 60, 50));
 
-        lblMatriz41.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz41.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz41.setOpaque(true);
-        PanelMatriz.add(lblMatriz41, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 60, 46));
+        CincoSeis.setBackground(new java.awt.Color(153, 153, 153));
+        CincoSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoSeis.setOpaque(true);
+        PanelMatriz.add(CincoSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 60, 50));
 
-        lblMatriz42.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz42.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz42.setOpaque(true);
-        PanelMatriz.add(lblMatriz42, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 60, 46));
+        CincoCinco.setBackground(new java.awt.Color(153, 153, 153));
+        CincoCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoCinco.setOpaque(true);
+        PanelMatriz.add(CincoCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 60, 50));
 
-        lblMatriz43.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz43.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz43.setOpaque(true);
-        PanelMatriz.add(lblMatriz43, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 60, 46));
+        SeisUno.setBackground(new java.awt.Color(153, 153, 153));
+        SeisUno.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisUno.setOpaque(true);
+        PanelMatriz.add(SeisUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 60, 50));
 
-        lblMatriz44.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz44.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz44.setOpaque(true);
-        PanelMatriz.add(lblMatriz44, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 60, 46));
+        CincoSiete.setBackground(new java.awt.Color(153, 153, 153));
+        CincoSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoSiete.setOpaque(true);
+        PanelMatriz.add(CincoSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 60, 46));
 
-        lblMatriz45.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz45.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz45.setOpaque(true);
-        PanelMatriz.add(lblMatriz45, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 60, 46));
+        SeisCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        SeisCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisCuatro.setOpaque(true);
+        PanelMatriz.add(SeisCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 60, 50));
 
-        lblMatriz46.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz46.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz46.setOpaque(true);
-        PanelMatriz.add(lblMatriz46, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 60, 46));
+        SeisTres.setBackground(new java.awt.Color(153, 153, 153));
+        SeisTres.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisTres.setOpaque(true);
+        PanelMatriz.add(SeisTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 60, 50));
 
-        lblMatriz47.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz47.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz47.setOpaque(true);
-        PanelMatriz.add(lblMatriz47, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 60, 46));
+        SeisSeis.setBackground(new java.awt.Color(153, 153, 153));
+        SeisSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisSeis.setOpaque(true);
+        PanelMatriz.add(SeisSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 60, 50));
 
-        lblMatriz48.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz48.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz48.setOpaque(true);
-        PanelMatriz.add(lblMatriz48, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 60, 46));
+        SeisCinco.setBackground(new java.awt.Color(153, 153, 153));
+        SeisCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisCinco.setOpaque(true);
+        PanelMatriz.add(SeisCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 60, 50));
 
-        lblMatriz49.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz49.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz49.setOpaque(true);
-        PanelMatriz.add(lblMatriz49, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 60, 46));
+        SieteDos.setBackground(new java.awt.Color(153, 153, 153));
+        SieteDos.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteDos.setOpaque(true);
+        PanelMatriz.add(SieteDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 60, 50));
 
-        lblMatriz50.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz50.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz50.setOpaque(true);
-        PanelMatriz.add(lblMatriz50, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 60, 46));
+        SieteUno.setBackground(new java.awt.Color(153, 153, 153));
+        SieteUno.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteUno.setOpaque(true);
+        PanelMatriz.add(SieteUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 60, 50));
 
-        lblMatriz51.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz51.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz51.setOpaque(true);
-        PanelMatriz.add(lblMatriz51, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 60, 46));
+        SieteCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        SieteCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteCuatro.setOpaque(true);
+        PanelMatriz.add(SieteCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 60, 50));
 
-        lblMatriz52.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz52.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz52.setOpaque(true);
-        PanelMatriz.add(lblMatriz52, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 60, 46));
+        SeisSiete.setBackground(new java.awt.Color(153, 153, 153));
+        SeisSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisSiete.setOpaque(true);
+        PanelMatriz.add(SeisSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 60, 46));
 
-        lblMatriz53.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz53.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz53.setOpaque(true);
-        PanelMatriz.add(lblMatriz53, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 60, 46));
+        SieteTres.setBackground(new java.awt.Color(153, 153, 153));
+        SieteTres.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteTres.setOpaque(true);
+        PanelMatriz.add(SieteTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 60, 50));
 
-        lblMatriz54.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz54.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz54.setOpaque(true);
-        PanelMatriz.add(lblMatriz54, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 60, 46));
+        SieteSeis.setBackground(new java.awt.Color(153, 153, 153));
+        SieteSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteSeis.setOpaque(true);
+        PanelMatriz.add(SieteSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 60, 50));
 
-        lblMatriz55.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz55.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz55.setOpaque(true);
-        PanelMatriz.add(lblMatriz55, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 60, 46));
+        SieteCinco.setBackground(new java.awt.Color(153, 153, 153));
+        SieteCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteCinco.setOpaque(true);
+        PanelMatriz.add(SieteCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 60, 50));
 
-        lblMatriz56.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz56.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz56.setOpaque(true);
-        PanelMatriz.add(lblMatriz56, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 60, 46));
+        CeroDos.setBackground(new java.awt.Color(0, 153, 153));
+        CeroDos.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroDos.setOpaque(true);
+        PanelMatriz.add(CeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 60, 50));
 
-        lblMatriz57.setBackground(new java.awt.Color(153, 153, 153));
-        lblMatriz57.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz57.setOpaque(true);
-        PanelMatriz.add(lblMatriz57, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 60, 46));
+        SieteSiete.setBackground(new java.awt.Color(153, 153, 153));
+        SieteSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteSiete.setOpaque(true);
+        PanelMatriz.add(SieteSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 60, 46));
 
-        lblMatriz58.setBackground(new java.awt.Color(0, 153, 153));
-        lblMatriz58.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz58.setOpaque(true);
-        PanelMatriz.add(lblMatriz58, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 60, 46));
+        CeroUno.setBackground(new java.awt.Color(0, 153, 153));
+        CeroUno.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroUno.setOpaque(true);
+        PanelMatriz.add(CeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 60, 50));
 
-        lblMatriz59.setBackground(new java.awt.Color(0, 153, 153));
-        lblMatriz59.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz59.setOpaque(true);
-        PanelMatriz.add(lblMatriz59, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 60, 46));
+        CeroCuatro.setBackground(new java.awt.Color(0, 153, 153));
+        CeroCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroCuatro.setOpaque(true);
+        PanelMatriz.add(CeroCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 60, 50));
 
-        lblMatriz60.setBackground(new java.awt.Color(0, 153, 153));
-        lblMatriz60.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz60.setOpaque(true);
-        PanelMatriz.add(lblMatriz60, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 60, 46));
+        CeroTres.setBackground(new java.awt.Color(0, 153, 153));
+        CeroTres.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroTres.setOpaque(true);
+        PanelMatriz.add(CeroTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 60, 50));
 
-        lblMatriz61.setBackground(new java.awt.Color(0, 153, 153));
-        lblMatriz61.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz61.setOpaque(true);
-        PanelMatriz.add(lblMatriz61, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 60, 46));
+        CeroCinco.setBackground(new java.awt.Color(0, 153, 153));
+        CeroCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroCinco.setOpaque(true);
+        PanelMatriz.add(CeroCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 60, 50));
 
-        lblMatriz62.setBackground(new java.awt.Color(0, 153, 153));
-        lblMatriz62.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz62.setOpaque(true);
-        PanelMatriz.add(lblMatriz62, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 60, 46));
+        CeroSiete.setBackground(new java.awt.Color(0, 153, 153));
+        CeroSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroSiete.setOpaque(true);
+        PanelMatriz.add(CeroSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 60, 46));
 
-        lblMatriz63.setBackground(new java.awt.Color(0, 153, 153));
-        lblMatriz63.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz63.setOpaque(true);
-        PanelMatriz.add(lblMatriz63, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 60, 46));
+        CeroSeis.setBackground(new java.awt.Color(0, 153, 153));
+        CeroSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroSeis.setOpaque(true);
+        PanelMatriz.add(CeroSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 60, 50));
 
-        lblMatriz64.setBackground(new java.awt.Color(0, 153, 153));
-        lblMatriz64.setBorder(new javax.swing.border.MatteBorder(null));
-        lblMatriz64.setOpaque(true);
-        PanelMatriz.add(lblMatriz64, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 60, 46));
+        UnoUno.setBackground(new java.awt.Color(255, 51, 51));
+        UnoUno.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoUno.setOpaque(true);
+        PanelMatriz.add(UnoUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 60, 50));
 
         javax.swing.GroupLayout PanelPrincipalLayout = new javax.swing.GroupLayout(PanelPrincipal);
         PanelPrincipal.setLayout(PanelPrincipalLayout);
@@ -545,20 +547,54 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PanelFila, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(PanelMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(PanelFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelMatriz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanelColumna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        jLabel9.setText("Posiciones recorridas:");
+
+        jLabel10.setText("Posiciones limpiadas:");
+
+        jButton1.setText("Reniciar Matriz");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelArribaLayout = new javax.swing.GroupLayout(PanelArriba);
+        PanelArriba.setLayout(PanelArribaLayout);
+        PanelArribaLayout.setHorizontalGroup(
+            PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelArribaLayout.createSequentialGroup()
+                .addContainerGap(296, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(120, 120, 120))
+            .addGroup(PanelArribaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(PanelColumna, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+        );
+        PanelArribaLayout.setVerticalGroup(
+            PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelArribaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(5, 5, 5)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -566,13 +602,19 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 123, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(PanelArriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(PanelArriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -580,6 +622,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        randomizarColores();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -597,11 +644,78 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CeroCero;
+    private javax.swing.JLabel CeroCinco;
+    private javax.swing.JLabel CeroCuatro;
+    private javax.swing.JLabel CeroDos;
+    private javax.swing.JLabel CeroSeis;
+    private javax.swing.JLabel CeroSiete;
+    private javax.swing.JLabel CeroTres;
+    private javax.swing.JLabel CeroUno;
+    private javax.swing.JLabel CincoCero;
+    private javax.swing.JLabel CincoCinco;
+    private javax.swing.JLabel CincoCuatro;
+    private javax.swing.JLabel CincoDos;
+    private javax.swing.JLabel CincoSeis;
+    private javax.swing.JLabel CincoSiete;
+    private javax.swing.JLabel CincoTres;
+    private javax.swing.JLabel CincoUno;
+    private javax.swing.JLabel CuatroCero;
+    private javax.swing.JLabel CuatroCinco;
+    private javax.swing.JLabel CuatroCuatro;
+    private javax.swing.JLabel CuatroDos;
+    private javax.swing.JLabel CuatroSeis;
+    private javax.swing.JLabel CuatroSiete;
+    private javax.swing.JLabel CuatroTres;
+    private javax.swing.JLabel CuatroUno;
+    private javax.swing.JLabel DosCero;
+    private javax.swing.JLabel DosCinco;
+    private javax.swing.JLabel DosCuatro;
+    private javax.swing.JLabel DosDos;
+    private javax.swing.JLabel DosSeis;
+    private javax.swing.JLabel DosSiete;
+    private javax.swing.JLabel DosTres;
+    private javax.swing.JLabel DosUno;
+    private javax.swing.JPanel PanelArriba;
     private javax.swing.JPanel PanelColumna;
     private javax.swing.JPanel PanelFila;
     private javax.swing.JPanel PanelMatriz;
     private javax.swing.JPanel PanelPrincipal;
+    private javax.swing.JLabel SeisCero;
+    private javax.swing.JLabel SeisCinco;
+    private javax.swing.JLabel SeisCuatro;
+    private javax.swing.JLabel SeisDos;
+    private javax.swing.JLabel SeisSeis;
+    private javax.swing.JLabel SeisSiete;
+    private javax.swing.JLabel SeisTres;
+    private javax.swing.JLabel SeisUno;
+    private javax.swing.JLabel SieteCero;
+    private javax.swing.JLabel SieteCinco;
+    private javax.swing.JLabel SieteCuatro;
+    private javax.swing.JLabel SieteDos;
+    private javax.swing.JLabel SieteSeis;
+    private javax.swing.JLabel SieteSiete;
+    private javax.swing.JLabel SieteTres;
+    private javax.swing.JLabel SieteUno;
+    private javax.swing.JLabel TresCero;
+    private javax.swing.JLabel TresCinco;
+    private javax.swing.JLabel TresCuatro;
+    private javax.swing.JLabel TresDos;
+    private javax.swing.JLabel TresSeis;
+    private javax.swing.JLabel TresSiete;
+    private javax.swing.JLabel TresTres;
+    private javax.swing.JLabel TresUno;
+    private javax.swing.JLabel UnoCero;
+    private javax.swing.JLabel UnoCinco;
+    private javax.swing.JLabel UnoCuatro;
+    private javax.swing.JLabel UnoDos;
+    private javax.swing.JLabel UnoSeis;
+    private javax.swing.JLabel UnoSiete;
+    private javax.swing.JLabel UnoTres;
+    private javax.swing.JLabel UnoUno;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -609,70 +723,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lblMatriz1;
-    private javax.swing.JLabel lblMatriz10;
-    private javax.swing.JLabel lblMatriz11;
-    private javax.swing.JLabel lblMatriz12;
-    private javax.swing.JLabel lblMatriz13;
-    private javax.swing.JLabel lblMatriz14;
-    private javax.swing.JLabel lblMatriz15;
-    private javax.swing.JLabel lblMatriz16;
-    private javax.swing.JLabel lblMatriz17;
-    private javax.swing.JLabel lblMatriz18;
-    private javax.swing.JLabel lblMatriz19;
-    private javax.swing.JLabel lblMatriz2;
-    private javax.swing.JLabel lblMatriz20;
-    private javax.swing.JLabel lblMatriz21;
-    private javax.swing.JLabel lblMatriz22;
-    private javax.swing.JLabel lblMatriz23;
-    private javax.swing.JLabel lblMatriz24;
-    private javax.swing.JLabel lblMatriz25;
-    private javax.swing.JLabel lblMatriz26;
-    private javax.swing.JLabel lblMatriz27;
-    private javax.swing.JLabel lblMatriz28;
-    private javax.swing.JLabel lblMatriz29;
-    private javax.swing.JLabel lblMatriz3;
-    private javax.swing.JLabel lblMatriz30;
-    private javax.swing.JLabel lblMatriz31;
-    private javax.swing.JLabel lblMatriz32;
-    private javax.swing.JLabel lblMatriz33;
-    private javax.swing.JLabel lblMatriz34;
-    private javax.swing.JLabel lblMatriz35;
-    private javax.swing.JLabel lblMatriz36;
-    private javax.swing.JLabel lblMatriz37;
-    private javax.swing.JLabel lblMatriz38;
-    private javax.swing.JLabel lblMatriz39;
-    private javax.swing.JLabel lblMatriz4;
-    private javax.swing.JLabel lblMatriz40;
-    private javax.swing.JLabel lblMatriz41;
-    private javax.swing.JLabel lblMatriz42;
-    private javax.swing.JLabel lblMatriz43;
-    private javax.swing.JLabel lblMatriz44;
-    private javax.swing.JLabel lblMatriz45;
-    private javax.swing.JLabel lblMatriz46;
-    private javax.swing.JLabel lblMatriz47;
-    private javax.swing.JLabel lblMatriz48;
-    private javax.swing.JLabel lblMatriz49;
-    private javax.swing.JLabel lblMatriz5;
-    private javax.swing.JLabel lblMatriz50;
-    private javax.swing.JLabel lblMatriz51;
-    private javax.swing.JLabel lblMatriz52;
-    private javax.swing.JLabel lblMatriz53;
-    private javax.swing.JLabel lblMatriz54;
-    private javax.swing.JLabel lblMatriz55;
-    private javax.swing.JLabel lblMatriz56;
-    private javax.swing.JLabel lblMatriz57;
-    private javax.swing.JLabel lblMatriz58;
-    private javax.swing.JLabel lblMatriz59;
-    private javax.swing.JLabel lblMatriz6;
-    private javax.swing.JLabel lblMatriz60;
-    private javax.swing.JLabel lblMatriz61;
-    private javax.swing.JLabel lblMatriz62;
-    private javax.swing.JLabel lblMatriz63;
-    private javax.swing.JLabel lblMatriz64;
-    private javax.swing.JLabel lblMatriz7;
-    private javax.swing.JLabel lblMatriz8;
-    private javax.swing.JLabel lblMatriz9;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblNumeracion1;
     private javax.swing.JLabel lblNumeracion10;
     private javax.swing.JLabel lblNumeracion3;
