@@ -1,11 +1,67 @@
 package laboratoriotresjava;
 
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.util.*;
+
 public class VentanaSecundaria extends javax.swing.JDialog {
 
     public VentanaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        randomizarColores();
     }
+    
+    private final Color[] colores = {Color.WHITE, Color.RED, Color.BLUE, Color.GREEN};
+    
+    private void randomizarColores() {
+    List<JLabel> labels = new ArrayList<>();
+    Random rand = new Random();
+
+    // Agrega todas las etiquetas al arreglo
+    for (java.awt.Component comp : PanelMatriz.getComponents()) {
+        if (comp instanceof JLabel) {
+            labels.add((JLabel) comp);
+        }
+    }
+
+    // Calcula el número de etiquetas de cada color
+    int totalLabels = labels.size();
+    int greenLabels = totalLabels * 50 / 100;
+    int redLabels = totalLabels * 15 / 100;
+    int whiteLabels = totalLabels * 35 / 100;
+    int blueLabels = 1;
+
+    // Mezcla la lista de etiquetas aleatoriamente
+    Collections.shuffle(labels);
+
+    // Asigna colores según las cantidades calculadas
+    int greenCount = 0;
+    int redCount = 0;
+    int whiteCount = 0;
+    int blueCount = 0;
+
+    for (JLabel label : labels) {
+        Color colorAleatorio = null;
+        if (greenCount < greenLabels) {
+            colorAleatorio = Color.GREEN;
+            greenCount++;
+        } else if (redCount < redLabels) {
+            colorAleatorio = Color.RED;
+            redCount++;
+        } else if (whiteCount < whiteLabels) {
+            colorAleatorio = Color.WHITE;
+            whiteCount++;
+        } else if (blueCount < blueLabels) {
+            colorAleatorio = Color.BLUE;
+            blueCount++;
+        } else {
+            // Si se han asignado todas las etiquetas requeridas, se asigna un color aleatorio
+            colorAleatorio = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+        }
+        label.setBackground(colorAleatorio);
+    }
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
