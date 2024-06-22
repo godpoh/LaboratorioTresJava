@@ -199,7 +199,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelFila.add(lblNumeracion8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 55, 30));
 
         lblNumeracion9.setText("7");
-        PanelFila.add(lblNumeracion9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 55, 30));
+        PanelFila.add(lblNumeracion9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 40, 30));
 
         lblNumeracion10.setText("6");
         PanelFila.add(lblNumeracion10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 55, 30));
@@ -234,9 +234,9 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         Robot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Robot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/robot-removebg-preview.png"))); // NOI18N
-        PanelMatriz.add(Robot, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
+        PanelMatriz.add(Robot, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 60, 50));
 
-        DosCero.setBackground(new java.awt.Color(0, 153, 51));
+        DosCero.setBackground(new java.awt.Color(153, 153, 153));
         DosCero.setBorder(new javax.swing.border.MatteBorder(null));
         DosCero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         DosCero.setOpaque(true);
@@ -247,7 +247,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         SieteCero.setOpaque(true);
         PanelMatriz.add(SieteCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 60, 50));
 
-        UnoCuatro.setBackground(new java.awt.Color(255, 51, 51));
+        UnoCuatro.setBackground(new java.awt.Color(153, 153, 153));
         UnoCuatro.setBorder(new javax.swing.border.MatteBorder(null));
         UnoCuatro.setOpaque(true);
         PanelMatriz.add(UnoCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 60, 50));
@@ -267,7 +267,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         CuatroCero.setOpaque(true);
         PanelMatriz.add(CuatroCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 60, 50));
 
-        UnoCero.setBackground(new java.awt.Color(255, 51, 51));
+        UnoCero.setBackground(new java.awt.Color(153, 153, 153));
         UnoCero.setBorder(new javax.swing.border.MatteBorder(null));
         UnoCero.setOpaque(true);
         PanelMatriz.add(UnoCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 60, 50));
@@ -277,67 +277,67 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         TresCero.setOpaque(true);
         PanelMatriz.add(TresCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 60, 50));
 
-        CeroCero.setBackground(new java.awt.Color(0, 153, 153));
+        CeroCero.setBackground(new java.awt.Color(153, 153, 153));
         CeroCero.setBorder(new javax.swing.border.MatteBorder(null));
         CeroCero.setOpaque(true);
         PanelMatriz.add(CeroCero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
 
-        UnoTres.setBackground(new java.awt.Color(255, 51, 51));
+        UnoTres.setBackground(new java.awt.Color(153, 153, 153));
         UnoTres.setBorder(new javax.swing.border.MatteBorder(null));
         UnoTres.setOpaque(true);
         PanelMatriz.add(UnoTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 60, 50));
 
-        UnoDos.setBackground(new java.awt.Color(255, 51, 51));
+        UnoDos.setBackground(new java.awt.Color(153, 153, 153));
         UnoDos.setBorder(new javax.swing.border.MatteBorder(null));
         UnoDos.setOpaque(true);
         PanelMatriz.add(UnoDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 60, 50));
 
-        DosDos.setBackground(new java.awt.Color(0, 153, 51));
+        DosDos.setBackground(new java.awt.Color(153, 153, 153));
         DosDos.setBorder(new javax.swing.border.MatteBorder(null));
         DosDos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         DosDos.setOpaque(true);
         PanelMatriz.add(DosDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 60, 50));
 
-        UnoSeis.setBackground(new java.awt.Color(255, 51, 51));
+        UnoSeis.setBackground(new java.awt.Color(153, 153, 153));
         UnoSeis.setBorder(new javax.swing.border.MatteBorder(null));
         UnoSeis.setOpaque(true);
         PanelMatriz.add(UnoSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 60, 50));
 
-        UnoCinco.setBackground(new java.awt.Color(255, 51, 51));
+        UnoCinco.setBackground(new java.awt.Color(153, 153, 153));
         UnoCinco.setBorder(new javax.swing.border.MatteBorder(null));
         UnoCinco.setOpaque(true);
         PanelMatriz.add(UnoCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 60, 50));
 
-        DosUno.setBackground(new java.awt.Color(0, 153, 51));
+        DosUno.setBackground(new java.awt.Color(153, 153, 153));
         DosUno.setBorder(new javax.swing.border.MatteBorder(null));
         DosUno.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         DosUno.setOpaque(true);
         PanelMatriz.add(DosUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 60, 50));
 
-        UnoSiete.setBackground(new java.awt.Color(255, 51, 51));
+        UnoSiete.setBackground(new java.awt.Color(153, 153, 153));
         UnoSiete.setBorder(new javax.swing.border.MatteBorder(null));
         UnoSiete.setOpaque(true);
         PanelMatriz.add(UnoSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 60, 46));
 
-        DosCuatro.setBackground(new java.awt.Color(0, 153, 51));
+        DosCuatro.setBackground(new java.awt.Color(153, 153, 153));
         DosCuatro.setBorder(new javax.swing.border.MatteBorder(null));
         DosCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         DosCuatro.setOpaque(true);
         PanelMatriz.add(DosCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 60, 50));
 
-        DosTres.setBackground(new java.awt.Color(0, 153, 51));
+        DosTres.setBackground(new java.awt.Color(153, 153, 153));
         DosTres.setBorder(new javax.swing.border.MatteBorder(null));
         DosTres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         DosTres.setOpaque(true);
         PanelMatriz.add(DosTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 60, 50));
 
-        DosSeis.setBackground(new java.awt.Color(0, 153, 51));
+        DosSeis.setBackground(new java.awt.Color(153, 153, 153));
         DosSeis.setBorder(new javax.swing.border.MatteBorder(null));
         DosSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         DosSeis.setOpaque(true);
         PanelMatriz.add(DosSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 60, 50));
 
-        DosCinco.setBackground(new java.awt.Color(0, 153, 51));
+        DosCinco.setBackground(new java.awt.Color(153, 153, 153));
         DosCinco.setBorder(new javax.swing.border.MatteBorder(null));
         DosCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         DosCinco.setOpaque(true);
@@ -348,7 +348,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         TresDos.setOpaque(true);
         PanelMatriz.add(TresDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 60, 50));
 
-        DosSiete.setBackground(new java.awt.Color(0, 153, 51));
+        DosSiete.setBackground(new java.awt.Color(153, 153, 153));
         DosSiete.setBorder(new javax.swing.border.MatteBorder(null));
         DosSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         DosSiete.setOpaque(true);
@@ -519,7 +519,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         SieteCinco.setOpaque(true);
         PanelMatriz.add(SieteCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 60, 50));
 
-        CeroDos.setBackground(new java.awt.Color(0, 153, 153));
+        CeroDos.setBackground(new java.awt.Color(153, 153, 153));
         CeroDos.setBorder(new javax.swing.border.MatteBorder(null));
         CeroDos.setOpaque(true);
         PanelMatriz.add(CeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 60, 50));
@@ -529,37 +529,37 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         SieteSiete.setOpaque(true);
         PanelMatriz.add(SieteSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 60, 46));
 
-        CeroUno.setBackground(new java.awt.Color(0, 153, 153));
+        CeroUno.setBackground(new java.awt.Color(153, 153, 153));
         CeroUno.setBorder(new javax.swing.border.MatteBorder(null));
         CeroUno.setOpaque(true);
         PanelMatriz.add(CeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 60, 50));
 
-        CeroCuatro.setBackground(new java.awt.Color(0, 153, 153));
+        CeroCuatro.setBackground(new java.awt.Color(153, 153, 153));
         CeroCuatro.setBorder(new javax.swing.border.MatteBorder(null));
         CeroCuatro.setOpaque(true);
         PanelMatriz.add(CeroCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 60, 50));
 
-        CeroTres.setBackground(new java.awt.Color(0, 153, 153));
+        CeroTres.setBackground(new java.awt.Color(153, 153, 153));
         CeroTres.setBorder(new javax.swing.border.MatteBorder(null));
         CeroTres.setOpaque(true);
         PanelMatriz.add(CeroTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 60, 50));
 
-        CeroCinco.setBackground(new java.awt.Color(0, 153, 153));
+        CeroCinco.setBackground(new java.awt.Color(153, 153, 153));
         CeroCinco.setBorder(new javax.swing.border.MatteBorder(null));
         CeroCinco.setOpaque(true);
         PanelMatriz.add(CeroCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 60, 50));
 
-        CeroSiete.setBackground(new java.awt.Color(0, 153, 153));
+        CeroSiete.setBackground(new java.awt.Color(153, 153, 153));
         CeroSiete.setBorder(new javax.swing.border.MatteBorder(null));
         CeroSiete.setOpaque(true);
         PanelMatriz.add(CeroSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 60, 46));
 
-        CeroSeis.setBackground(new java.awt.Color(0, 153, 153));
+        CeroSeis.setBackground(new java.awt.Color(153, 153, 153));
         CeroSeis.setBorder(new javax.swing.border.MatteBorder(null));
         CeroSeis.setOpaque(true);
         PanelMatriz.add(CeroSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 60, 50));
 
-        UnoUno.setBackground(new java.awt.Color(255, 51, 51));
+        UnoUno.setBackground(new java.awt.Color(153, 153, 153));
         UnoUno.setBorder(new javax.swing.border.MatteBorder(null));
         UnoUno.setOpaque(true);
         PanelMatriz.add(UnoUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 60, 50));
@@ -634,28 +634,22 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                     .addComponent(jButton1)
                     .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(PanelDerechaLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9)
-                                .addGroup(PanelDerechaLayout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(jLabel11))))
-                        .addGroup(PanelDerechaLayout.createSequentialGroup()
                             .addGap(37, 37, 37)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9))
                         .addGroup(PanelDerechaLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel10))
+                            .addGap(70, 70, 70)
+                            .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(PanelDerechaLayout.createSequentialGroup()
                             .addGap(36, 36, 36)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(PanelDerechaLayout.createSequentialGroup()
-                            .addGap(38, 38, 38)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(PanelDerechaLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel12))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                            .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel12)
+                                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel10))))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         PanelDerechaLayout.setVerticalGroup(
             PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -674,7 +668,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -693,7 +687,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(91, Short.MAX_VALUE)
+                .addContainerGap(90, Short.MAX_VALUE)
                 .addComponent(PanelArriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
