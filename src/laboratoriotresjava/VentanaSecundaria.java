@@ -32,54 +32,60 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
     private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
 
-    private void posicionarRobotInicial() {
-        // Remove the robot from its current parent if it has one
+  private void posicionarRobotInicial() {
         if (Robot.getParent() != null) {
             Robot.getParent().remove(Robot);
         }
 
-        // Add the robot directly to the PanelMatriz instead of CeroCero
-        PanelMatriz.setLayout(null); // Use null layout for absolute positioning
+        PanelMatriz.setLayout(null);
         PanelMatriz.add(Robot);
 
-        // Set the robot's position to match CeroCero's position
-        Robot.setBounds(CeroCero.getX(), CeroCero.getY(), CeroCero.getWidth(), CeroCero.getHeight());
+        // Inicializar el robot en (0,0)
+        JLabel initialLabel = getLabelAt(0, 0);
+        if (initialLabel != null) {
+            Robot.setBounds(initialLabel.getBounds());
+        }
 
-        // Ensure the robot is visible and on top
         Robot.setVisible(true);
         PanelMatriz.setComponentZOrder(Robot, 0);
-
-        // Refresh the panel
         PanelMatriz.revalidate();
         PanelMatriz.repaint();
     }
 
     private void randomizarColores() {
-
         Random rand = new Random();
+        labels.clear();
+        colorBlanco.clear();
+        colorRojo.clear();
+        colorVerde.clear();
 
-        // Agrega todas las etiquetas al arreglo excepto lblMatriz3
         for (java.awt.Component comp : PanelMatriz.getComponents()) {
-            if (comp instanceof JLabel && comp != CeroCero) {
+            if (comp instanceof JLabel) {
                 labels.add((JLabel) comp);
             }
         }
 
-        // Calcula el numero de etiquetas de cada color
+        // Pinta la celda (0,0) de azul
+        JLabel firstLabel = getLabelAt(0, 0);
+        if (firstLabel != null) {
+            firstLabel.setBackground(Color.BLUE);
+        }
+
         int totalLabels = labels.size();
         int greenLabels = totalLabels * 50 / 100;
         int redLabels = totalLabels * 15 / 100;
         int whiteLabels = totalLabels * 35 / 100;
 
-        // Mezcla la lista de etiquetas aleatoriamente
         Collections.shuffle(labels);
 
-        // Asigna colores segun las cantidades calculadas
         int greenCount = 0;
         int redCount = 0;
         int whiteCount = 0;
 
         for (JLabel label : labels) {
+            // Salta la celda (0,0)
+            if (label == firstLabel) continue;
+
             if (greenCount < greenLabels) {
                 label.setBackground(Color.GREEN);
                 greenCount++;
@@ -93,7 +99,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 whiteCount++;
                 colorBlanco.add(label);
             } else {
-                // Si se han asignado todas las etiquetas requeridas, se asigna un color aleatorio de los definidos
                 int randomIndex = rand.nextInt(colores.length);
                 label.setBackground(colores[randomIndex]);
 
@@ -106,8 +111,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 }
             }
         }
-        // Asegura que lblMatriz3 siempre sea azul
-        CeroCero.setBackground(Color.BLUE);
     }
 
     @SuppressWarnings("unchecked")
@@ -134,7 +137,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         PanelMatriz = new javax.swing.JPanel();
-        CeroCero = new javax.swing.JLabel();
         SieteCero = new javax.swing.JLabel();
         UnoCuatro = new javax.swing.JLabel();
         SeisCero = new javax.swing.JLabel();
@@ -153,6 +155,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         DosCinco = new javax.swing.JLabel();
         TresDos = new javax.swing.JLabel();
         DosSiete = new javax.swing.JLabel();
+        CeroCero = new javax.swing.JLabel();
+        CeroTres = new javax.swing.JLabel();
         TresUno = new javax.swing.JLabel();
         TresCuatro = new javax.swing.JLabel();
         TresTres = new javax.swing.JLabel();
@@ -160,6 +164,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         TresSeis = new javax.swing.JLabel();
         TresCinco = new javax.swing.JLabel();
         CuatroUno = new javax.swing.JLabel();
+        CeroSiete = new javax.swing.JLabel();
         TresSiete = new javax.swing.JLabel();
         CuatroCuatro = new javax.swing.JLabel();
         CuatroTres = new javax.swing.JLabel();
@@ -168,13 +173,17 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         CuatroCinco = new javax.swing.JLabel();
         CincoUno = new javax.swing.JLabel();
         CuatroSiete = new javax.swing.JLabel();
+        DosCero = new javax.swing.JLabel();
         CincoCuatro = new javax.swing.JLabel();
         CincoTres = new javax.swing.JLabel();
+        UnoTres = new javax.swing.JLabel();
         SeisDos = new javax.swing.JLabel();
         CincoSeis = new javax.swing.JLabel();
         CincoCinco = new javax.swing.JLabel();
         SeisUno = new javax.swing.JLabel();
         CincoSiete = new javax.swing.JLabel();
+        CeroCuatro = new javax.swing.JLabel();
+        CeroSeis = new javax.swing.JLabel();
         SeisCuatro = new javax.swing.JLabel();
         SeisTres = new javax.swing.JLabel();
         SeisSeis = new javax.swing.JLabel();
@@ -183,20 +192,14 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         SieteUno = new javax.swing.JLabel();
         SieteCuatro = new javax.swing.JLabel();
         SeisSiete = new javax.swing.JLabel();
+        CeroCinco = new javax.swing.JLabel();
         SieteTres = new javax.swing.JLabel();
         SieteSeis = new javax.swing.JLabel();
         SieteCinco = new javax.swing.JLabel();
         CeroDos = new javax.swing.JLabel();
         SieteSiete = new javax.swing.JLabel();
         CeroUno = new javax.swing.JLabel();
-        CeroCuatro = new javax.swing.JLabel();
-        CeroTres = new javax.swing.JLabel();
-        CeroCinco = new javax.swing.JLabel();
-        CeroSiete = new javax.swing.JLabel();
-        CeroSeis = new javax.swing.JLabel();
         UnoUno = new javax.swing.JLabel();
-        DosCero = new javax.swing.JLabel();
-        UnoTres = new javax.swing.JLabel();
         UnoDos = new javax.swing.JLabel();
         PanelArriba = new javax.swing.JPanel();
         lblInformacionMovimiento = new javax.swing.JLabel();
@@ -250,29 +253,24 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelColumna.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         jLabel3.setText("7");
-        PanelColumna.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 10, 20));
+        PanelColumna.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 10, 20));
 
         jLabel4.setText("2");
-        PanelColumna.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 10, 20));
+        PanelColumna.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 10, 20));
 
         jLabel5.setText("3");
-        PanelColumna.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 10, 20));
+        PanelColumna.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 10, 20));
 
         jLabel6.setText("4");
-        PanelColumna.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 10, 20));
+        PanelColumna.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 10, 20));
 
         jLabel7.setText("5");
-        PanelColumna.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 10, 20));
+        PanelColumna.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 10, 20));
 
         jLabel8.setText("6");
-        PanelColumna.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 10, 20));
+        PanelColumna.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 10, 20));
 
-        PanelMatriz.setLayout(new java.awt.GridLayout(8, 7));
-
-        CeroCero.setBackground(new java.awt.Color(153, 153, 153));
-        CeroCero.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroCero.setOpaque(true);
-        PanelMatriz.add(CeroCero);
+        PanelMatriz.setLayout(new java.awt.GridLayout(8, 8));
 
         SieteCero.setBackground(new java.awt.Color(153, 153, 153));
         SieteCero.setBorder(new javax.swing.border.MatteBorder(null));
@@ -371,6 +369,16 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         DosSiete.setOpaque(true);
         PanelMatriz.add(DosSiete);
 
+        CeroCero.setBackground(new java.awt.Color(153, 153, 153));
+        CeroCero.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroCero.setOpaque(true);
+        PanelMatriz.add(CeroCero);
+
+        CeroTres.setBackground(new java.awt.Color(153, 153, 153));
+        CeroTres.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroTres.setOpaque(true);
+        PanelMatriz.add(CeroTres);
+
         TresUno.setBackground(new java.awt.Color(153, 153, 153));
         TresUno.setBorder(new javax.swing.border.MatteBorder(null));
         TresUno.setOpaque(true);
@@ -405,6 +413,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         CuatroUno.setBorder(new javax.swing.border.MatteBorder(null));
         CuatroUno.setOpaque(true);
         PanelMatriz.add(CuatroUno);
+
+        CeroSiete.setBackground(new java.awt.Color(153, 153, 153));
+        CeroSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroSiete.setOpaque(true);
+        PanelMatriz.add(CeroSiete);
 
         TresSiete.setBackground(new java.awt.Color(153, 153, 153));
         TresSiete.setBorder(new javax.swing.border.MatteBorder(null));
@@ -446,6 +459,12 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         CuatroSiete.setOpaque(true);
         PanelMatriz.add(CuatroSiete);
 
+        DosCero.setBackground(new java.awt.Color(153, 153, 153));
+        DosCero.setBorder(new javax.swing.border.MatteBorder(null));
+        DosCero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosCero.setOpaque(true);
+        PanelMatriz.add(DosCero);
+
         CincoCuatro.setBackground(new java.awt.Color(153, 153, 153));
         CincoCuatro.setBorder(new javax.swing.border.MatteBorder(null));
         CincoCuatro.setOpaque(true);
@@ -455,6 +474,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         CincoTres.setBorder(new javax.swing.border.MatteBorder(null));
         CincoTres.setOpaque(true);
         PanelMatriz.add(CincoTres);
+
+        UnoTres.setBackground(new java.awt.Color(153, 153, 153));
+        UnoTres.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoTres.setOpaque(true);
+        PanelMatriz.add(UnoTres);
 
         SeisDos.setBackground(new java.awt.Color(153, 153, 153));
         SeisDos.setBorder(new javax.swing.border.MatteBorder(null));
@@ -480,6 +504,16 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         CincoSiete.setBorder(new javax.swing.border.MatteBorder(null));
         CincoSiete.setOpaque(true);
         PanelMatriz.add(CincoSiete);
+
+        CeroCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        CeroCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroCuatro.setOpaque(true);
+        PanelMatriz.add(CeroCuatro);
+
+        CeroSeis.setBackground(new java.awt.Color(153, 153, 153));
+        CeroSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroSeis.setOpaque(true);
+        PanelMatriz.add(CeroSeis);
 
         SeisCuatro.setBackground(new java.awt.Color(153, 153, 153));
         SeisCuatro.setBorder(new javax.swing.border.MatteBorder(null));
@@ -521,6 +555,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         SeisSiete.setOpaque(true);
         PanelMatriz.add(SeisSiete);
 
+        CeroCinco.setBackground(new java.awt.Color(153, 153, 153));
+        CeroCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroCinco.setOpaque(true);
+        PanelMatriz.add(CeroCinco);
+
         SieteTres.setBackground(new java.awt.Color(153, 153, 153));
         SieteTres.setBorder(new javax.swing.border.MatteBorder(null));
         SieteTres.setOpaque(true);
@@ -551,46 +590,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         CeroUno.setOpaque(true);
         PanelMatriz.add(CeroUno);
 
-        CeroCuatro.setBackground(new java.awt.Color(153, 153, 153));
-        CeroCuatro.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroCuatro.setOpaque(true);
-        PanelMatriz.add(CeroCuatro);
-
-        CeroTres.setBackground(new java.awt.Color(153, 153, 153));
-        CeroTres.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroTres.setOpaque(true);
-        PanelMatriz.add(CeroTres);
-
-        CeroCinco.setBackground(new java.awt.Color(153, 153, 153));
-        CeroCinco.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroCinco.setOpaque(true);
-        PanelMatriz.add(CeroCinco);
-
-        CeroSiete.setBackground(new java.awt.Color(153, 153, 153));
-        CeroSiete.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroSiete.setOpaque(true);
-        PanelMatriz.add(CeroSiete);
-
-        CeroSeis.setBackground(new java.awt.Color(153, 153, 153));
-        CeroSeis.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroSeis.setOpaque(true);
-        PanelMatriz.add(CeroSeis);
-
         UnoUno.setBackground(new java.awt.Color(153, 153, 153));
         UnoUno.setBorder(new javax.swing.border.MatteBorder(null));
         UnoUno.setOpaque(true);
         PanelMatriz.add(UnoUno);
-
-        DosCero.setBackground(new java.awt.Color(153, 153, 153));
-        DosCero.setBorder(new javax.swing.border.MatteBorder(null));
-        DosCero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DosCero.setOpaque(true);
-        PanelMatriz.add(DosCero);
-
-        UnoTres.setBackground(new java.awt.Color(153, 153, 153));
-        UnoTres.setBorder(new javax.swing.border.MatteBorder(null));
-        UnoTres.setOpaque(true);
-        PanelMatriz.add(UnoTres);
 
         UnoDos.setBackground(new java.awt.Color(153, 153, 153));
         UnoDos.setBorder(new javax.swing.border.MatteBorder(null));
@@ -612,16 +615,14 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(PanelColumna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelFila, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PanelColumna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(PanelMatriz, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addComponent(PanelFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelMatriz, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         lblInformacionMovimiento.setText("Debe de utilizar las flechas del teclado para poder controlar al robot");
@@ -638,7 +639,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelArribaLayout.setVerticalGroup(
             PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelArribaLayout.createSequentialGroup()
-                .addGap(0, 84, Short.MAX_VALUE)
+                .addGap(0, 93, Short.MAX_VALUE)
                 .addComponent(lblInformacionMovimiento))
         );
 
@@ -657,7 +658,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         lblNoSePudoMoverPor.setText("No se pudo mover por:");
 
-        lblXYContador.setText("        0,0");
+        lblXYContador.setText("0,0");
         lblXYContador.setToolTipText("");
         lblXYContador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -686,7 +687,9 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                         .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblPosicionRecorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPosicionLimpiada, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblXYContador, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelDerechaLayout.createSequentialGroup()
+                                .addComponent(lblXYContador)
+                                .addGap(21, 21, 21))))
                     .addGroup(PanelDerechaLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -748,8 +751,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(PanelArriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(PanelDerecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -799,8 +801,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private void moveRobotTo(int row, int col) {
         JLabel targetLabel = getLabelAt(row, col);
         if (targetLabel != null) {
-            Robot.setLocation(targetLabel.getX(), targetLabel.getY());
-            Robot.getParent().setComponentZOrder(Robot, 0);
+            Robot.setBounds(targetLabel.getBounds());
             currentRow = row;
             currentCol = col;
         }
@@ -817,15 +818,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }
 
     private JLabel getLabelAt(int row, int col) {
-        for (Component comp : PanelMatriz.getComponents()) {
-            if (comp instanceof JLabel) {
-                int index = PanelMatriz.getComponentZOrder(comp);
-                int compRow = index / 8;
-                int compCol = index % 8;
-                if (compRow == row && compCol == col) {
-                    return (JLabel) comp;
-                }
-            }
+        int index = row * 8 + col;
+        Component comp = PanelMatriz.getComponent(index);
+        if (comp instanceof JLabel) {
+            return (JLabel) comp;
         }
         return null;
     }
