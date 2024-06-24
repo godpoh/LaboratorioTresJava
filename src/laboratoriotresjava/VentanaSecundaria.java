@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import java.util.*;
-import javax.swing.JPanel;
 
 public class VentanaSecundaria extends javax.swing.JDialog {
 
@@ -68,7 +67,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             }
         }
 
-        // Pinta la celda (0,0) de azul
         JLabel firstLabel = getLabelAt(0, 0);
         if (firstLabel != null) {
             firstLabel.setBackground(Color.BLUE);
@@ -667,11 +665,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         lblXYContador.setToolTipText("");
         lblXYContador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        lblPosicionRecorrida.setText("        0");
+        lblPosicionRecorrida.setText("0");
         lblPosicionRecorrida.setToolTipText("");
         lblPosicionRecorrida.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        lblPosicionLimpiada.setText("        0");
+        lblPosicionLimpiada.setText("0");
         lblPosicionLimpiada.setToolTipText("");
         lblPosicionLimpiada.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -682,19 +680,18 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelDerecha.setLayout(PanelDerechaLayout);
         PanelDerechaLayout.setHorizontalGroup(
             PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
             .addGroup(PanelDerechaLayout.createSequentialGroup()
                 .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDerechaLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(lblXYContador))
+                    .addGroup(PanelDerechaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(PosicionRecorridas))
-                    .addGroup(PanelDerechaLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPosicionRecorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPosicionLimpiada, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PanelDerechaLayout.createSequentialGroup()
-                                .addComponent(lblXYContador)
-                                .addGap(21, 21, 21))))
                     .addGroup(PanelDerechaLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -709,9 +706,14 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                                     .addGap(2, 2, 2))))))
                 .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                        .addComponent(lblPosicionLimpiada, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                        .addComponent(lblPosicionRecorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66))))
         );
         PanelDerechaLayout.setVerticalGroup(
             PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -734,7 +736,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReiniciarMatriz)
                 .addContainerGap())
         );
@@ -768,6 +770,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
     private int currentRow = 0;
     private int currentCol = 0;
+    private int contadorPasos = 0;
+    private int contadorCambioVerdeABlanco = 0;
     String message = "un cuadro rojo";
 
     private void PanelMatrizKeyPressed(java.awt.event.KeyEvent evt) {
@@ -777,15 +781,19 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_UP:
                 newRow = Math.max(0, currentRow - 1);
+                contadorPasos++;
                 break;
             case KeyEvent.VK_DOWN:
                 newRow = Math.min(7, currentRow + 1);
+                contadorPasos++;
                 break;
             case KeyEvent.VK_LEFT:
                 newCol = Math.max(0, currentCol - 1);
+                contadorPasos++;
                 break;
             case KeyEvent.VK_RIGHT:
                 newCol = Math.min(7, currentCol + 1);
+                contadorPasos++;
                 break;
         }
 
@@ -795,11 +803,12 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 moverRobotA(newRow, newCol);
                 manejarLabelVerde(newRow, newCol);
                 updatePosicionLabel();
+                updateMovimientos();
             } else {
                 updateRazonNoSeMovio();
+             
             }
         } else {
-            System.out.println("Target label not found");
         }
     }
 
@@ -818,7 +827,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             label.setBackground(Color.WHITE);
             colorVerde.remove(label);
             colorBlanco.add(label);
-//            System.out.println("Green label changed to white");
+            contadorCambioVerdeABlanco++;
+            updateCambiosVerdeABlanco();
         }
     }
 
@@ -830,6 +840,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         }
         return null;
     }
+    
+    private void updateCambiosVerdeABlanco() {
+        lblPosicionLimpiada.setText(contadorCambioVerdeABlanco + "");
+    }
 
     private void updatePosicionLabel() {
         lblXYContador.setText(currentCol + "," + currentRow);
@@ -838,7 +852,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private void updateRazonNoSeMovio() {
         lblMostrarRazonNoSeMueve.setText(message);
     }
-
+    
+    private void updateMovimientos() {
+        lblPosicionRecorrida.setText(contadorPasos + "");
+    }
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
