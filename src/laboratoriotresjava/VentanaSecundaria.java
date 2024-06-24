@@ -8,6 +8,12 @@ import java.util.*;
 
 public class VentanaSecundaria extends javax.swing.JDialog {
 
+    private int currentRow = 0;
+    private int currentCol = 0;
+    private int contadorPasos = 0;
+    private int contadorCambioVerdeABlanco = 0;
+    String message = "un cuadro rojo";
+
     public VentanaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -217,6 +223,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         lblPosicionLimpiada = new javax.swing.JLabel();
         Robot = new javax.swing.JLabel();
         lblMostrarRazonNoSeMueve = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -676,6 +683,13 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         Robot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Robot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/robot-removebg-preview.png"))); // NOI18N
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelDerechaLayout = new javax.swing.GroupLayout(PanelDerecha);
         PanelDerecha.setLayout(PanelDerechaLayout);
         PanelDerechaLayout.setHorizontalGroup(
@@ -695,7 +709,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                     .addGroup(PanelDerechaLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblPosicionDelRobot)
@@ -703,7 +716,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                                 .addComponent(lblNoSePudoMoverPor)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
                                     .addComponent(btnReiniciarMatriz)
-                                    .addGap(2, 2, 2))))))
+                                    .addGap(2, 2, 2)))
+                            .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton1)
+                                .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -734,6 +750,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 .addComponent(lblNoSePudoMoverPor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -768,11 +786,27 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private void btnReiniciarMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarMatrizActionPerformed
         randomizarColores();
     }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
-    private int currentRow = 0;
-    private int currentCol = 0;
-    private int contadorPasos = 0;
-    private int contadorCambioVerdeABlanco = 0;
-    String message = "un cuadro rojo";
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int newRow = currentRow;
+        int newCol = currentCol;
+        newRow = Math.min(7, currentRow + 1);
+        contadorPasos++;
+
+        JLabel targetLabel = getLabelAt(newRow, newCol);
+        if (targetLabel != null) {
+            if (targetLabel.getBackground() != Color.RED) {
+                moverRobotA(newRow, newCol);
+                manejarLabelVerde(newRow, newCol);
+                updatePosicionLabel();
+                updateMovimientos();
+            } else {
+                updateRazonNoSeMovio();
+
+            }
+        } else {
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void PanelMatrizKeyPressed(java.awt.event.KeyEvent evt) {
         int newRow = currentRow;
@@ -806,7 +840,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 updateMovimientos();
             } else {
                 updateRazonNoSeMovio();
-             
+
             }
         } else {
         }
@@ -840,7 +874,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         }
         return null;
     }
-    
+
     private void updateCambiosVerdeABlanco() {
         lblPosicionLimpiada.setText(contadorCambioVerdeABlanco + "");
     }
@@ -852,11 +886,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private void updateRazonNoSeMovio() {
         lblMostrarRazonNoSeMueve.setText(message);
     }
-    
+
     private void updateMovimientos() {
         lblPosicionRecorrida.setText(contadorPasos + "");
     }
-    
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -946,6 +980,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private javax.swing.JLabel UnoTres;
     private javax.swing.JLabel UnoUno;
     private javax.swing.JButton btnReiniciarMatriz;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
