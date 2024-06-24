@@ -1,6 +1,7 @@
 package laboratoriotresjava;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import java.util.*;
@@ -16,6 +17,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         PanelMatriz.setFocusable(true); // Permitir que el panel obtenga el foco
         PanelMatriz.requestFocusInWindow(); // Solicitar el foco para el panel
+
         PanelMatriz.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -29,28 +31,28 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     ArrayList<JLabel> colorVerde = new ArrayList();
 
     private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
-    
-private void posicionarRobotInicial() {
-    // Remove the robot from its current parent if it has one
-    if (Robot.getParent() != null) {
-        Robot.getParent().remove(Robot);
+
+    private void posicionarRobotInicial() {
+        // Remove the robot from its current parent if it has one
+        if (Robot.getParent() != null) {
+            Robot.getParent().remove(Robot);
+        }
+
+        // Add the robot directly to the PanelMatriz instead of CeroCero
+        PanelMatriz.setLayout(null); // Use null layout for absolute positioning
+        PanelMatriz.add(Robot);
+
+        // Set the robot's position to match CeroCero's position
+        Robot.setBounds(CeroCero.getX(), CeroCero.getY(), CeroCero.getWidth(), CeroCero.getHeight());
+
+        // Ensure the robot is visible and on top
+        Robot.setVisible(true);
+        PanelMatriz.setComponentZOrder(Robot, 0);
+
+        // Refresh the panel
+        PanelMatriz.revalidate();
+        PanelMatriz.repaint();
     }
-    
-    // Add the robot directly to the PanelMatriz instead of CeroCero
-    PanelMatriz.setLayout(null); // Use null layout for absolute positioning
-    PanelMatriz.add(Robot);
-    
-    // Set the robot's position to match CeroCero's position
-    Robot.setBounds(CeroCero.getX(), CeroCero.getY(), CeroCero.getWidth(), CeroCero.getHeight());
-    
-    // Ensure the robot is visible and on top
-    Robot.setVisible(true);
-    PanelMatriz.setComponentZOrder(Robot, 0);
-    
-    // Refresh the panel
-    PanelMatriz.revalidate();
-    PanelMatriz.repaint();
-}
 
     private void randomizarColores() {
 
@@ -197,18 +199,18 @@ private void posicionarRobotInicial() {
         UnoTres = new javax.swing.JLabel();
         UnoDos = new javax.swing.JLabel();
         PanelArriba = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        lblInformacionMovimiento = new javax.swing.JLabel();
         PanelDerecha = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        lblXYRobot = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        PosicionRecorridas = new javax.swing.JLabel();
+        lblPosicionesLimpiadas = new javax.swing.JLabel();
+        lblPosicionDelRobot = new javax.swing.JLabel();
+        btnReiniciarMatriz = new javax.swing.JButton();
+        lblNoSePudoMoverPor = new javax.swing.JLabel();
+        lblXYContador = new javax.swing.JLabel();
+        lblPosicionRecorrida = new javax.swing.JLabel();
+        lblPosicionLimpiada = new javax.swing.JLabel();
         Robot = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblMostrarRazonNoSeMueve = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -622,54 +624,53 @@ private void posicionarRobotInicial() {
                         .addContainerGap())))
         );
 
-        jLabel13.setText("Debe de utilizar las flechas del teclado para poder controlar al robot");
+        lblInformacionMovimiento.setText("Debe de utilizar las flechas del teclado para poder controlar al robot");
 
         javax.swing.GroupLayout PanelArribaLayout = new javax.swing.GroupLayout(PanelArriba);
         PanelArriba.setLayout(PanelArribaLayout);
         PanelArribaLayout.setHorizontalGroup(
             PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelArribaLayout.createSequentialGroup()
-                .addComponent(jLabel13)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelArribaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblInformacionMovimiento)
+                .addGap(66, 66, 66))
         );
         PanelArribaLayout.setVerticalGroup(
             PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelArribaLayout.createSequentialGroup()
                 .addGap(0, 84, Short.MAX_VALUE)
-                .addComponent(jLabel13))
+                .addComponent(lblInformacionMovimiento))
         );
 
-        jLabel9.setText("Posiciones recorridas:");
+        PosicionRecorridas.setText("Posiciones recorridas:");
 
-        jLabel10.setText("Posiciones limpiadas:");
+        lblPosicionesLimpiadas.setText("Posiciones limpiadas:");
 
-        jLabel11.setText("Posicion del robot:");
+        lblPosicionDelRobot.setText("Posicion del robot:");
 
-        jButton1.setText("Reniciar Matriz");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnReiniciarMatriz.setText("Reniciar Matriz");
+        btnReiniciarMatriz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnReiniciarMatrizActionPerformed(evt);
             }
         });
 
-        jLabel12.setText("No se pudo mover por:");
+        lblNoSePudoMoverPor.setText("No se pudo mover por:");
 
-        lblXYRobot.setText("        0,0");
-        lblXYRobot.setToolTipText("");
-        lblXYRobot.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lblXYContador.setText("        0,0");
+        lblXYContador.setToolTipText("");
+        lblXYContador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel14.setText("        0");
-        jLabel14.setToolTipText("");
-        jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lblPosicionRecorrida.setText("        0");
+        lblPosicionRecorrida.setToolTipText("");
+        lblPosicionRecorrida.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel15.setText("        0");
-        jLabel15.setToolTipText("");
-        jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lblPosicionLimpiada.setText("        0");
+        lblPosicionLimpiada.setToolTipText("");
+        lblPosicionLimpiada.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         Robot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Robot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/robot-removebg-preview.png"))); // NOI18N
-
-        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout PanelDerechaLayout = new javax.swing.GroupLayout(PanelDerecha);
         PanelDerecha.setLayout(PanelDerechaLayout);
@@ -677,55 +678,56 @@ private void posicionarRobotInicial() {
             PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDerechaLayout.createSequentialGroup()
                 .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelDerechaLayout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel9))
-                            .addGroup(PanelDerechaLayout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblXYRobot, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(PanelDerechaLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel11)
-                                        .addComponent(jLabel10)))))
-                        .addComponent(jButton1))
                     .addGroup(PanelDerechaLayout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(37, 37, 37)
+                        .addComponent(PosicionRecorridas))
+                    .addGroup(PanelDerechaLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPosicionRecorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPosicionLimpiada, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblXYContador, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(PanelDerechaLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblPosicionDelRobot)
+                                    .addComponent(lblPosicionesLimpiadas))
+                                .addComponent(lblNoSePudoMoverPor)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                                    .addComponent(btnReiniciarMatriz)
+                                    .addGap(2, 2, 2))))))
                 .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
         PanelDerechaLayout.setVerticalGroup(
             PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDerechaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9)
+                .addComponent(PosicionRecorridas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPosicionRecorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(lblPosicionesLimpiadas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPosicionLimpiada, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(lblPosicionDelRobot)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblXYRobot, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblXYContador, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
-                .addGap(26, 26, 26)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNoSePudoMoverPor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnReiniciarMatriz)
                 .addContainerGap())
         );
 
@@ -754,43 +756,86 @@ private void posicionarRobotInicial() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnReiniciarMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarMatrizActionPerformed
         randomizarColores();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
+    private int currentRow = 0;
+    private int currentCol = 0;
+    String message = "un cuadro rojo";
+
     private void PanelMatrizKeyPressed(java.awt.event.KeyEvent evt) {
-        int x = Robot.getX();
-        int y = Robot.getY();
-        int step = 20; // El tamaño de un paso en píxeles
-        int panelWidth = PanelMatriz.getWidth();
-        int panelHeight = PanelMatriz.getHeight();
+        int newRow = currentRow;
+        int newCol = currentCol;
 
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_UP:
-                if (y - step >= 0) {
-                    y -= step;
-                }
+                newRow = Math.max(0, currentRow - 1);
                 break;
             case KeyEvent.VK_DOWN:
-                if (y + step <= panelHeight - Robot.getHeight()) {
-                    y += step;
-                }
+                newRow = Math.min(7, currentRow + 1);
                 break;
             case KeyEvent.VK_LEFT:
-                if (x - step >= 0) {
-                    x -= step;
-                }
+                newCol = Math.max(0, currentCol - 1);
                 break;
             case KeyEvent.VK_RIGHT:
-                if (x + step <= panelWidth - Robot.getWidth()) {
-                    x += step;
-                }
+                newCol = Math.min(7, currentCol + 1);
                 break;
         }
-        // Establecer la nueva posición del robot
-        Robot.setLocation(x, y);
 
-        // Mover el robot al frente (z-order)
-        Robot.getParent().setComponentZOrder(Robot, 0);
+        JLabel targetLabel = getLabelAt(newRow, newCol);
+        if (targetLabel != null) {
+            if (targetLabel.getBackground() != Color.RED) {
+                moveRobotTo(newRow, newCol);
+                handleGreenLabel(newRow, newCol);
+                updatePosicionLabel();
+            } else {
+                updateRazonNoSeMovio();
+            }
+        } else {
+            System.out.println("Target label not found");
+        }
+    }
+
+    private void moveRobotTo(int row, int col) {
+        JLabel targetLabel = getLabelAt(row, col);
+        if (targetLabel != null) {
+            Robot.setLocation(targetLabel.getX(), targetLabel.getY());
+            Robot.getParent().setComponentZOrder(Robot, 0);
+            currentRow = row;
+            currentCol = col;
+        }
+    }
+
+    private void handleGreenLabel(int row, int col) {
+        JLabel label = getLabelAt(row, col);
+        if (label != null && label.getBackground() == Color.GREEN) {
+            label.setBackground(Color.WHITE);
+            colorVerde.remove(label);
+            colorBlanco.add(label);
+//            System.out.println("Green label changed to white");
+        }
+    }
+
+    private JLabel getLabelAt(int row, int col) {
+        for (Component comp : PanelMatriz.getComponents()) {
+            if (comp instanceof JLabel) {
+                int index = PanelMatriz.getComponentZOrder(comp);
+                int compRow = index / 8;
+                int compCol = index % 8;
+                if (compRow == row && compCol == col) {
+                    return (JLabel) comp;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void updatePosicionLabel() {
+        lblXYContador.setText(currentCol + "," + currentRow);
+    }
+
+    private void updateRazonNoSeMovio() {
+        lblMostrarRazonNoSeMueve.setText(message);
     }
 
     public static void main(String args[]) {
@@ -847,6 +892,7 @@ private void posicionarRobotInicial() {
     private javax.swing.JPanel PanelFila;
     private javax.swing.JPanel PanelMatriz;
     private javax.swing.JPanel PanelPrincipal;
+    private javax.swing.JLabel PosicionRecorridas;
     private javax.swing.JLabel Robot;
     private javax.swing.JLabel SeisCero;
     private javax.swing.JLabel SeisCinco;
@@ -880,14 +926,8 @@ private void posicionarRobotInicial() {
     private javax.swing.JLabel UnoSiete;
     private javax.swing.JLabel UnoTres;
     private javax.swing.JLabel UnoUno;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnReiniciarMatriz;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -895,8 +935,9 @@ private void posicionarRobotInicial() {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblInformacionMovimiento;
+    private javax.swing.JLabel lblMostrarRazonNoSeMueve;
+    private javax.swing.JLabel lblNoSePudoMoverPor;
     private javax.swing.JLabel lblNumeracion1;
     private javax.swing.JLabel lblNumeracion10;
     private javax.swing.JLabel lblNumeracion3;
@@ -905,6 +946,10 @@ private void posicionarRobotInicial() {
     private javax.swing.JLabel lblNumeracion6;
     private javax.swing.JLabel lblNumeracion8;
     private javax.swing.JLabel lblNumeracion9;
-    private javax.swing.JLabel lblXYRobot;
+    private javax.swing.JLabel lblPosicionDelRobot;
+    private javax.swing.JLabel lblPosicionLimpiada;
+    private javax.swing.JLabel lblPosicionRecorrida;
+    private javax.swing.JLabel lblPosicionesLimpiadas;
+    private javax.swing.JLabel lblXYContador;
     // End of variables declaration//GEN-END:variables
 }
