@@ -32,7 +32,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
     private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
 
-  private void posicionarRobotInicial() {
+    private void posicionarRobotInicial() {
         if (Robot.getParent() != null) {
             Robot.getParent().remove(Robot);
         }
@@ -41,7 +41,9 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelMatriz.add(Robot);
 
         // Inicializar el robot en (0,0)
-        JLabel initialLabel = getLabelAt(0, 0);
+        currentRow = 0;
+        currentCol = 0;
+        JLabel initialLabel = getLabelAt(currentRow, currentCol);
         if (initialLabel != null) {
             Robot.setBounds(initialLabel.getBounds());
         }
@@ -50,6 +52,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelMatriz.setComponentZOrder(Robot, 0);
         PanelMatriz.revalidate();
         PanelMatriz.repaint();
+        updatePosicionLabel();
     }
 
     private void randomizarColores() {
@@ -84,7 +87,9 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         for (JLabel label : labels) {
             // Salta la celda (0,0)
-            if (label == firstLabel) continue;
+            if (label == firstLabel) {
+                continue;
+            }
 
             if (greenCount < greenLabels) {
                 label.setBackground(Color.GREEN);
@@ -137,8 +142,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         PanelMatriz = new javax.swing.JPanel();
-        SieteCero = new javax.swing.JLabel();
         UnoCuatro = new javax.swing.JLabel();
+        SieteCero = new javax.swing.JLabel();
         SeisCero = new javax.swing.JLabel();
         CincoCero = new javax.swing.JLabel();
         CuatroCero = new javax.swing.JLabel();
@@ -272,15 +277,15 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         PanelMatriz.setLayout(new java.awt.GridLayout(8, 8));
 
-        SieteCero.setBackground(new java.awt.Color(153, 153, 153));
-        SieteCero.setBorder(new javax.swing.border.MatteBorder(null));
-        SieteCero.setOpaque(true);
-        PanelMatriz.add(SieteCero);
-
         UnoCuatro.setBackground(new java.awt.Color(153, 153, 153));
         UnoCuatro.setBorder(new javax.swing.border.MatteBorder(null));
         UnoCuatro.setOpaque(true);
         PanelMatriz.add(UnoCuatro);
+
+        SieteCero.setBackground(new java.awt.Color(153, 153, 153));
+        SieteCero.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteCero.setOpaque(true);
+        PanelMatriz.add(SieteCero);
 
         SeisCero.setBackground(new java.awt.Color(153, 153, 153));
         SeisCero.setBorder(new javax.swing.border.MatteBorder(null));
@@ -787,8 +792,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         JLabel targetLabel = getLabelAt(newRow, newCol);
         if (targetLabel != null) {
             if (targetLabel.getBackground() != Color.RED) {
-                moveRobotTo(newRow, newCol);
-                handleGreenLabel(newRow, newCol);
+                moverRobotA(newRow, newCol);
+                manejarLabelVerde(newRow, newCol);
                 updatePosicionLabel();
             } else {
                 updateRazonNoSeMovio();
@@ -798,7 +803,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         }
     }
 
-    private void moveRobotTo(int row, int col) {
+    private void moverRobotA(int row, int col) {
         JLabel targetLabel = getLabelAt(row, col);
         if (targetLabel != null) {
             Robot.setBounds(targetLabel.getBounds());
@@ -807,7 +812,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         }
     }
 
-    private void handleGreenLabel(int row, int col) {
+    private void manejarLabelVerde(int row, int col) {
         JLabel label = getLabelAt(row, col);
         if (label != null && label.getBackground() == Color.GREEN) {
             label.setBackground(Color.WHITE);

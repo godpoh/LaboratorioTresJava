@@ -263,7 +263,7 @@
             <Property name="rows" type="int" value="8"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="SieteCero">
+            <Component class="javax.swing.JLabel" name="UnoCuatro">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="99" type="rgb"/>
@@ -276,7 +276,7 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="UnoCuatro">
+            <Component class="javax.swing.JLabel" name="SieteCero">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="99" type="rgb"/>
