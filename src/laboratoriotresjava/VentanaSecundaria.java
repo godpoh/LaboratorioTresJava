@@ -146,70 +146,70 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         PanelMatriz = new javax.swing.JPanel();
-        UnoCuatro = new javax.swing.JLabel();
-        SieteCero = new javax.swing.JLabel();
-        SeisCero = new javax.swing.JLabel();
-        CincoCero = new javax.swing.JLabel();
-        CuatroCero = new javax.swing.JLabel();
-        UnoCero = new javax.swing.JLabel();
-        TresCero = new javax.swing.JLabel();
-        DosDos = new javax.swing.JLabel();
-        UnoSeis = new javax.swing.JLabel();
-        UnoCinco = new javax.swing.JLabel();
-        DosUno = new javax.swing.JLabel();
-        UnoSiete = new javax.swing.JLabel();
-        DosCuatro = new javax.swing.JLabel();
-        DosTres = new javax.swing.JLabel();
-        DosSeis = new javax.swing.JLabel();
-        DosCinco = new javax.swing.JLabel();
-        TresDos = new javax.swing.JLabel();
-        DosSiete = new javax.swing.JLabel();
         CeroCero = new javax.swing.JLabel();
-        CeroTres = new javax.swing.JLabel();
-        TresUno = new javax.swing.JLabel();
-        TresCuatro = new javax.swing.JLabel();
-        TresTres = new javax.swing.JLabel();
-        CuatroDos = new javax.swing.JLabel();
-        TresSeis = new javax.swing.JLabel();
-        TresCinco = new javax.swing.JLabel();
-        CuatroUno = new javax.swing.JLabel();
-        CeroSiete = new javax.swing.JLabel();
-        TresSiete = new javax.swing.JLabel();
-        CuatroCuatro = new javax.swing.JLabel();
-        CuatroTres = new javax.swing.JLabel();
-        CincoDos = new javax.swing.JLabel();
-        CuatroSeis = new javax.swing.JLabel();
-        CuatroCinco = new javax.swing.JLabel();
-        CincoUno = new javax.swing.JLabel();
-        CuatroSiete = new javax.swing.JLabel();
+        UnoCero = new javax.swing.JLabel();
         DosCero = new javax.swing.JLabel();
-        CincoCuatro = new javax.swing.JLabel();
-        CincoTres = new javax.swing.JLabel();
-        UnoTres = new javax.swing.JLabel();
-        SeisDos = new javax.swing.JLabel();
-        CincoSeis = new javax.swing.JLabel();
-        CincoCinco = new javax.swing.JLabel();
-        SeisUno = new javax.swing.JLabel();
-        CincoSiete = new javax.swing.JLabel();
-        CeroCuatro = new javax.swing.JLabel();
-        CeroSeis = new javax.swing.JLabel();
-        SeisCuatro = new javax.swing.JLabel();
-        SeisTres = new javax.swing.JLabel();
-        SeisSeis = new javax.swing.JLabel();
-        SeisCinco = new javax.swing.JLabel();
-        SieteDos = new javax.swing.JLabel();
-        SieteUno = new javax.swing.JLabel();
-        SieteCuatro = new javax.swing.JLabel();
-        SeisSiete = new javax.swing.JLabel();
-        CeroCinco = new javax.swing.JLabel();
-        SieteTres = new javax.swing.JLabel();
-        SieteSeis = new javax.swing.JLabel();
-        SieteCinco = new javax.swing.JLabel();
-        CeroDos = new javax.swing.JLabel();
-        SieteSiete = new javax.swing.JLabel();
+        TresCero = new javax.swing.JLabel();
+        CuatroCero = new javax.swing.JLabel();
+        CincoCero = new javax.swing.JLabel();
+        SeisCero = new javax.swing.JLabel();
+        SieteCero = new javax.swing.JLabel();
         CeroUno = new javax.swing.JLabel();
         UnoUno = new javax.swing.JLabel();
+        DosUno = new javax.swing.JLabel();
+        TresUno = new javax.swing.JLabel();
+        CuatroUno = new javax.swing.JLabel();
+        CincoUno = new javax.swing.JLabel();
+        SeisUno = new javax.swing.JLabel();
+        SieteUno = new javax.swing.JLabel();
+        CeroDos = new javax.swing.JLabel();
         UnoDos = new javax.swing.JLabel();
+        DosDos = new javax.swing.JLabel();
+        TresDos = new javax.swing.JLabel();
+        CuatroDos = new javax.swing.JLabel();
+        CincoDos = new javax.swing.JLabel();
+        SeisDos = new javax.swing.JLabel();
+        SieteDos = new javax.swing.JLabel();
+        CeroTres = new javax.swing.JLabel();
+        UnoTres = new javax.swing.JLabel();
+        DosTres = new javax.swing.JLabel();
+        TresTres = new javax.swing.JLabel();
+        CuatroTres = new javax.swing.JLabel();
+        CincoTres = new javax.swing.JLabel();
+        SeisTres = new javax.swing.JLabel();
+        SieteTres = new javax.swing.JLabel();
+        CeroCuatro = new javax.swing.JLabel();
+        UnoCuatro = new javax.swing.JLabel();
+        DosCuatro = new javax.swing.JLabel();
+        TresCuatro = new javax.swing.JLabel();
+        CuatroCuatro = new javax.swing.JLabel();
+        CincoCuatro = new javax.swing.JLabel();
+        SeisCuatro = new javax.swing.JLabel();
+        SieteCuatro = new javax.swing.JLabel();
+        CeroCinco = new javax.swing.JLabel();
+        UnoCinco = new javax.swing.JLabel();
+        DosCinco = new javax.swing.JLabel();
+        TresCinco = new javax.swing.JLabel();
+        CuatroCinco = new javax.swing.JLabel();
+        CincoCinco = new javax.swing.JLabel();
+        SeisCinco = new javax.swing.JLabel();
+        SieteCinco = new javax.swing.JLabel();
+        CeroSeis = new javax.swing.JLabel();
+        UnoSeis = new javax.swing.JLabel();
+        DosSeis = new javax.swing.JLabel();
+        TresSeis = new javax.swing.JLabel();
+        CuatroSeis = new javax.swing.JLabel();
+        CincoSeis = new javax.swing.JLabel();
+        SeisSeis = new javax.swing.JLabel();
+        SieteSeis = new javax.swing.JLabel();
+        CeroSiete = new javax.swing.JLabel();
+        UnoSiete = new javax.swing.JLabel();
+        DosSiete = new javax.swing.JLabel();
+        TresSiete = new javax.swing.JLabel();
+        CuatroSiete = new javax.swing.JLabel();
+        CincoSiete = new javax.swing.JLabel();
+        SeisSiete = new javax.swing.JLabel();
+        SieteSiete = new javax.swing.JLabel();
         PanelArriba = new javax.swing.JPanel();
         lblInformacionMovimiento = new javax.swing.JLabel();
         PanelDerecha = new javax.swing.JPanel();
@@ -223,7 +223,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         lblPosicionLimpiada = new javax.swing.JLabel();
         Robot = new javax.swing.JLabel();
         lblMostrarRazonNoSeMueve = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -231,28 +230,28 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         PanelFila.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNumeracion1.setText("0");
-        PanelFila.add(lblNumeracion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 55, 30));
+        PanelFila.add(lblNumeracion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 55, 30));
 
         lblNumeracion3.setText("1");
-        PanelFila.add(lblNumeracion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 55, 30));
+        PanelFila.add(lblNumeracion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 30, 30));
 
         lblNumeracion4.setText("2");
-        PanelFila.add(lblNumeracion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 55, 30));
+        PanelFila.add(lblNumeracion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 55, 30));
 
         lblNumeracion5.setText("3");
-        PanelFila.add(lblNumeracion5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 55, 30));
+        PanelFila.add(lblNumeracion5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 55, 30));
 
         lblNumeracion6.setText("4");
-        PanelFila.add(lblNumeracion6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 55, 30));
+        PanelFila.add(lblNumeracion6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 55, 30));
 
         lblNumeracion8.setText("5");
-        PanelFila.add(lblNumeracion8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 55, 30));
+        PanelFila.add(lblNumeracion8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 55, 30));
 
         lblNumeracion9.setText("7");
-        PanelFila.add(lblNumeracion9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 40, 30));
+        PanelFila.add(lblNumeracion9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 40, 30));
 
         lblNumeracion10.setText("6");
-        PanelFila.add(lblNumeracion10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 55, 30));
+        PanelFila.add(lblNumeracion10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 55, 30));
 
         PanelColumna.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -282,333 +281,583 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         PanelMatriz.setLayout(new java.awt.GridLayout(8, 8));
 
-        UnoCuatro.setBackground(new java.awt.Color(153, 153, 153));
-        UnoCuatro.setBorder(new javax.swing.border.MatteBorder(null));
-        UnoCuatro.setOpaque(true);
-        PanelMatriz.add(UnoCuatro);
-
-        SieteCero.setBackground(new java.awt.Color(153, 153, 153));
-        SieteCero.setBorder(new javax.swing.border.MatteBorder(null));
-        SieteCero.setOpaque(true);
-        PanelMatriz.add(SieteCero);
-
-        SeisCero.setBackground(new java.awt.Color(153, 153, 153));
-        SeisCero.setBorder(new javax.swing.border.MatteBorder(null));
-        SeisCero.setOpaque(true);
-        PanelMatriz.add(SeisCero);
-
-        CincoCero.setBackground(new java.awt.Color(153, 153, 153));
-        CincoCero.setBorder(new javax.swing.border.MatteBorder(null));
-        CincoCero.setOpaque(true);
-        PanelMatriz.add(CincoCero);
-
-        CuatroCero.setBackground(new java.awt.Color(153, 153, 153));
-        CuatroCero.setBorder(new javax.swing.border.MatteBorder(null));
-        CuatroCero.setOpaque(true);
-        PanelMatriz.add(CuatroCero);
+        CeroCero.setBackground(new java.awt.Color(153, 153, 153));
+        CeroCero.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroCero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CeroCero.setMaximumSize(new java.awt.Dimension(0, 0));
+        CeroCero.setMinimumSize(new java.awt.Dimension(0, 0));
+        CeroCero.setOpaque(true);
+        CeroCero.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CeroCero);
 
         UnoCero.setBackground(new java.awt.Color(153, 153, 153));
         UnoCero.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoCero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UnoCero.setMaximumSize(new java.awt.Dimension(0, 0));
+        UnoCero.setMinimumSize(new java.awt.Dimension(0, 0));
         UnoCero.setOpaque(true);
+        UnoCero.setPreferredSize(new java.awt.Dimension(0, 0));
         PanelMatriz.add(UnoCero);
-
-        TresCero.setBackground(new java.awt.Color(153, 153, 153));
-        TresCero.setBorder(new javax.swing.border.MatteBorder(null));
-        TresCero.setOpaque(true);
-        PanelMatriz.add(TresCero);
-
-        DosDos.setBackground(new java.awt.Color(153, 153, 153));
-        DosDos.setBorder(new javax.swing.border.MatteBorder(null));
-        DosDos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DosDos.setOpaque(true);
-        PanelMatriz.add(DosDos);
-
-        UnoSeis.setBackground(new java.awt.Color(153, 153, 153));
-        UnoSeis.setBorder(new javax.swing.border.MatteBorder(null));
-        UnoSeis.setOpaque(true);
-        PanelMatriz.add(UnoSeis);
-
-        UnoCinco.setBackground(new java.awt.Color(153, 153, 153));
-        UnoCinco.setBorder(new javax.swing.border.MatteBorder(null));
-        UnoCinco.setOpaque(true);
-        PanelMatriz.add(UnoCinco);
-
-        DosUno.setBackground(new java.awt.Color(153, 153, 153));
-        DosUno.setBorder(new javax.swing.border.MatteBorder(null));
-        DosUno.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DosUno.setOpaque(true);
-        PanelMatriz.add(DosUno);
-
-        UnoSiete.setBackground(new java.awt.Color(153, 153, 153));
-        UnoSiete.setBorder(new javax.swing.border.MatteBorder(null));
-        UnoSiete.setOpaque(true);
-        PanelMatriz.add(UnoSiete);
-
-        DosCuatro.setBackground(new java.awt.Color(153, 153, 153));
-        DosCuatro.setBorder(new javax.swing.border.MatteBorder(null));
-        DosCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DosCuatro.setOpaque(true);
-        PanelMatriz.add(DosCuatro);
-
-        DosTres.setBackground(new java.awt.Color(153, 153, 153));
-        DosTres.setBorder(new javax.swing.border.MatteBorder(null));
-        DosTres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DosTres.setOpaque(true);
-        PanelMatriz.add(DosTres);
-
-        DosSeis.setBackground(new java.awt.Color(153, 153, 153));
-        DosSeis.setBorder(new javax.swing.border.MatteBorder(null));
-        DosSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DosSeis.setOpaque(true);
-        PanelMatriz.add(DosSeis);
-
-        DosCinco.setBackground(new java.awt.Color(153, 153, 153));
-        DosCinco.setBorder(new javax.swing.border.MatteBorder(null));
-        DosCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DosCinco.setOpaque(true);
-        PanelMatriz.add(DosCinco);
-
-        TresDos.setBackground(new java.awt.Color(153, 153, 153));
-        TresDos.setBorder(new javax.swing.border.MatteBorder(null));
-        TresDos.setOpaque(true);
-        PanelMatriz.add(TresDos);
-
-        DosSiete.setBackground(new java.awt.Color(153, 153, 153));
-        DosSiete.setBorder(new javax.swing.border.MatteBorder(null));
-        DosSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DosSiete.setOpaque(true);
-        PanelMatriz.add(DosSiete);
-
-        CeroCero.setBackground(new java.awt.Color(153, 153, 153));
-        CeroCero.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroCero.setOpaque(true);
-        PanelMatriz.add(CeroCero);
-
-        CeroTres.setBackground(new java.awt.Color(153, 153, 153));
-        CeroTres.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroTres.setOpaque(true);
-        PanelMatriz.add(CeroTres);
-
-        TresUno.setBackground(new java.awt.Color(153, 153, 153));
-        TresUno.setBorder(new javax.swing.border.MatteBorder(null));
-        TresUno.setOpaque(true);
-        PanelMatriz.add(TresUno);
-
-        TresCuatro.setBackground(new java.awt.Color(153, 153, 153));
-        TresCuatro.setBorder(new javax.swing.border.MatteBorder(null));
-        TresCuatro.setOpaque(true);
-        PanelMatriz.add(TresCuatro);
-
-        TresTres.setBackground(new java.awt.Color(153, 153, 153));
-        TresTres.setBorder(new javax.swing.border.MatteBorder(null));
-        TresTres.setOpaque(true);
-        PanelMatriz.add(TresTres);
-
-        CuatroDos.setBackground(new java.awt.Color(153, 153, 153));
-        CuatroDos.setBorder(new javax.swing.border.MatteBorder(null));
-        CuatroDos.setOpaque(true);
-        PanelMatriz.add(CuatroDos);
-
-        TresSeis.setBackground(new java.awt.Color(153, 153, 153));
-        TresSeis.setBorder(new javax.swing.border.MatteBorder(null));
-        TresSeis.setOpaque(true);
-        PanelMatriz.add(TresSeis);
-
-        TresCinco.setBackground(new java.awt.Color(153, 153, 153));
-        TresCinco.setBorder(new javax.swing.border.MatteBorder(null));
-        TresCinco.setOpaque(true);
-        PanelMatriz.add(TresCinco);
-
-        CuatroUno.setBackground(new java.awt.Color(153, 153, 153));
-        CuatroUno.setBorder(new javax.swing.border.MatteBorder(null));
-        CuatroUno.setOpaque(true);
-        PanelMatriz.add(CuatroUno);
-
-        CeroSiete.setBackground(new java.awt.Color(153, 153, 153));
-        CeroSiete.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroSiete.setOpaque(true);
-        PanelMatriz.add(CeroSiete);
-
-        TresSiete.setBackground(new java.awt.Color(153, 153, 153));
-        TresSiete.setBorder(new javax.swing.border.MatteBorder(null));
-        TresSiete.setOpaque(true);
-        PanelMatriz.add(TresSiete);
-
-        CuatroCuatro.setBackground(new java.awt.Color(153, 153, 153));
-        CuatroCuatro.setBorder(new javax.swing.border.MatteBorder(null));
-        CuatroCuatro.setOpaque(true);
-        PanelMatriz.add(CuatroCuatro);
-
-        CuatroTres.setBackground(new java.awt.Color(153, 153, 153));
-        CuatroTres.setBorder(new javax.swing.border.MatteBorder(null));
-        CuatroTres.setOpaque(true);
-        PanelMatriz.add(CuatroTres);
-
-        CincoDos.setBackground(new java.awt.Color(153, 153, 153));
-        CincoDos.setBorder(new javax.swing.border.MatteBorder(null));
-        CincoDos.setOpaque(true);
-        PanelMatriz.add(CincoDos);
-
-        CuatroSeis.setBackground(new java.awt.Color(153, 153, 153));
-        CuatroSeis.setBorder(new javax.swing.border.MatteBorder(null));
-        CuatroSeis.setOpaque(true);
-        PanelMatriz.add(CuatroSeis);
-
-        CuatroCinco.setBackground(new java.awt.Color(153, 153, 153));
-        CuatroCinco.setBorder(new javax.swing.border.MatteBorder(null));
-        CuatroCinco.setOpaque(true);
-        PanelMatriz.add(CuatroCinco);
-
-        CincoUno.setBackground(new java.awt.Color(153, 153, 153));
-        CincoUno.setBorder(new javax.swing.border.MatteBorder(null));
-        CincoUno.setOpaque(true);
-        PanelMatriz.add(CincoUno);
-
-        CuatroSiete.setBackground(new java.awt.Color(153, 153, 153));
-        CuatroSiete.setBorder(new javax.swing.border.MatteBorder(null));
-        CuatroSiete.setOpaque(true);
-        PanelMatriz.add(CuatroSiete);
 
         DosCero.setBackground(new java.awt.Color(153, 153, 153));
         DosCero.setBorder(new javax.swing.border.MatteBorder(null));
-        DosCero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DosCero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DosCero.setMaximumSize(new java.awt.Dimension(0, 0));
+        DosCero.setMinimumSize(new java.awt.Dimension(0, 0));
         DosCero.setOpaque(true);
+        DosCero.setPreferredSize(new java.awt.Dimension(0, 0));
         PanelMatriz.add(DosCero);
+        DosCero.getAccessibleContext().setAccessibleName("");
 
-        CincoCuatro.setBackground(new java.awt.Color(153, 153, 153));
-        CincoCuatro.setBorder(new javax.swing.border.MatteBorder(null));
-        CincoCuatro.setOpaque(true);
-        PanelMatriz.add(CincoCuatro);
+        TresCero.setBackground(new java.awt.Color(153, 153, 153));
+        TresCero.setBorder(new javax.swing.border.MatteBorder(null));
+        TresCero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TresCero.setMaximumSize(new java.awt.Dimension(0, 0));
+        TresCero.setMinimumSize(new java.awt.Dimension(0, 0));
+        TresCero.setOpaque(true);
+        TresCero.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(TresCero);
 
-        CincoTres.setBackground(new java.awt.Color(153, 153, 153));
-        CincoTres.setBorder(new javax.swing.border.MatteBorder(null));
-        CincoTres.setOpaque(true);
-        PanelMatriz.add(CincoTres);
+        CuatroCero.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroCero.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroCero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CuatroCero.setMaximumSize(new java.awt.Dimension(0, 0));
+        CuatroCero.setMinimumSize(new java.awt.Dimension(0, 0));
+        CuatroCero.setOpaque(true);
+        CuatroCero.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CuatroCero);
 
-        UnoTres.setBackground(new java.awt.Color(153, 153, 153));
-        UnoTres.setBorder(new javax.swing.border.MatteBorder(null));
-        UnoTres.setOpaque(true);
-        PanelMatriz.add(UnoTres);
+        CincoCero.setBackground(new java.awt.Color(153, 153, 153));
+        CincoCero.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoCero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CincoCero.setMaximumSize(new java.awt.Dimension(0, 0));
+        CincoCero.setMinimumSize(new java.awt.Dimension(0, 0));
+        CincoCero.setOpaque(true);
+        CincoCero.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CincoCero);
 
-        SeisDos.setBackground(new java.awt.Color(153, 153, 153));
-        SeisDos.setBorder(new javax.swing.border.MatteBorder(null));
-        SeisDos.setOpaque(true);
-        PanelMatriz.add(SeisDos);
+        SeisCero.setBackground(new java.awt.Color(153, 153, 153));
+        SeisCero.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisCero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SeisCero.setMaximumSize(new java.awt.Dimension(0, 0));
+        SeisCero.setMinimumSize(new java.awt.Dimension(0, 0));
+        SeisCero.setOpaque(true);
+        SeisCero.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SeisCero);
 
-        CincoSeis.setBackground(new java.awt.Color(153, 153, 153));
-        CincoSeis.setBorder(new javax.swing.border.MatteBorder(null));
-        CincoSeis.setOpaque(true);
-        PanelMatriz.add(CincoSeis);
-
-        CincoCinco.setBackground(new java.awt.Color(153, 153, 153));
-        CincoCinco.setBorder(new javax.swing.border.MatteBorder(null));
-        CincoCinco.setOpaque(true);
-        PanelMatriz.add(CincoCinco);
-
-        SeisUno.setBackground(new java.awt.Color(153, 153, 153));
-        SeisUno.setBorder(new javax.swing.border.MatteBorder(null));
-        SeisUno.setOpaque(true);
-        PanelMatriz.add(SeisUno);
-
-        CincoSiete.setBackground(new java.awt.Color(153, 153, 153));
-        CincoSiete.setBorder(new javax.swing.border.MatteBorder(null));
-        CincoSiete.setOpaque(true);
-        PanelMatriz.add(CincoSiete);
-
-        CeroCuatro.setBackground(new java.awt.Color(153, 153, 153));
-        CeroCuatro.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroCuatro.setOpaque(true);
-        PanelMatriz.add(CeroCuatro);
-
-        CeroSeis.setBackground(new java.awt.Color(153, 153, 153));
-        CeroSeis.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroSeis.setOpaque(true);
-        PanelMatriz.add(CeroSeis);
-
-        SeisCuatro.setBackground(new java.awt.Color(153, 153, 153));
-        SeisCuatro.setBorder(new javax.swing.border.MatteBorder(null));
-        SeisCuatro.setOpaque(true);
-        PanelMatriz.add(SeisCuatro);
-
-        SeisTres.setBackground(new java.awt.Color(153, 153, 153));
-        SeisTres.setBorder(new javax.swing.border.MatteBorder(null));
-        SeisTres.setOpaque(true);
-        PanelMatriz.add(SeisTres);
-
-        SeisSeis.setBackground(new java.awt.Color(153, 153, 153));
-        SeisSeis.setBorder(new javax.swing.border.MatteBorder(null));
-        SeisSeis.setOpaque(true);
-        PanelMatriz.add(SeisSeis);
-
-        SeisCinco.setBackground(new java.awt.Color(153, 153, 153));
-        SeisCinco.setBorder(new javax.swing.border.MatteBorder(null));
-        SeisCinco.setOpaque(true);
-        PanelMatriz.add(SeisCinco);
-
-        SieteDos.setBackground(new java.awt.Color(153, 153, 153));
-        SieteDos.setBorder(new javax.swing.border.MatteBorder(null));
-        SieteDos.setOpaque(true);
-        PanelMatriz.add(SieteDos);
-
-        SieteUno.setBackground(new java.awt.Color(153, 153, 153));
-        SieteUno.setBorder(new javax.swing.border.MatteBorder(null));
-        SieteUno.setOpaque(true);
-        PanelMatriz.add(SieteUno);
-
-        SieteCuatro.setBackground(new java.awt.Color(153, 153, 153));
-        SieteCuatro.setBorder(new javax.swing.border.MatteBorder(null));
-        SieteCuatro.setOpaque(true);
-        PanelMatriz.add(SieteCuatro);
-
-        SeisSiete.setBackground(new java.awt.Color(153, 153, 153));
-        SeisSiete.setBorder(new javax.swing.border.MatteBorder(null));
-        SeisSiete.setOpaque(true);
-        PanelMatriz.add(SeisSiete);
-
-        CeroCinco.setBackground(new java.awt.Color(153, 153, 153));
-        CeroCinco.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroCinco.setOpaque(true);
-        PanelMatriz.add(CeroCinco);
-
-        SieteTres.setBackground(new java.awt.Color(153, 153, 153));
-        SieteTres.setBorder(new javax.swing.border.MatteBorder(null));
-        SieteTres.setOpaque(true);
-        PanelMatriz.add(SieteTres);
-
-        SieteSeis.setBackground(new java.awt.Color(153, 153, 153));
-        SieteSeis.setBorder(new javax.swing.border.MatteBorder(null));
-        SieteSeis.setOpaque(true);
-        PanelMatriz.add(SieteSeis);
-
-        SieteCinco.setBackground(new java.awt.Color(153, 153, 153));
-        SieteCinco.setBorder(new javax.swing.border.MatteBorder(null));
-        SieteCinco.setOpaque(true);
-        PanelMatriz.add(SieteCinco);
-
-        CeroDos.setBackground(new java.awt.Color(153, 153, 153));
-        CeroDos.setBorder(new javax.swing.border.MatteBorder(null));
-        CeroDos.setOpaque(true);
-        PanelMatriz.add(CeroDos);
-
-        SieteSiete.setBackground(new java.awt.Color(153, 153, 153));
-        SieteSiete.setBorder(new javax.swing.border.MatteBorder(null));
-        SieteSiete.setOpaque(true);
-        PanelMatriz.add(SieteSiete);
+        SieteCero.setBackground(new java.awt.Color(153, 153, 153));
+        SieteCero.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteCero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SieteCero.setMaximumSize(new java.awt.Dimension(0, 0));
+        SieteCero.setMinimumSize(new java.awt.Dimension(0, 0));
+        SieteCero.setOpaque(true);
+        SieteCero.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SieteCero);
 
         CeroUno.setBackground(new java.awt.Color(153, 153, 153));
         CeroUno.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CeroUno.setMaximumSize(new java.awt.Dimension(0, 0));
+        CeroUno.setMinimumSize(new java.awt.Dimension(0, 0));
         CeroUno.setOpaque(true);
+        CeroUno.setPreferredSize(new java.awt.Dimension(0, 0));
         PanelMatriz.add(CeroUno);
 
         UnoUno.setBackground(new java.awt.Color(153, 153, 153));
         UnoUno.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UnoUno.setMaximumSize(new java.awt.Dimension(0, 0));
+        UnoUno.setMinimumSize(new java.awt.Dimension(0, 0));
         UnoUno.setOpaque(true);
+        UnoUno.setPreferredSize(new java.awt.Dimension(0, 0));
         PanelMatriz.add(UnoUno);
+
+        DosUno.setBackground(new java.awt.Color(153, 153, 153));
+        DosUno.setBorder(new javax.swing.border.MatteBorder(null));
+        DosUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DosUno.setMaximumSize(new java.awt.Dimension(0, 0));
+        DosUno.setMinimumSize(new java.awt.Dimension(0, 0));
+        DosUno.setOpaque(true);
+        DosUno.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(DosUno);
+
+        TresUno.setBackground(new java.awt.Color(153, 153, 153));
+        TresUno.setBorder(new javax.swing.border.MatteBorder(null));
+        TresUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TresUno.setMaximumSize(new java.awt.Dimension(0, 0));
+        TresUno.setMinimumSize(new java.awt.Dimension(0, 0));
+        TresUno.setOpaque(true);
+        TresUno.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(TresUno);
+
+        CuatroUno.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroUno.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CuatroUno.setMaximumSize(new java.awt.Dimension(0, 0));
+        CuatroUno.setMinimumSize(new java.awt.Dimension(0, 0));
+        CuatroUno.setOpaque(true);
+        CuatroUno.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CuatroUno);
+
+        CincoUno.setBackground(new java.awt.Color(153, 153, 153));
+        CincoUno.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CincoUno.setMaximumSize(new java.awt.Dimension(0, 0));
+        CincoUno.setMinimumSize(new java.awt.Dimension(0, 0));
+        CincoUno.setOpaque(true);
+        CincoUno.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CincoUno);
+
+        SeisUno.setBackground(new java.awt.Color(153, 153, 153));
+        SeisUno.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SeisUno.setMaximumSize(new java.awt.Dimension(0, 0));
+        SeisUno.setMinimumSize(new java.awt.Dimension(0, 0));
+        SeisUno.setOpaque(true);
+        SeisUno.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SeisUno);
+
+        SieteUno.setBackground(new java.awt.Color(153, 153, 153));
+        SieteUno.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SieteUno.setMaximumSize(new java.awt.Dimension(0, 0));
+        SieteUno.setMinimumSize(new java.awt.Dimension(0, 0));
+        SieteUno.setOpaque(true);
+        SieteUno.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SieteUno);
+
+        CeroDos.setBackground(new java.awt.Color(153, 153, 153));
+        CeroDos.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CeroDos.setMaximumSize(new java.awt.Dimension(0, 0));
+        CeroDos.setMinimumSize(new java.awt.Dimension(0, 0));
+        CeroDos.setOpaque(true);
+        CeroDos.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CeroDos);
 
         UnoDos.setBackground(new java.awt.Color(153, 153, 153));
         UnoDos.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UnoDos.setMaximumSize(new java.awt.Dimension(0, 0));
+        UnoDos.setMinimumSize(new java.awt.Dimension(0, 0));
         UnoDos.setOpaque(true);
+        UnoDos.setPreferredSize(new java.awt.Dimension(0, 0));
         PanelMatriz.add(UnoDos);
+
+        DosDos.setBackground(new java.awt.Color(153, 153, 153));
+        DosDos.setBorder(new javax.swing.border.MatteBorder(null));
+        DosDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DosDos.setMaximumSize(new java.awt.Dimension(0, 0));
+        DosDos.setMinimumSize(new java.awt.Dimension(0, 0));
+        DosDos.setOpaque(true);
+        DosDos.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(DosDos);
+
+        TresDos.setBackground(new java.awt.Color(153, 153, 153));
+        TresDos.setBorder(new javax.swing.border.MatteBorder(null));
+        TresDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TresDos.setMaximumSize(new java.awt.Dimension(0, 0));
+        TresDos.setMinimumSize(new java.awt.Dimension(0, 0));
+        TresDos.setOpaque(true);
+        TresDos.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(TresDos);
+
+        CuatroDos.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroDos.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CuatroDos.setMaximumSize(new java.awt.Dimension(0, 0));
+        CuatroDos.setMinimumSize(new java.awt.Dimension(0, 0));
+        CuatroDos.setOpaque(true);
+        CuatroDos.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CuatroDos);
+
+        CincoDos.setBackground(new java.awt.Color(153, 153, 153));
+        CincoDos.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CincoDos.setMaximumSize(new java.awt.Dimension(0, 0));
+        CincoDos.setMinimumSize(new java.awt.Dimension(0, 0));
+        CincoDos.setOpaque(true);
+        CincoDos.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CincoDos);
+
+        SeisDos.setBackground(new java.awt.Color(153, 153, 153));
+        SeisDos.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SeisDos.setMaximumSize(new java.awt.Dimension(0, 0));
+        SeisDos.setMinimumSize(new java.awt.Dimension(0, 0));
+        SeisDos.setOpaque(true);
+        SeisDos.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SeisDos);
+
+        SieteDos.setBackground(new java.awt.Color(153, 153, 153));
+        SieteDos.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SieteDos.setMaximumSize(new java.awt.Dimension(0, 0));
+        SieteDos.setMinimumSize(new java.awt.Dimension(0, 0));
+        SieteDos.setOpaque(true);
+        SieteDos.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SieteDos);
+
+        CeroTres.setBackground(new java.awt.Color(153, 153, 153));
+        CeroTres.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CeroTres.setMaximumSize(new java.awt.Dimension(0, 0));
+        CeroTres.setMinimumSize(new java.awt.Dimension(0, 0));
+        CeroTres.setOpaque(true);
+        CeroTres.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CeroTres);
+
+        UnoTres.setBackground(new java.awt.Color(153, 153, 153));
+        UnoTres.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UnoTres.setMaximumSize(new java.awt.Dimension(0, 0));
+        UnoTres.setMinimumSize(new java.awt.Dimension(0, 0));
+        UnoTres.setOpaque(true);
+        UnoTres.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(UnoTres);
+
+        DosTres.setBackground(new java.awt.Color(153, 153, 153));
+        DosTres.setBorder(new javax.swing.border.MatteBorder(null));
+        DosTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DosTres.setMaximumSize(new java.awt.Dimension(0, 0));
+        DosTres.setMinimumSize(new java.awt.Dimension(0, 0));
+        DosTres.setOpaque(true);
+        DosTres.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(DosTres);
+
+        TresTres.setBackground(new java.awt.Color(153, 153, 153));
+        TresTres.setBorder(new javax.swing.border.MatteBorder(null));
+        TresTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TresTres.setMaximumSize(new java.awt.Dimension(0, 0));
+        TresTres.setMinimumSize(new java.awt.Dimension(0, 0));
+        TresTres.setOpaque(true);
+        TresTres.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(TresTres);
+
+        CuatroTres.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroTres.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CuatroTres.setMaximumSize(new java.awt.Dimension(0, 0));
+        CuatroTres.setMinimumSize(new java.awt.Dimension(0, 0));
+        CuatroTres.setOpaque(true);
+        CuatroTres.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CuatroTres);
+
+        CincoTres.setBackground(new java.awt.Color(153, 153, 153));
+        CincoTres.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CincoTres.setMaximumSize(new java.awt.Dimension(0, 0));
+        CincoTres.setMinimumSize(new java.awt.Dimension(0, 0));
+        CincoTres.setOpaque(true);
+        CincoTres.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CincoTres);
+
+        SeisTres.setBackground(new java.awt.Color(153, 153, 153));
+        SeisTres.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SeisTres.setMaximumSize(new java.awt.Dimension(0, 0));
+        SeisTres.setMinimumSize(new java.awt.Dimension(0, 0));
+        SeisTres.setOpaque(true);
+        SeisTres.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SeisTres);
+
+        SieteTres.setBackground(new java.awt.Color(153, 153, 153));
+        SieteTres.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SieteTres.setMaximumSize(new java.awt.Dimension(0, 0));
+        SieteTres.setMinimumSize(new java.awt.Dimension(0, 0));
+        SieteTres.setOpaque(true);
+        SieteTres.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SieteTres);
+
+        CeroCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        CeroCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CeroCuatro.setMaximumSize(new java.awt.Dimension(0, 0));
+        CeroCuatro.setMinimumSize(new java.awt.Dimension(0, 0));
+        CeroCuatro.setOpaque(true);
+        CeroCuatro.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CeroCuatro);
+
+        UnoCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        UnoCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UnoCuatro.setMaximumSize(new java.awt.Dimension(0, 0));
+        UnoCuatro.setMinimumSize(new java.awt.Dimension(0, 0));
+        UnoCuatro.setOpaque(true);
+        UnoCuatro.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(UnoCuatro);
+
+        DosCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        DosCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        DosCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DosCuatro.setMaximumSize(new java.awt.Dimension(0, 0));
+        DosCuatro.setMinimumSize(new java.awt.Dimension(0, 0));
+        DosCuatro.setOpaque(true);
+        DosCuatro.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(DosCuatro);
+
+        TresCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        TresCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        TresCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TresCuatro.setMaximumSize(new java.awt.Dimension(0, 0));
+        TresCuatro.setMinimumSize(new java.awt.Dimension(0, 0));
+        TresCuatro.setOpaque(true);
+        TresCuatro.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(TresCuatro);
+
+        CuatroCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CuatroCuatro.setMaximumSize(new java.awt.Dimension(0, 0));
+        CuatroCuatro.setMinimumSize(new java.awt.Dimension(0, 0));
+        CuatroCuatro.setOpaque(true);
+        CuatroCuatro.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CuatroCuatro);
+
+        CincoCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        CincoCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CincoCuatro.setMaximumSize(new java.awt.Dimension(0, 0));
+        CincoCuatro.setMinimumSize(new java.awt.Dimension(0, 0));
+        CincoCuatro.setOpaque(true);
+        CincoCuatro.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CincoCuatro);
+
+        SeisCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        SeisCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SeisCuatro.setMaximumSize(new java.awt.Dimension(0, 0));
+        SeisCuatro.setMinimumSize(new java.awt.Dimension(0, 0));
+        SeisCuatro.setOpaque(true);
+        SeisCuatro.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SeisCuatro);
+
+        SieteCuatro.setBackground(new java.awt.Color(153, 153, 153));
+        SieteCuatro.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SieteCuatro.setMaximumSize(new java.awt.Dimension(0, 0));
+        SieteCuatro.setMinimumSize(new java.awt.Dimension(0, 0));
+        SieteCuatro.setOpaque(true);
+        SieteCuatro.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SieteCuatro);
+
+        CeroCinco.setBackground(new java.awt.Color(153, 153, 153));
+        CeroCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CeroCinco.setMaximumSize(new java.awt.Dimension(0, 0));
+        CeroCinco.setMinimumSize(new java.awt.Dimension(0, 0));
+        CeroCinco.setOpaque(true);
+        CeroCinco.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CeroCinco);
+
+        UnoCinco.setBackground(new java.awt.Color(153, 153, 153));
+        UnoCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UnoCinco.setMaximumSize(new java.awt.Dimension(0, 0));
+        UnoCinco.setMinimumSize(new java.awt.Dimension(0, 0));
+        UnoCinco.setOpaque(true);
+        UnoCinco.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(UnoCinco);
+
+        DosCinco.setBackground(new java.awt.Color(153, 153, 153));
+        DosCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        DosCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DosCinco.setMaximumSize(new java.awt.Dimension(0, 0));
+        DosCinco.setMinimumSize(new java.awt.Dimension(0, 0));
+        DosCinco.setOpaque(true);
+        DosCinco.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(DosCinco);
+
+        TresCinco.setBackground(new java.awt.Color(153, 153, 153));
+        TresCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        TresCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TresCinco.setMaximumSize(new java.awt.Dimension(0, 0));
+        TresCinco.setMinimumSize(new java.awt.Dimension(0, 0));
+        TresCinco.setOpaque(true);
+        TresCinco.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(TresCinco);
+        TresCinco.getAccessibleContext().setAccessibleName("");
+
+        CuatroCinco.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CuatroCinco.setMaximumSize(new java.awt.Dimension(0, 0));
+        CuatroCinco.setMinimumSize(new java.awt.Dimension(0, 0));
+        CuatroCinco.setOpaque(true);
+        CuatroCinco.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CuatroCinco);
+
+        CincoCinco.setBackground(new java.awt.Color(153, 153, 153));
+        CincoCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CincoCinco.setMaximumSize(new java.awt.Dimension(0, 0));
+        CincoCinco.setMinimumSize(new java.awt.Dimension(0, 0));
+        CincoCinco.setOpaque(true);
+        CincoCinco.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CincoCinco);
+
+        SeisCinco.setBackground(new java.awt.Color(153, 153, 153));
+        SeisCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SeisCinco.setMaximumSize(new java.awt.Dimension(0, 0));
+        SeisCinco.setMinimumSize(new java.awt.Dimension(0, 0));
+        SeisCinco.setOpaque(true);
+        SeisCinco.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SeisCinco);
+
+        SieteCinco.setBackground(new java.awt.Color(153, 153, 153));
+        SieteCinco.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteCinco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SieteCinco.setMaximumSize(new java.awt.Dimension(0, 0));
+        SieteCinco.setMinimumSize(new java.awt.Dimension(0, 0));
+        SieteCinco.setOpaque(true);
+        SieteCinco.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SieteCinco);
+
+        CeroSeis.setBackground(new java.awt.Color(153, 153, 153));
+        CeroSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CeroSeis.setMaximumSize(new java.awt.Dimension(0, 0));
+        CeroSeis.setMinimumSize(new java.awt.Dimension(0, 0));
+        CeroSeis.setOpaque(true);
+        CeroSeis.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CeroSeis);
+
+        UnoSeis.setBackground(new java.awt.Color(153, 153, 153));
+        UnoSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UnoSeis.setMaximumSize(new java.awt.Dimension(0, 0));
+        UnoSeis.setMinimumSize(new java.awt.Dimension(0, 0));
+        UnoSeis.setOpaque(true);
+        UnoSeis.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(UnoSeis);
+
+        DosSeis.setBackground(new java.awt.Color(153, 153, 153));
+        DosSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        DosSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DosSeis.setMaximumSize(new java.awt.Dimension(0, 0));
+        DosSeis.setMinimumSize(new java.awt.Dimension(0, 0));
+        DosSeis.setOpaque(true);
+        DosSeis.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(DosSeis);
+
+        TresSeis.setBackground(new java.awt.Color(153, 153, 153));
+        TresSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        TresSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TresSeis.setMaximumSize(new java.awt.Dimension(0, 0));
+        TresSeis.setMinimumSize(new java.awt.Dimension(0, 0));
+        TresSeis.setOpaque(true);
+        TresSeis.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(TresSeis);
+
+        CuatroSeis.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CuatroSeis.setMaximumSize(new java.awt.Dimension(0, 0));
+        CuatroSeis.setMinimumSize(new java.awt.Dimension(0, 0));
+        CuatroSeis.setOpaque(true);
+        CuatroSeis.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CuatroSeis);
+
+        CincoSeis.setBackground(new java.awt.Color(153, 153, 153));
+        CincoSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CincoSeis.setMaximumSize(new java.awt.Dimension(0, 0));
+        CincoSeis.setMinimumSize(new java.awt.Dimension(0, 0));
+        CincoSeis.setOpaque(true);
+        CincoSeis.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CincoSeis);
+
+        SeisSeis.setBackground(new java.awt.Color(153, 153, 153));
+        SeisSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SeisSeis.setMaximumSize(new java.awt.Dimension(0, 0));
+        SeisSeis.setMinimumSize(new java.awt.Dimension(0, 0));
+        SeisSeis.setOpaque(true);
+        SeisSeis.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SeisSeis);
+
+        SieteSeis.setBackground(new java.awt.Color(153, 153, 153));
+        SieteSeis.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteSeis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SieteSeis.setMaximumSize(new java.awt.Dimension(0, 0));
+        SieteSeis.setMinimumSize(new java.awt.Dimension(0, 0));
+        SieteSeis.setOpaque(true);
+        SieteSeis.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SieteSeis);
+
+        CeroSiete.setBackground(new java.awt.Color(153, 153, 153));
+        CeroSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        CeroSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CeroSiete.setMaximumSize(new java.awt.Dimension(0, 0));
+        CeroSiete.setMinimumSize(new java.awt.Dimension(0, 0));
+        CeroSiete.setOpaque(true);
+        CeroSiete.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CeroSiete);
+
+        UnoSiete.setBackground(new java.awt.Color(153, 153, 153));
+        UnoSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        UnoSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UnoSiete.setMaximumSize(new java.awt.Dimension(0, 0));
+        UnoSiete.setMinimumSize(new java.awt.Dimension(0, 0));
+        UnoSiete.setOpaque(true);
+        UnoSiete.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(UnoSiete);
+
+        DosSiete.setBackground(new java.awt.Color(153, 153, 153));
+        DosSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        DosSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DosSiete.setMaximumSize(new java.awt.Dimension(0, 0));
+        DosSiete.setMinimumSize(new java.awt.Dimension(0, 0));
+        DosSiete.setOpaque(true);
+        DosSiete.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(DosSiete);
+
+        TresSiete.setBackground(new java.awt.Color(153, 153, 153));
+        TresSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        TresSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TresSiete.setMaximumSize(new java.awt.Dimension(0, 0));
+        TresSiete.setMinimumSize(new java.awt.Dimension(0, 0));
+        TresSiete.setOpaque(true);
+        TresSiete.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(TresSiete);
+
+        CuatroSiete.setBackground(new java.awt.Color(153, 153, 153));
+        CuatroSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        CuatroSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CuatroSiete.setMaximumSize(new java.awt.Dimension(0, 0));
+        CuatroSiete.setMinimumSize(new java.awt.Dimension(0, 0));
+        CuatroSiete.setOpaque(true);
+        CuatroSiete.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CuatroSiete);
+
+        CincoSiete.setBackground(new java.awt.Color(153, 153, 153));
+        CincoSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        CincoSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CincoSiete.setMaximumSize(new java.awt.Dimension(0, 0));
+        CincoSiete.setMinimumSize(new java.awt.Dimension(0, 0));
+        CincoSiete.setOpaque(true);
+        CincoSiete.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(CincoSiete);
+
+        SeisSiete.setBackground(new java.awt.Color(153, 153, 153));
+        SeisSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        SeisSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SeisSiete.setMaximumSize(new java.awt.Dimension(0, 0));
+        SeisSiete.setMinimumSize(new java.awt.Dimension(0, 0));
+        SeisSiete.setOpaque(true);
+        SeisSiete.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SeisSiete);
+
+        SieteSiete.setBackground(new java.awt.Color(153, 153, 153));
+        SieteSiete.setBorder(new javax.swing.border.MatteBorder(null));
+        SieteSiete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SieteSiete.setMaximumSize(new java.awt.Dimension(0, 0));
+        SieteSiete.setMinimumSize(new java.awt.Dimension(0, 0));
+        SieteSiete.setOpaque(true);
+        SieteSiete.setPreferredSize(new java.awt.Dimension(0, 0));
+        PanelMatriz.add(SieteSiete);
 
         javax.swing.GroupLayout PanelPrincipalLayout = new javax.swing.GroupLayout(PanelPrincipal);
         PanelPrincipal.setLayout(PanelPrincipalLayout);
@@ -683,13 +932,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         Robot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Robot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/robot-removebg-preview.png"))); // NOI18N
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout PanelDerechaLayout = new javax.swing.GroupLayout(PanelDerecha);
         PanelDerecha.setLayout(PanelDerechaLayout);
         PanelDerechaLayout.setHorizontalGroup(
@@ -717,9 +959,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
                                     .addComponent(btnReiniciarMatriz)
                                     .addGap(2, 2, 2)))
-                            .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton1)
-                                .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -750,8 +990,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 .addComponent(lblNoSePudoMoverPor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -786,27 +1024,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private void btnReiniciarMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarMatrizActionPerformed
         randomizarColores();
     }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int newRow = currentRow;
-        int newCol = currentCol;
-        newRow = Math.min(7, currentRow + 1);
-        contadorPasos++;
-
-        JLabel targetLabel = getLabelAt(newRow, newCol);
-        if (targetLabel != null) {
-            if (targetLabel.getBackground() != Color.RED) {
-                moverRobotA(newRow, newCol);
-                manejarLabelVerde(newRow, newCol);
-                updatePosicionLabel();
-                updateMovimientos();
-            } else {
-                updateRazonNoSeMovio();
-
-            }
-        } else {
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void PanelMatrizKeyPressed(java.awt.event.KeyEvent evt) {
         int newRow = currentRow;
@@ -980,7 +1197,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private javax.swing.JLabel UnoTres;
     private javax.swing.JLabel UnoUno;
     private javax.swing.JButton btnReiniciarMatriz;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
