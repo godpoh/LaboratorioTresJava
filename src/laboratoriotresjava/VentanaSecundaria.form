@@ -337,9 +337,6 @@
                   <Dimension value="[0, 0]"/>
                 </Property>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
-              </AccessibilityProperties>
             </Component>
             <Component class="javax.swing.JLabel" name="TresCero">
               <Properties>
@@ -1365,9 +1362,6 @@
                   <Dimension value="[0, 0]"/>
                 </Property>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
-              </AccessibilityProperties>
             </Component>
             <Component class="javax.swing.JLabel" name="CuatroCinco">
               <Properties>
@@ -1881,7 +1875,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="lblInformacionMovimiento" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1897,7 +1891,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblInformacionMovimiento">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Debe de utilizar las flechas del teclado para poder controlar al robot"/>
+            <Property name="text" type="java.lang.String" value="Debe utilizar W, arriba, S, abajo, D, derecha, A, izquierda"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -2039,7 +2033,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/robot-removebg-preview.png"/>
+              <Image iconType="3" name="/resources/robotfoto.png"/>
             </Property>
           </Properties>
         </Component>
