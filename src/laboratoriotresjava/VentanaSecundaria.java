@@ -89,8 +89,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             manejarLabelVerde(currentRow, currentCol);
         }
     }
-
-    private void randomizarColores() {
+private void randomizarColores() {
     Random rand = new Random();
     labels.clear();
     colorBlanco.clear();
@@ -103,32 +102,25 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         }
     }
 
-    JLabel firstLabel = getLabelAt(0, 0);
-    if (firstLabel != null) {
-        firstLabel.setBackground(Color.BLUE);
-    }
-
     int totalLabels = labels.size();
     int greenLabels = totalLabels * 50 / 100;
     int redLabels = totalLabels * 15 / 100;
-    int whiteLabels = totalLabels * 35 / 100;
+    int whiteLabels = totalLabels - greenLabels - redLabels - 1; // -1 por el label azul
 
-    // Remover la etiqueta en (0,0) de la lista antes de barajar
-    labels.remove(firstLabel);
+    List<JLabel> shuffledLabels = new ArrayList<>(labels.subList(1, totalLabels));
+    Collections.shuffle(shuffledLabels);
 
-    Collections.shuffle(labels);
+    labels.get(0).setBackground(Color.BLUE);
+    System.out.println("Label at index 0 set to color: Blue");
 
     int greenCount = 0;
     int redCount = 0;
     int whiteCount = 0;
 
-    for (JLabel label : labels) {
-        // Salta la celda donde está el Robot
-        if (labels.indexOf(label) == currentRow * 8 + currentCol) {
-            continue;
-        }
-
+    for (int i = 0; i < shuffledLabels.size(); i++) {
+        JLabel label = shuffledLabels.get(i);
         Color assignedColor;
+
         if (greenCount < greenLabels) {
             assignedColor = Color.GREEN;
             greenCount++;
@@ -143,18 +135,20 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             colorBlanco.add(label);
         } else {
             assignedColor = colores[rand.nextInt(colores.length)];
-            if (assignedColor == Color.GREEN) {
-                colorVerde.add(label);
-            } else if (assignedColor == Color.RED) {
-                colorRojo.add(label);
-            } else if (assignedColor == Color.WHITE) {
-                colorBlanco.add(label);
-            }
+            if (assignedColor == Color.GREEN) colorVerde.add(label);
+            else if (assignedColor == Color.RED) colorRojo.add(label);
+            else if (assignedColor == Color.WHITE) colorBlanco.add(label);
         }
 
         label.setBackground(assignedColor);
-        System.out.println("Label at index " + labels.indexOf(label) + " set to color: " + assignedColor);
+        System.out.println("Label at index " + (i + 1) + " set to color: " + assignedColor);
     }
+
+    System.out.println("Total labels: " + totalLabels);
+    System.out.println("Green: " + colorVerde.size());
+    System.out.println("Red: " + colorRojo.size());
+    System.out.println("White: " + colorBlanco.size());
+    System.out.println("Blue: 1");
 }
 
     @SuppressWarnings("unchecked")
