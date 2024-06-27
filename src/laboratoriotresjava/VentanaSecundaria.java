@@ -13,6 +13,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
     private JPanel RobotPanel;
     private int currentRow = 0;
+    private int totalGreenSquares = 0;
     private int currentCol = 0;
     private int contadorPasos = 0;
     private int contadorCambioVerdeABlanco = 0;
@@ -71,9 +72,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         ImageIcon originalIcon = new ImageIcon(getClass().getResource("/resources/robotfoto.png"));
         int cellWidth = PanelMatriz.getWidth() / 8;
         int cellHeight = PanelMatriz.getHeight() / 8;
-        Image scaledImage = originalIcon.getImage().getScaledInstance(cellWidth, cellHeight, Image.SCALE_SMOOTH);
-        ImageIcon robotIcon = new ImageIcon(scaledImage);
-        Robot.setIcon(robotIcon);
         Robot.setSize(cellWidth, cellHeight);
         Robot.setOpaque(false);
     }
@@ -119,28 +117,28 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         RobotPanel.requestFocusInWindow();
     }
 
-    private void moveRobot(int keyCode) {
-        int newRow = currentRow;
-        int newCol = currentCol;
+private void moveRobot(int keyCode) {
+    int newRow = currentRow;
+    int newCol = currentCol;
 
-        switch (keyCode) {
-            case KeyEvent.VK_W:
-            case KeyEvent.VK_UP:
-                newRow = Math.max(0, currentRow - 1);
-                break;
-            case KeyEvent.VK_S:
-            case KeyEvent.VK_DOWN:
-                newRow = Math.min(7, currentRow + 1);
-                break;
-            case KeyEvent.VK_A:
-            case KeyEvent.VK_LEFT:
-                newCol = Math.max(0, currentCol - 1);
-                break;
-            case KeyEvent.VK_D:
-            case KeyEvent.VK_RIGHT:
-                newCol = Math.min(7, currentCol + 1);
-                break;
-        }
+    switch (keyCode) {
+        case KeyEvent.VK_W:
+        case KeyEvent.VK_UP:
+            newRow = Math.max(0, currentRow - 1);
+            break;
+        case KeyEvent.VK_S:
+        case KeyEvent.VK_DOWN:
+            newRow = Math.min(7, currentRow + 1);
+            break;
+        case KeyEvent.VK_A:
+        case KeyEvent.VK_LEFT:
+            newCol = Math.max(0, currentCol - 1);
+            break;
+        case KeyEvent.VK_D:
+        case KeyEvent.VK_RIGHT:
+            newCol = Math.min(7, currentCol + 1);
+            break;
+    }
 
     JLabel currentLabel = getLabelAt(currentRow, currentCol);
     JLabel newLabel = getLabelAt(newRow, newCol);
@@ -148,102 +146,163 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     if (newLabel != null) {
         Color backgroundColor = newLabel.getBackground();
         if (backgroundColor == Color.RED) {
-            message = "Hay un obstáculo (cuadro rojo). No puede cruzar por ahí.";
+            message = "Hay un obstaculo (cuadro rojo)";
             updateRazonNoSeMovio();
             return; // No mover el robot si hay un obstáculo
         } else if (backgroundColor == Color.GREEN) {
-            if (currentLabel != null && currentLabel.getBackground() == Color.GREEN) {
+            if (currentLabel != null && currentLabel.getBackground() == Color.WHITE) {
                 currentLabel.setBackground(Color.WHITE);
                 colorVerde.remove(currentLabel);
                 colorBlanco.add(currentLabel);
                 contadorCambioVerdeABlanco++;
                 updateCambiosVerdeABlanco();
-                message = "Cuadro verde limpiado exitosamente.";
-                updateRazonNoSeMovio();
+                message = "Cuadro sucio limpiado.";
+                updateRazonNoSeMovio(); // Actualizar mensaje solo si se limpia un cuadro verde
+                updateSuciaLabel(); // Actualizar porcentaje de suciedad
             }
+        } else {
+            message = ""; // Limpiar mensaje si no hay obstáculo ni cuadro verde
+            updateRazonNoSeMovio();
         }
+    } else {
+        message = ""; // Limpiar mensaje si no hay label en la nueva posición
+        updateRazonNoSeMovio();
     }
-        if (newRow != currentRow || newCol != currentCol) {
-            currentRow = newRow;
-            currentCol = newCol;
-            updateRobotPosition();
-            contadorPasos++;
-            updateMovimientos();
-            updatePosicionLabel();
-            manejarLabelVerde(currentRow, currentCol);
 
-            // Bring the Robot to the front
-            Robot.getParent().setComponentZOrder(Robot, 0);
-            Robot.getParent().repaint();
-        }
+    if (newRow != currentRow || newCol != currentCol) {
+        currentRow = newRow;
+        currentCol = newCol;
+        updateRobotPosition();
+        contadorPasos++;
+        updateMovimientos();
+        updatePosicionLabel();
+        manejarLabelVerde(currentRow, currentCol);
+
+        // Bring the Robot to the front
+        Robot.getParent().setComponentZOrder(Robot, 0);
+        Robot.getParent().repaint();
     }
+}
 
     private void randomizarColores() {
-        Random rand = new Random();
-        labels.clear();
-        colorBlanco.clear();
-        colorRojo.clear();
-        colorVerde.clear();
+    Random rand = new Random();
+    labels.clear();
+    colorBlanco.clear();
+    colorRojo.clear();
+    colorVerde.clear();
 
-        for (java.awt.Component comp : PanelMatriz.getComponents()) {
-            if (comp instanceof JLabel) {
-                labels.add((JLabel) comp);
-            }
+    for (java.awt.Component comp : PanelMatriz.getComponents()) {
+        if (comp instanceof JLabel) {
+            labels.add((JLabel) comp);
         }
-
-        int totalLabels = labels.size();
-        int greenLabels = totalLabels * 50 / 100;
-        int redLabels = totalLabels * 15 / 100;
-        int whiteLabels = totalLabels - greenLabels - redLabels - 1; // -1 por el label azul
-
-        List<JLabel> shuffledLabels = new ArrayList<>(labels.subList(1, totalLabels));
-        Collections.shuffle(shuffledLabels);
-
-        labels.get(0).setBackground(Color.BLUE);
-        System.out.println("Label at index 0 set to color: Blue");
-
-        int greenCount = 0;
-        int redCount = 0;
-        int whiteCount = 0;
-
-        for (int i = 0; i < shuffledLabels.size(); i++) {
-            JLabel label = shuffledLabels.get(i);
-            Color assignedColor;
-
-            if (greenCount < greenLabels) {
-                assignedColor = Color.GREEN;
-                greenCount++;
-                colorVerde.add(label);
-            } else if (redCount < redLabels) {
-                assignedColor = Color.RED;
-                redCount++;
-                colorRojo.add(label);
-            } else if (whiteCount < whiteLabels) {
-                assignedColor = Color.WHITE;
-                whiteCount++;
-                colorBlanco.add(label);
-            } else {
-                assignedColor = colores[rand.nextInt(colores.length)];
-                if (assignedColor == Color.GREEN) {
-                    colorVerde.add(label);
-                } else if (assignedColor == Color.RED) {
-                    colorRojo.add(label);
-                } else if (assignedColor == Color.WHITE) {
-                    colorBlanco.add(label);
-                }
-            }
-
-            label.setBackground(assignedColor);
-            System.out.println("Label at index " + (i + 1) + " set to color: " + assignedColor);
-        }
-
-        System.out.println("Total labels: " + totalLabels);
-        System.out.println("Green: " + colorVerde.size());
-        System.out.println("Red: " + colorRojo.size());
-        System.out.println("White: " + colorBlanco.size());
-        System.out.println("Blue: 1");
     }
 
+    int totalLabels = labels.size();
+    int greenLabels = totalLabels * 50 / 100;
+    int redLabels = totalLabels * 15 / 100;
+    int whiteLabels = totalLabels - greenLabels - redLabels - 1; // -1 por el label azul
+
+    List<JLabel> shuffledLabels = new ArrayList<>(labels.subList(1, totalLabels));
+    Collections.shuffle(shuffledLabels);
+
+    labels.get(0).setBackground(Color.BLUE);
+    System.out.println("Label at index 0 set to color: Blue");
+
+    int greenCount = 0;
+    int redCount = 0;
+    int whiteCount = 0;
+
+    for (int i = 0; i < shuffledLabels.size(); i++) {
+        JLabel label = shuffledLabels.get(i);
+        Color assignedColor;
+
+        if (greenCount < greenLabels) {
+            assignedColor = Color.GREEN;
+            greenCount++;
+            colorVerde.add(label);
+        } else if (redCount < redLabels) {
+            assignedColor = Color.RED;
+            redCount++;
+            colorRojo.add(label);
+        } else if (whiteCount < whiteLabels) {
+            assignedColor = Color.WHITE;
+            whiteCount++;
+            colorBlanco.add(label);
+        } else {
+            assignedColor = colores[rand.nextInt(colores.length)];
+            if (assignedColor == Color.GREEN) {
+                colorVerde.add(label);
+            } else if (assignedColor == Color.RED) {
+                colorRojo.add(label);
+            } else if (assignedColor == Color.WHITE) {
+                colorBlanco.add(label);
+            }
+        }
+
+        label.setBackground(assignedColor);
+        System.out.println("Label at index " + (i + 1) + " set to color: " + assignedColor);
+    }
+
+    totalGreenSquares = greenCount; // Initialize total green squares
+    updateSuciaLabel(); // Update initial percentage of dirty squares
+
+    System.out.println("Total labels: " + totalLabels);
+    System.out.println("Green: " + colorVerde.size());
+    System.out.println("Red: " + colorRojo.size());
+    System.out.println("White: " + colorBlanco.size());
+    System.out.println("Blue: 1");
+}
+
+private void manejarLabelVerde(int row, int col) {
+    JLabel label = getLabelAt(row, col);
+    if (label != null && label.getBackground() == Color.GREEN) {
+        label.setBackground(Color.WHITE);
+        colorVerde.remove(label);
+        colorBlanco.add(label);
+        contadorCambioVerdeABlanco++;
+        updateCambiosVerdeABlanco();
+
+        // Update the percentage of remaining dirty squares
+        updateSuciaLabel();
+
+        // Bring the Robot to the front
+        Robot.getParent().setComponentZOrder(Robot, 0);
+        Robot.getParent().repaint();
+    }
+}
+
+    private JLabel getLabelAt(int row, int col) {
+        int index = row * 8 + col;
+        Component comp = PanelMatriz.getComponent(index);
+        if (comp instanceof JLabel) {
+            return (JLabel) comp;
+        }
+        return null;
+    }
+    
+    private void updateSuciaLabel() {
+    int remainingGreenSquares = colorVerde.size();
+    int percentageRemaining = (int) ((remainingGreenSquares / (double) totalGreenSquares) * 100);
+    jLabel10.setText(percentageRemaining + "%");
+}
+
+    private void updateCambiosVerdeABlanco() {
+        lblPosicionLimpiada.setText(contadorCambioVerdeABlanco + "");
+    }
+
+    private void updatePosicionLabel() {
+        lblXYContador.setText(currentCol + "," + currentRow);
+    }
+
+    private void updateRazonNoSeMovio() {
+        lblMostrarRazonNoSeMueve.setText(message);
+    }
+
+    private void updateMovimientos() {
+        lblPosicionRecorrida.setText(contadorPasos + "");
+    }
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -345,6 +404,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         lblPosicionLimpiada = new javax.swing.JLabel();
         Robot = new javax.swing.JLabel();
         lblMostrarRazonNoSeMueve = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -1035,7 +1096,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             }
         });
 
-        lblNoSePudoMoverPor.setText("No se pudo mover por:");
+        lblNoSePudoMoverPor.setText("Movimientos:");
 
         lblXYContador.setText("0,0");
         lblXYContador.setToolTipText("");
@@ -1052,39 +1113,35 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         Robot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Robot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/robotfoto.png"))); // NOI18N
 
+        jLabel9.setText("Porcentaje de suciedad:");
+
         javax.swing.GroupLayout PanelDerechaLayout = new javax.swing.GroupLayout(PanelDerecha);
         PanelDerecha.setLayout(PanelDerechaLayout);
         PanelDerechaLayout.setHorizontalGroup(
             PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDerechaLayout.createSequentialGroup()
                 .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(PanelDerechaLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
                         .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PanelDerechaLayout.createSequentialGroup()
-                                .addComponent(btnReiniciarMatriz)
-                                .addGap(2, 2, 2))
-                            .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PanelDerechaLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PosicionRecorridas)
-                            .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblPosicionDelRobot)
-                                .addComponent(lblPosicionesLimpiadas))
-                            .addComponent(lblNoSePudoMoverPor))))
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
-                        .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
-                        .addComponent(lblXYContador)
-                        .addGap(80, 80, 80))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9)
+                            .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelDerechaLayout.createSequentialGroup()
+                                    .addGap(37, 37, 37)
+                                    .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(PosicionRecorridas)
+                                        .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblPosicionesLimpiadas)
+                                            .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblNoSePudoMoverPor)
+                                                .addComponent(lblPosicionDelRobot)))))
+                                .addGroup(PanelDerechaLayout.createSequentialGroup()
+                                    .addGap(48, 48, 48)
+                                    .addComponent(btnReiniciarMatriz))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(PanelDerechaLayout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
                         .addComponent(lblPosicionRecorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1092,6 +1149,17 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
                         .addComponent(lblPosicionLimpiada, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                        .addComponent(lblXYContador)
+                        .addGap(80, 80, 80))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                        .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61))))
         );
         PanelDerechaLayout.setVerticalGroup(
             PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1110,9 +1178,13 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 .addComponent(lblXYContador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNoSePudoMoverPor)
-                .addGap(73, 73, 73)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMostrarRazonNoSeMueve, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Robot, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReiniciarMatriz)
@@ -1154,46 +1226,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         updateCambiosVerdeABlanco();
         updatePosicionLabel();
     }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
-
-    private void manejarLabelVerde(int row, int col) {
-        JLabel label = getLabelAt(row, col);
-        if (label != null && label.getBackground() == Color.GREEN) {
-            label.setBackground(Color.WHITE);
-            colorVerde.remove(label);
-            colorBlanco.add(label);
-            contadorCambioVerdeABlanco++;
-            updateCambiosVerdeABlanco();
-
-            // Bring the Robot to the front
-            Robot.getParent().setComponentZOrder(Robot, 0);
-            Robot.getParent().repaint();
-        }
-    }
-
-    private JLabel getLabelAt(int row, int col) {
-        int index = row * 8 + col;
-        Component comp = PanelMatriz.getComponent(index);
-        if (comp instanceof JLabel) {
-            return (JLabel) comp;
-        }
-        return null;
-    }
-
-    private void updateCambiosVerdeABlanco() {
-        lblPosicionLimpiada.setText(contadorCambioVerdeABlanco + "");
-    }
-
-    private void updatePosicionLabel() {
-        lblXYContador.setText(currentCol + "," + currentRow);
-    }
-
-    private void updateRazonNoSeMovio() {
-        lblMostrarRazonNoSeMueve.setText(message);
-    }
-
-    private void updateMovimientos() {
-        lblPosicionRecorrida.setText(contadorPasos + "");
-    }
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1285,6 +1317,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private javax.swing.JLabel UnoUno;
     private javax.swing.JButton btnReiniciarMatriz;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1292,6 +1325,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblInformacionMovimiento;
     private javax.swing.JLabel lblMostrarRazonNoSeMueve;
     private javax.swing.JLabel lblNoSePudoMoverPor;
