@@ -4,19 +4,14 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import javax.swing.JLabel;
 import java.util.*;
-import javax.swing.ImageIcon;
-import javax.swing.JLayeredPane;
-import javax.swing.SwingUtilities;
+import java.awt.event.*;
+
+import javax.swing.*;
 
 public class VentanaSecundaria extends javax.swing.JDialog {
 
-    private javax.swing.JPanel RobotPanel;
+    private JPanel RobotPanel;
     private int currentRow = 0;
     private int currentCol = 0;
     private int contadorPasos = 0;
@@ -26,43 +21,43 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     public VentanaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-    randomizarColores();
-    setLocationRelativeTo(null);
+        randomizarColores();
+        setLocationRelativeTo(null);
 
-    addPanelMatrizListener();
+        addPanelMatrizListener();
 
-    // Set up RobotPanel
-    RobotPanel = new javax.swing.JPanel();
-    RobotPanel.setLayout(null);
-    RobotPanel.setBounds(0, 0, getWidth(), getHeight());
-    RobotPanel.setOpaque(false);
+        // Set up RobotPanel
+        RobotPanel = new javax.swing.JPanel();
+        RobotPanel.setLayout(null);
+        RobotPanel.setBounds(0, 0, getWidth(), getHeight());
+        RobotPanel.setOpaque(false);
 
-    // Add these three lines here
-    RobotPanel.add(Robot);
-    RobotPanel.setComponentZOrder(Robot, 0);  // This ensures Robot is on top within RobotPanel
-    getContentPane().add(RobotPanel, 0);  // This adds RobotPanel to the top layer of the content pane
+        // Add these three lines here
+        RobotPanel.add(Robot);
+        RobotPanel.setComponentZOrder(Robot, 0);  // This ensures Robot is on top within RobotPanel
+        getContentPane().add(RobotPanel, 0);  // This adds RobotPanel to the top layer of the content pane
 
-    // Add ComponentListener for resizing
-    addComponentListener(new ComponentAdapter() {
-        @Override
-        public void componentResized(ComponentEvent e) {
-            RobotPanel.setBounds(0, 0, getWidth(), getHeight());
-            updateRobotPosition();
-        }
-    });
+        // Add ComponentListener for resizing
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                RobotPanel.setBounds(0, 0, getWidth(), getHeight());
+                updateRobotPosition();
+            }
+        });
 
-    // Initialize Robot position
-    currentRow = 0;
-    currentCol = 0;
-    
-    // Ensure components are properly laid out before positioning the Robot
-    revalidate();
-    repaint();
-    
-    updateRobotPosition();
+        // Initialize Robot position
+        currentRow = 0;
+        currentCol = 0;
 
-    setupKeyListener();
-    setRobotImageIcon();
+        // Ensure components are properly laid out before positioning the Robot
+        revalidate();
+        repaint();
+
+        updateRobotPosition();
+
+        setupKeyListener();
+        setRobotImageIcon();
     }
 
     List<JLabel> labels = new ArrayList<>();
@@ -73,14 +68,14 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
 
     private void setRobotImageIcon() {
-    ImageIcon originalIcon = new ImageIcon(getClass().getResource("/resources/robotfoto.png"));
-    int cellWidth = PanelMatriz.getWidth() / 8;
-    int cellHeight = PanelMatriz.getHeight() / 8;
-    Image scaledImage = originalIcon.getImage().getScaledInstance(cellWidth, cellHeight, Image.SCALE_SMOOTH);
-    ImageIcon robotIcon = new ImageIcon(scaledImage);
-    Robot.setIcon(robotIcon);
-    Robot.setSize(cellWidth, cellHeight);
-    Robot.setOpaque(false);
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/resources/robotfoto.png"));
+        int cellWidth = PanelMatriz.getWidth() / 8;
+        int cellHeight = PanelMatriz.getHeight() / 8;
+        Image scaledImage = originalIcon.getImage().getScaledInstance(cellWidth, cellHeight, Image.SCALE_SMOOTH);
+        ImageIcon robotIcon = new ImageIcon(scaledImage);
+        Robot.setIcon(robotIcon);
+        Robot.setSize(cellWidth, cellHeight);
+        Robot.setOpaque(false);
     }
 
     private void updateRobotPosition() {
@@ -147,19 +142,40 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 break;
         }
 
-        if (newRow != currentRow || newCol != currentCol) {
-        currentRow = newRow;
-        currentCol = newCol;
-        updateRobotPosition();
-        contadorPasos++;
-        updateMovimientos();
-        updatePosicionLabel();
-        manejarLabelVerde(currentRow, currentCol);
-        
-        // Bring the Robot to the front
-        Robot.getParent().setComponentZOrder(Robot, 0);
-        Robot.getParent().repaint();
+    JLabel currentLabel = getLabelAt(currentRow, currentCol);
+    JLabel newLabel = getLabelAt(newRow, newCol);
+
+    if (newLabel != null) {
+        Color backgroundColor = newLabel.getBackground();
+        if (backgroundColor == Color.RED) {
+            message = "Hay un obstáculo (cuadro rojo). No puede cruzar por ahí.";
+            updateRazonNoSeMovio();
+            return; // No mover el robot si hay un obstáculo
+        } else if (backgroundColor == Color.GREEN) {
+            if (currentLabel != null && currentLabel.getBackground() == Color.GREEN) {
+                currentLabel.setBackground(Color.WHITE);
+                colorVerde.remove(currentLabel);
+                colorBlanco.add(currentLabel);
+                contadorCambioVerdeABlanco++;
+                updateCambiosVerdeABlanco();
+                message = "Cuadro verde limpiado exitosamente.";
+                updateRazonNoSeMovio();
+            }
+        }
     }
+        if (newRow != currentRow || newCol != currentCol) {
+            currentRow = newRow;
+            currentCol = newCol;
+            updateRobotPosition();
+            contadorPasos++;
+            updateMovimientos();
+            updatePosicionLabel();
+            manejarLabelVerde(currentRow, currentCol);
+
+            // Bring the Robot to the front
+            Robot.getParent().setComponentZOrder(Robot, 0);
+            Robot.getParent().repaint();
+        }
     }
 
     private void randomizarColores() {
