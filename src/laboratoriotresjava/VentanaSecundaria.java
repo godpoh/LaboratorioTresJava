@@ -2,13 +2,21 @@ package laboratoriotresjava;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import java.util.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLayeredPane;
+import javax.swing.SwingUtilities;
 
 public class VentanaSecundaria extends javax.swing.JDialog {
 
+    private javax.swing.JPanel RobotPanel;
     private int currentRow = 0;
     private int currentCol = 0;
     private int contadorPasos = 0;
@@ -18,18 +26,45 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     public VentanaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        randomizarColores();
-        setLocationRelativeTo(null);
+    randomizarColores();
+    setLocationRelativeTo(null);
 
-        // Initialize Robot position
-        currentRow = 0;
-        currentCol = 0;
-        PanelMatriz.setLayout(null); // Use absolute positioning
-        PanelMatriz.add(Robot);
-        updateRobotPosition();
+    addPanelMatrizListener();
 
-        setupKeyListener();
+    // Set up RobotPanel
+    RobotPanel = new javax.swing.JPanel();
+    RobotPanel.setLayout(null);
+    RobotPanel.setBounds(0, 0, getWidth(), getHeight());
+    RobotPanel.setOpaque(false);
+
+    // Add these three lines here
+    RobotPanel.add(Robot);
+    RobotPanel.setComponentZOrder(Robot, 0);  // This ensures Robot is on top within RobotPanel
+    getContentPane().add(RobotPanel, 0);  // This adds RobotPanel to the top layer of the content pane
+
+    // Add ComponentListener for resizing
+    addComponentListener(new ComponentAdapter() {
+        @Override
+        public void componentResized(ComponentEvent e) {
+            RobotPanel.setBounds(0, 0, getWidth(), getHeight());
+            updateRobotPosition();
+        }
+    });
+
+    // Initialize Robot position
+    currentRow = 0;
+    currentCol = 0;
+    
+    // Ensure components are properly laid out before positioning the Robot
+    revalidate();
+    repaint();
+    
+    updateRobotPosition();
+
+    setupKeyListener();
+    setRobotImageIcon();
     }
+
     List<JLabel> labels = new ArrayList<>();
     ArrayList<JLabel> colorBlanco = new ArrayList();
     ArrayList<JLabel> colorRojo = new ArrayList();
@@ -37,23 +72,56 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
     private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
 
+    private void setRobotImageIcon() {
+        ImageIcon originalIcon = new ImageIcon("C:\\Users\\jerem\\Documents\\NetBeansProjects\\LaboratorioTresJava\\src\\resources\\mifoto.jpg");
+        int cellWidth = PanelMatriz.getWidth() / 8;
+        int cellHeight = PanelMatriz.getHeight() / 8;
+        Image scaledImage = originalIcon.getImage().getScaledInstance(cellWidth, cellHeight, Image.SCALE_SMOOTH);
+        ImageIcon robotIcon = new ImageIcon(scaledImage);
+        Robot.setIcon(robotIcon);
+        Robot.setSize(cellWidth, cellHeight);
+        Robot.setOpaque(false);
+    }
+
     private void updateRobotPosition() {
         int cellWidth = PanelMatriz.getWidth() / 8;
         int cellHeight = PanelMatriz.getHeight() / 8;
         int x = currentCol * cellWidth;
         int y = currentRow * cellHeight;
-        Robot.setBounds(x, y, cellWidth, cellHeight);
+
+        // Get the position of PanelMatriz relative to the RobotPanel
+        Point panelPosition = SwingUtilities.convertPoint(PanelMatriz, 0, 0, RobotPanel);
+
+        Robot.setBounds(panelPosition.x + x, panelPosition.y + y, cellWidth, cellHeight);
+
+        // Bring the Robot to the front
+        Robot.getParent().setComponentZOrder(Robot, 0);
+
+        RobotPanel.revalidate();
+        RobotPanel.repaint();
+    }
+
+    private void addPanelMatrizListener() {
+        PanelMatriz.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                updateRobotPosition();
+            }
+
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                updateRobotPosition();
+            }
+        });
     }
 
     private void setupKeyListener() {
-        PanelMatriz.addKeyListener(new KeyAdapter() {
+        RobotPanel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 moveRobot(e.getKeyCode());
             }
         });
-        PanelMatriz.setFocusable(true);
-        PanelMatriz.requestFocusInWindow();
+        RobotPanel.setFocusable(true);
+        RobotPanel.requestFocusInWindow();
     }
 
     private void moveRobot(int keyCode) {
@@ -80,76 +148,85 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         }
 
         if (newRow != currentRow || newCol != currentCol) {
-            currentRow = newRow;
-            currentCol = newCol;
-            updateRobotPosition();
-            contadorPasos++;
-            updateMovimientos();
-            updatePosicionLabel();
-            manejarLabelVerde(currentRow, currentCol);
-        }
+        currentRow = newRow;
+        currentCol = newCol;
+        updateRobotPosition();
+        contadorPasos++;
+        updateMovimientos();
+        updatePosicionLabel();
+        manejarLabelVerde(currentRow, currentCol);
+        
+        // Bring the Robot to the front
+        Robot.getParent().setComponentZOrder(Robot, 0);
+        Robot.getParent().repaint();
     }
-private void randomizarColores() {
-    Random rand = new Random();
-    labels.clear();
-    colorBlanco.clear();
-    colorRojo.clear();
-    colorVerde.clear();
-
-    for (java.awt.Component comp : PanelMatriz.getComponents()) {
-        if (comp instanceof JLabel) {
-            labels.add((JLabel) comp);
-        }
     }
 
-    int totalLabels = labels.size();
-    int greenLabels = totalLabels * 50 / 100;
-    int redLabels = totalLabels * 15 / 100;
-    int whiteLabels = totalLabels - greenLabels - redLabels - 1; // -1 por el label azul
+    private void randomizarColores() {
+        Random rand = new Random();
+        labels.clear();
+        colorBlanco.clear();
+        colorRojo.clear();
+        colorVerde.clear();
 
-    List<JLabel> shuffledLabels = new ArrayList<>(labels.subList(1, totalLabels));
-    Collections.shuffle(shuffledLabels);
-
-    labels.get(0).setBackground(Color.BLUE);
-    System.out.println("Label at index 0 set to color: Blue");
-
-    int greenCount = 0;
-    int redCount = 0;
-    int whiteCount = 0;
-
-    for (int i = 0; i < shuffledLabels.size(); i++) {
-        JLabel label = shuffledLabels.get(i);
-        Color assignedColor;
-
-        if (greenCount < greenLabels) {
-            assignedColor = Color.GREEN;
-            greenCount++;
-            colorVerde.add(label);
-        } else if (redCount < redLabels) {
-            assignedColor = Color.RED;
-            redCount++;
-            colorRojo.add(label);
-        } else if (whiteCount < whiteLabels) {
-            assignedColor = Color.WHITE;
-            whiteCount++;
-            colorBlanco.add(label);
-        } else {
-            assignedColor = colores[rand.nextInt(colores.length)];
-            if (assignedColor == Color.GREEN) colorVerde.add(label);
-            else if (assignedColor == Color.RED) colorRojo.add(label);
-            else if (assignedColor == Color.WHITE) colorBlanco.add(label);
+        for (java.awt.Component comp : PanelMatriz.getComponents()) {
+            if (comp instanceof JLabel) {
+                labels.add((JLabel) comp);
+            }
         }
 
-        label.setBackground(assignedColor);
-        System.out.println("Label at index " + (i + 1) + " set to color: " + assignedColor);
-    }
+        int totalLabels = labels.size();
+        int greenLabels = totalLabels * 50 / 100;
+        int redLabels = totalLabels * 15 / 100;
+        int whiteLabels = totalLabels - greenLabels - redLabels - 1; // -1 por el label azul
 
-    System.out.println("Total labels: " + totalLabels);
-    System.out.println("Green: " + colorVerde.size());
-    System.out.println("Red: " + colorRojo.size());
-    System.out.println("White: " + colorBlanco.size());
-    System.out.println("Blue: 1");
-}
+        List<JLabel> shuffledLabels = new ArrayList<>(labels.subList(1, totalLabels));
+        Collections.shuffle(shuffledLabels);
+
+        labels.get(0).setBackground(Color.BLUE);
+        System.out.println("Label at index 0 set to color: Blue");
+
+        int greenCount = 0;
+        int redCount = 0;
+        int whiteCount = 0;
+
+        for (int i = 0; i < shuffledLabels.size(); i++) {
+            JLabel label = shuffledLabels.get(i);
+            Color assignedColor;
+
+            if (greenCount < greenLabels) {
+                assignedColor = Color.GREEN;
+                greenCount++;
+                colorVerde.add(label);
+            } else if (redCount < redLabels) {
+                assignedColor = Color.RED;
+                redCount++;
+                colorRojo.add(label);
+            } else if (whiteCount < whiteLabels) {
+                assignedColor = Color.WHITE;
+                whiteCount++;
+                colorBlanco.add(label);
+            } else {
+                assignedColor = colores[rand.nextInt(colores.length)];
+                if (assignedColor == Color.GREEN) {
+                    colorVerde.add(label);
+                } else if (assignedColor == Color.RED) {
+                    colorRojo.add(label);
+                } else if (assignedColor == Color.WHITE) {
+                    colorBlanco.add(label);
+                }
+            }
+
+            label.setBackground(assignedColor);
+            System.out.println("Label at index " + (i + 1) + " set to color: " + assignedColor);
+        }
+
+        System.out.println("Total labels: " + totalLabels);
+        System.out.println("Green: " + colorVerde.size());
+        System.out.println("Red: " + colorRojo.size());
+        System.out.println("White: " + colorBlanco.size());
+        System.out.println("Blue: 1");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -308,7 +385,7 @@ private void randomizarColores() {
         jLabel8.setText("6");
         PanelColumna.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 10, 20));
 
-        PanelMatriz.setLayout(new java.awt.GridLayout(8, 8));
+        PanelMatriz.setLayout(new java.awt.GridLayout(8, 8, 1, 1));
 
         CeroCero.setBackground(new java.awt.Color(153, 153, 153));
         CeroCero.setBorder(new javax.swing.border.MatteBorder(null));
@@ -1070,6 +1147,10 @@ private void randomizarColores() {
             colorBlanco.add(label);
             contadorCambioVerdeABlanco++;
             updateCambiosVerdeABlanco();
+
+            // Bring the Robot to the front
+            Robot.getParent().setComponentZOrder(Robot, 0);
+            Robot.getParent().repaint();
         }
     }
 
