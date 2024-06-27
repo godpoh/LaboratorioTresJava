@@ -117,27 +117,53 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         RobotPanel.requestFocusInWindow();
     }
 
-private void moveRobot(int keyCode) {
-    int newRow = currentRow;
+    private void moveRobot(int keyCode) {
+        int newRow = currentRow;
     int newCol = currentCol;
+    boolean hitBorder = false;
 
     switch (keyCode) {
         case KeyEvent.VK_W:
         case KeyEvent.VK_UP:
-            newRow = Math.max(0, currentRow - 1);
+            if (currentRow == 0) {
+                hitBorder = true;
+                message = "No puede pasar: Techo del aula";
+            } else {
+                newRow = currentRow - 1;
+            }
             break;
         case KeyEvent.VK_S:
         case KeyEvent.VK_DOWN:
-            newRow = Math.min(7, currentRow + 1);
+            if (currentRow == 7) {
+                hitBorder = true;
+                message = "No puede pasar: Piso del aula";
+            } else {
+                newRow = currentRow + 1;
+            }
             break;
         case KeyEvent.VK_A:
         case KeyEvent.VK_LEFT:
-            newCol = Math.max(0, currentCol - 1);
+            if (currentCol == 0) {
+                hitBorder = true;
+                message = "No puede pasar: Pared izquierda del aula";
+            } else {
+                newCol = currentCol - 1;
+            }
             break;
         case KeyEvent.VK_D:
         case KeyEvent.VK_RIGHT:
-            newCol = Math.min(7, currentCol + 1);
+            if (currentCol == 7) {
+                hitBorder = true;
+                message = "No puede pasar: Pared derecha del aula";
+            } else {
+                newCol = currentCol + 1;
+            }
             break;
+    }
+
+    if (hitBorder) {
+        updateRazonNoSeMovio();
+        return;
     }
 
     JLabel currentLabel = getLabelAt(currentRow, currentCol);
@@ -146,7 +172,7 @@ private void moveRobot(int keyCode) {
     if (newLabel != null) {
         Color backgroundColor = newLabel.getBackground();
         if (backgroundColor == Color.RED) {
-            message = "Hay un obstaculo (cuadro rojo)";
+            message = "No puede pasar: obstaculo(cuadro rojo)";
             updateRazonNoSeMovio();
             return; // No mover el robot si hay un obstáculo
         } else if (backgroundColor == Color.GREEN) {
@@ -156,9 +182,8 @@ private void moveRobot(int keyCode) {
                 colorBlanco.add(currentLabel);
                 contadorCambioVerdeABlanco++;
                 updateCambiosVerdeABlanco();
-                message = "Cuadro sucio limpiado.";
+                message = "Cuadro verde limpiado correctamente";
                 updateRazonNoSeMovio(); // Actualizar mensaje solo si se limpia un cuadro verde
-                updateSuciaLabel(); // Actualizar porcentaje de suciedad
             }
         } else {
             message = ""; // Limpiar mensaje si no hay obstáculo ni cuadro verde
@@ -182,94 +207,94 @@ private void moveRobot(int keyCode) {
         Robot.getParent().setComponentZOrder(Robot, 0);
         Robot.getParent().repaint();
     }
-}
-
-    private void randomizarColores() {
-    Random rand = new Random();
-    labels.clear();
-    colorBlanco.clear();
-    colorRojo.clear();
-    colorVerde.clear();
-
-    for (java.awt.Component comp : PanelMatriz.getComponents()) {
-        if (comp instanceof JLabel) {
-            labels.add((JLabel) comp);
-        }
     }
 
-    int totalLabels = labels.size();
-    int greenLabels = totalLabels * 50 / 100;
-    int redLabels = totalLabels * 15 / 100;
-    int whiteLabels = totalLabels - greenLabels - redLabels - 1; // -1 por el label azul
+    private void randomizarColores() {
+        Random rand = new Random();
+        labels.clear();
+        colorBlanco.clear();
+        colorRojo.clear();
+        colorVerde.clear();
 
-    List<JLabel> shuffledLabels = new ArrayList<>(labels.subList(1, totalLabels));
-    Collections.shuffle(shuffledLabels);
-
-    labels.get(0).setBackground(Color.BLUE);
-    System.out.println("Label at index 0 set to color: Blue");
-
-    int greenCount = 0;
-    int redCount = 0;
-    int whiteCount = 0;
-
-    for (int i = 0; i < shuffledLabels.size(); i++) {
-        JLabel label = shuffledLabels.get(i);
-        Color assignedColor;
-
-        if (greenCount < greenLabels) {
-            assignedColor = Color.GREEN;
-            greenCount++;
-            colorVerde.add(label);
-        } else if (redCount < redLabels) {
-            assignedColor = Color.RED;
-            redCount++;
-            colorRojo.add(label);
-        } else if (whiteCount < whiteLabels) {
-            assignedColor = Color.WHITE;
-            whiteCount++;
-            colorBlanco.add(label);
-        } else {
-            assignedColor = colores[rand.nextInt(colores.length)];
-            if (assignedColor == Color.GREEN) {
-                colorVerde.add(label);
-            } else if (assignedColor == Color.RED) {
-                colorRojo.add(label);
-            } else if (assignedColor == Color.WHITE) {
-                colorBlanco.add(label);
+        for (java.awt.Component comp : PanelMatriz.getComponents()) {
+            if (comp instanceof JLabel) {
+                labels.add((JLabel) comp);
             }
         }
 
-        label.setBackground(assignedColor);
-        System.out.println("Label at index " + (i + 1) + " set to color: " + assignedColor);
+        int totalLabels = labels.size();
+        int greenLabels = totalLabels * 50 / 100;
+        int redLabels = totalLabels * 15 / 100;
+        int whiteLabels = totalLabels - greenLabels - redLabels - 1; // -1 por el label azul
+
+        List<JLabel> shuffledLabels = new ArrayList<>(labels.subList(1, totalLabels));
+        Collections.shuffle(shuffledLabels);
+
+        labels.get(0).setBackground(Color.BLUE);
+        System.out.println("Label at index 0 set to color: Blue");
+
+        int greenCount = 0;
+        int redCount = 0;
+        int whiteCount = 0;
+
+        for (int i = 0; i < shuffledLabels.size(); i++) {
+            JLabel label = shuffledLabels.get(i);
+            Color assignedColor;
+
+            if (greenCount < greenLabels) {
+                assignedColor = Color.GREEN;
+                greenCount++;
+                colorVerde.add(label);
+            } else if (redCount < redLabels) {
+                assignedColor = Color.RED;
+                redCount++;
+                colorRojo.add(label);
+            } else if (whiteCount < whiteLabels) {
+                assignedColor = Color.WHITE;
+                whiteCount++;
+                colorBlanco.add(label);
+            } else {
+                assignedColor = colores[rand.nextInt(colores.length)];
+                if (assignedColor == Color.GREEN) {
+                    colorVerde.add(label);
+                } else if (assignedColor == Color.RED) {
+                    colorRojo.add(label);
+                } else if (assignedColor == Color.WHITE) {
+                    colorBlanco.add(label);
+                }
+            }
+
+            label.setBackground(assignedColor);
+            System.out.println("Label at index " + (i + 1) + " set to color: " + assignedColor);
+        }
+
+        totalGreenSquares = greenCount; // Initialize total green squares
+        updateSuciaLabel(); // Update initial percentage of dirty squares
+
+        System.out.println("Total labels: " + totalLabels);
+        System.out.println("Green: " + colorVerde.size());
+        System.out.println("Red: " + colorRojo.size());
+        System.out.println("White: " + colorBlanco.size());
+        System.out.println("Blue: 1");
     }
 
-    totalGreenSquares = greenCount; // Initialize total green squares
-    updateSuciaLabel(); // Update initial percentage of dirty squares
+    private void manejarLabelVerde(int row, int col) {
+        JLabel label = getLabelAt(row, col);
+        if (label != null && label.getBackground() == Color.GREEN) {
+            label.setBackground(Color.WHITE);
+            colorVerde.remove(label);
+            colorBlanco.add(label);
+            contadorCambioVerdeABlanco++;
+            updateCambiosVerdeABlanco();
 
-    System.out.println("Total labels: " + totalLabels);
-    System.out.println("Green: " + colorVerde.size());
-    System.out.println("Red: " + colorRojo.size());
-    System.out.println("White: " + colorBlanco.size());
-    System.out.println("Blue: 1");
-}
+            // Update the percentage of remaining dirty squares
+            updateSuciaLabel();
 
-private void manejarLabelVerde(int row, int col) {
-    JLabel label = getLabelAt(row, col);
-    if (label != null && label.getBackground() == Color.GREEN) {
-        label.setBackground(Color.WHITE);
-        colorVerde.remove(label);
-        colorBlanco.add(label);
-        contadorCambioVerdeABlanco++;
-        updateCambiosVerdeABlanco();
-
-        // Update the percentage of remaining dirty squares
-        updateSuciaLabel();
-
-        // Bring the Robot to the front
-        Robot.getParent().setComponentZOrder(Robot, 0);
-        Robot.getParent().repaint();
+            // Bring the Robot to the front
+            Robot.getParent().setComponentZOrder(Robot, 0);
+            Robot.getParent().repaint();
+        }
     }
-}
 
     private JLabel getLabelAt(int row, int col) {
         int index = row * 8 + col;
@@ -279,12 +304,15 @@ private void manejarLabelVerde(int row, int col) {
         }
         return null;
     }
-    
+
     private void updateSuciaLabel() {
-    int remainingGreenSquares = colorVerde.size();
-    int percentageRemaining = (int) ((remainingGreenSquares / (double) totalGreenSquares) * 100);
-    jLabel10.setText(percentageRemaining + "%");
-}
+        int remainingGreenSquares = colorVerde.size();
+        int percentageRemaining = (int) ((remainingGreenSquares / (double) totalGreenSquares) * 100);
+        jLabel10.setText(percentageRemaining + "%");
+        if (percentageRemaining == 0) {
+            JOptionPane.showMessageDialog(this, "Felicidades, has limpiado por completo el aula!");
+        }
+    }
 
     private void updateCambiosVerdeABlanco() {
         lblPosicionLimpiada.setText(contadorCambioVerdeABlanco + "");
@@ -302,7 +330,6 @@ private void manejarLabelVerde(int row, int col) {
         lblPosicionRecorrida.setText(contadorPasos + "");
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1113,6 +1140,8 @@ private void manejarLabelVerde(int row, int col) {
         Robot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Robot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/robotfoto.png"))); // NOI18N
 
+        lblMostrarRazonNoSeMueve.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+
         jLabel9.setText("Porcentaje de suciedad:");
 
         javax.swing.GroupLayout PanelDerechaLayout = new javax.swing.GroupLayout(PanelDerecha);
@@ -1225,6 +1254,11 @@ private void manejarLabelVerde(int row, int col) {
         updateMovimientos();
         updateCambiosVerdeABlanco();
         updatePosicionLabel();
+        updateSuciaLabel(); // Actualiza el porcentaje de suciedad al reiniciar la matriz
+
+        // Solicitar el foco para RobotPanel
+        RobotPanel.setFocusable(true);
+        RobotPanel.requestFocusInWindow();
     }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
 
     public static void main(String args[]) {
