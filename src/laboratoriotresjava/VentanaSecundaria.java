@@ -73,14 +73,14 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
 
     private void setRobotImageIcon() {
-        ImageIcon originalIcon = new ImageIcon("C:\\Users\\jerem\\Documents\\NetBeansProjects\\LaboratorioTresJava\\src\\resources\\mifoto.jpg");
-        int cellWidth = PanelMatriz.getWidth() / 8;
-        int cellHeight = PanelMatriz.getHeight() / 8;
-        Image scaledImage = originalIcon.getImage().getScaledInstance(cellWidth, cellHeight, Image.SCALE_SMOOTH);
-        ImageIcon robotIcon = new ImageIcon(scaledImage);
-        Robot.setIcon(robotIcon);
-        Robot.setSize(cellWidth, cellHeight);
-        Robot.setOpaque(false);
+    ImageIcon originalIcon = new ImageIcon(getClass().getResource("/resources/robotfoto.png"));
+    int cellWidth = PanelMatriz.getWidth() / 8;
+    int cellHeight = PanelMatriz.getHeight() / 8;
+    Image scaledImage = originalIcon.getImage().getScaledInstance(cellWidth, cellHeight, Image.SCALE_SMOOTH);
+    ImageIcon robotIcon = new ImageIcon(scaledImage);
+    Robot.setIcon(robotIcon);
+    Robot.setSize(cellWidth, cellHeight);
+    Robot.setOpaque(false);
     }
 
     private void updateRobotPosition() {
