@@ -1963,21 +1963,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Lista de espacios con obst&#xe1;culos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListaEspaciosConObstaculosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCantidadPosicionesRecorridas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cantidad de posiciones recorridas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCantidadPosicionesRecorridasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnPorcentajeSuciedad">
           <Properties>
             <Property name="text" type="java.lang.String" value=" Porcentaje de suciedad"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPorcentajeSuciedadActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnListaEspaciosLimpios">
           <Properties>
             <Property name="text" type="java.lang.String" value="Lista de espacios limpios"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListaEspaciosLimpiosActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

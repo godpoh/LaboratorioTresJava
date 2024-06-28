@@ -1179,12 +1179,32 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         });
 
         btnListaEspaciosConObstaculos.setText("Lista de espacios con obstáculos");
+        btnListaEspaciosConObstaculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaEspaciosConObstaculosActionPerformed(evt);
+            }
+        });
 
         btnCantidadPosicionesRecorridas.setText("Cantidad de posiciones recorridas");
+        btnCantidadPosicionesRecorridas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCantidadPosicionesRecorridasActionPerformed(evt);
+            }
+        });
 
         btnPorcentajeSuciedad.setText(" Porcentaje de suciedad");
+        btnPorcentajeSuciedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPorcentajeSuciedadActionPerformed(evt);
+            }
+        });
 
         btnListaEspaciosLimpios.setText("Lista de espacios limpios");
+        btnListaEspaciosLimpios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaEspaciosLimpiosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelArribaLayout = new javax.swing.GroupLayout(PanelArriba);
         PanelArriba.setLayout(PanelArribaLayout);
@@ -1425,6 +1445,22 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private void btnListaEspaciosSuciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEspaciosSuciosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListaEspaciosSuciosActionPerformed
+
+    private void btnListaEspaciosLimpiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEspaciosLimpiosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListaEspaciosLimpiosActionPerformed
+
+    private void btnCantidadPosicionesRecorridasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCantidadPosicionesRecorridasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCantidadPosicionesRecorridasActionPerformed
+
+    private void btnListaEspaciosConObstaculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEspaciosConObstaculosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListaEspaciosConObstaculosActionPerformed
+
+    private void btnPorcentajeSuciedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorcentajeSuciedadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPorcentajeSuciedadActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
