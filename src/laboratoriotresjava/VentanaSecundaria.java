@@ -2,6 +2,7 @@ package laboratoriotresjava;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Point;
 import java.util.*;
 import java.awt.event.*;
@@ -19,6 +20,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private int contadorPasos = 0;
     private int contadorCambioVerdeABlanco = 0;
     String message = "un cuadro rojo";
+    private KeyListener globalKeyListener;
 
     public VentanaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -34,12 +36,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         RobotPanel.setBounds(0, 0, getWidth(), getHeight());
         RobotPanel.setOpaque(false);
 
-        // Add these three lines here
         RobotPanel.add(Robot);
-        RobotPanel.setComponentZOrder(Robot, 0);  // This ensures Robot is on top within RobotPanel
-        getContentPane().add(RobotPanel, 0);  // This adds RobotPanel to the top layer of the content pane
-        
-        setupSpinnerListeners();
+        RobotPanel.setComponentZOrder(Robot, 0);
+        getContentPane().add(RobotPanel, 0);
+
         // Add ComponentListener for resizing
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -53,7 +53,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         currentRow = 0;
         currentCol = 0;
 
-        // Ensure components are properly laid out before positioning the Robot
         revalidate();
         repaint();
 
@@ -61,6 +60,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         setupKeyListener();
         setRobotImageIcon();
+        setupSpinnerListeners();
+        setupGlobalKeyListener();
     }
 
     List<JLabel> labels = new ArrayList<>();
@@ -108,107 +109,98 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         });
     }
 
-    private void setupKeyListener() {
-        RobotPanel.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                moveRobot(e.getKeyCode());
-            }
-        });
-        RobotPanel.setFocusable(true);
-        RobotPanel.requestFocusInWindow();
-    }
+
 
     private void moveRobot(int keyCode) {
         int newRow = currentRow;
-    int newCol = currentCol;
-    boolean hitBorder = false;
+        int newCol = currentCol;
+        boolean hitBorder = false;
 
-    switch (keyCode) {
-        case KeyEvent.VK_W:
-        case KeyEvent.VK_UP:
-            if (currentRow == 0) {
-                hitBorder = true;
-                message = "No puede pasar: Techo del aula";
-            } else {
-                newRow = currentRow - 1;
-            }
-            break;
-        case KeyEvent.VK_S:
-        case KeyEvent.VK_DOWN:
-            if (currentRow == 7) {
-                hitBorder = true;
-                message = "No puede pasar: Piso del aula";
-            } else {
-                newRow = currentRow + 1;
-            }
-            break;
-        case KeyEvent.VK_A:
-        case KeyEvent.VK_LEFT:
-            if (currentCol == 0) {
-                hitBorder = true;
-                message = "No puede pasar: Pared izquierda del aula";
-            } else {
-                newCol = currentCol - 1;
-            }
-            break;
-        case KeyEvent.VK_D:
-        case KeyEvent.VK_RIGHT:
-            if (currentCol == 7) {
-                hitBorder = true;
-                message = "No puede pasar: Pared derecha del aula";
-            } else {
-                newCol = currentCol + 1;
-            }
-            break;
-    }
+        switch (keyCode) {
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
+                if (currentRow == 0) {
+                    hitBorder = true;
+                    message = "No puede pasar: Techo del aula";
+                } else {
+                    newRow = currentRow - 1;
+                }
+                break;
+            case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
+                if (currentRow == 7) {
+                    hitBorder = true;
+                    message = "No puede pasar: Piso del aula";
+                } else {
+                    newRow = currentRow + 1;
+                }
+                break;
+            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
+                if (currentCol == 0) {
+                    hitBorder = true;
+                    message = "No puede pasar: Pared izquierda del aula";
+                } else {
+                    newCol = currentCol - 1;
+                }
+                break;
+            case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
+                if (currentCol == 7) {
+                    hitBorder = true;
+                    message = "No puede pasar: Pared derecha del aula";
+                } else {
+                    newCol = currentCol + 1;
+                }
+                break;
+        }
 
-    if (hitBorder) {
-        updateRazonNoSeMovio();
-        return;
-    }
-
-    JLabel currentLabel = getLabelAt(currentRow, currentCol);
-    JLabel newLabel = getLabelAt(newRow, newCol);
-
-    if (newLabel != null) {
-        Color backgroundColor = newLabel.getBackground();
-        if (backgroundColor == Color.RED) {
-            message = "No puede pasar: obstaculo(cuadro rojo)";
+        if (hitBorder) {
             updateRazonNoSeMovio();
-            return; // No mover el robot si hay un obstáculo
-        } else if (backgroundColor == Color.GREEN) {
-            if (currentLabel != null && currentLabel.getBackground() == Color.WHITE) {
-                currentLabel.setBackground(Color.WHITE);
-                colorVerde.remove(currentLabel);
-                colorBlanco.add(currentLabel);
-                contadorCambioVerdeABlanco++;
-                updateCambiosVerdeABlanco();
-                message = "Cuadro verde limpiado correctamente";
-                updateRazonNoSeMovio(); // Actualizar mensaje solo si se limpia un cuadro verde
+            return;
+        }
+
+        JLabel currentLabel = getLabelAt(currentRow, currentCol);
+        JLabel newLabel = getLabelAt(newRow, newCol);
+
+        if (newLabel != null) {
+            Color backgroundColor = newLabel.getBackground();
+            if (backgroundColor == Color.RED) {
+                message = "No puede pasar: obstaculo(cuadro rojo)";
+                updateRazonNoSeMovio();
+                return; // No mover el robot si hay un obstáculo
+            } else if (backgroundColor == Color.GREEN) {
+                if (currentLabel != null && currentLabel.getBackground() == Color.WHITE) {
+                    currentLabel.setBackground(Color.WHITE);
+                    colorVerde.remove(currentLabel);
+                    colorBlanco.add(currentLabel);
+                    contadorCambioVerdeABlanco++;
+                    updateCambiosVerdeABlanco();
+                    message = "Cuadro verde limpiado correctamente";
+                    updateRazonNoSeMovio(); // Actualizar mensaje solo si se limpia un cuadro verde
+                }
+            } else {
+                message = ""; // Limpiar mensaje si no hay obstáculo ni cuadro verde
+                updateRazonNoSeMovio();
             }
         } else {
-            message = ""; // Limpiar mensaje si no hay obstáculo ni cuadro verde
+            message = ""; // Limpiar mensaje si no hay label en la nueva posición
             updateRazonNoSeMovio();
         }
-    } else {
-        message = ""; // Limpiar mensaje si no hay label en la nueva posición
-        updateRazonNoSeMovio();
-    }
 
-    if (newRow != currentRow || newCol != currentCol) {
-        currentRow = newRow;
-        currentCol = newCol;
-        updateRobotPosition();
-        contadorPasos++;
-        updateMovimientos();
-        updatePosicionLabel();
-        manejarLabelVerde(currentRow, currentCol);
+        if (newRow != currentRow || newCol != currentCol) {
+            currentRow = newRow;
+            currentCol = newCol;
+            updateRobotPosition();
+            contadorPasos++;
+            updateMovimientos();
+            updatePosicionLabel();
+            manejarLabelVerde(currentRow, currentCol);
 
-        // Bring the Robot to the front
-        Robot.getParent().setComponentZOrder(Robot, 0);
-        Robot.getParent().repaint();
-    }
+            // Bring the Robot to the front
+            Robot.getParent().setComponentZOrder(Robot, 0);
+            Robot.getParent().repaint();
+        }
     }
 
     private void randomizarColores() {
@@ -223,7 +215,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 labels.add((JLabel) comp);
             }
         }
-        
 
         int totalLabels = labels.size();
         int greenLabels = totalLabels * 50 / 100;
@@ -234,7 +225,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         Collections.shuffle(shuffledLabels);
 
         labels.get(0).setBackground(Color.BLUE);
-
 
         int greenCount = 0;
         int redCount = 0;
@@ -273,46 +263,84 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         totalGreenSquares = greenCount; // Initialize total green squares
         updateSuciaLabel(); // Update initial percentage of dirty squares
-
+        updateLblSucioLimpioObstaculo();
 
     }
-    
-    private String getLabelStatus(int row, int col) {
-    JLabel label = getLabelAt(row, col);
-    if (label != null) {
-        Color backgroundColor = label.getBackground();
-        if (backgroundColor == Color.RED) {
-            return "Obstaculo";
-        } else if (backgroundColor == Color.WHITE) {
-            return "Limpio";
-        } else if (backgroundColor == Color.GREEN) {
-            return "Sucio";
-        } else if (backgroundColor == Color.BLUE) {
-            return "Inicio";
-        }
-    }
-    return "Desconocido";
-    
-}
-    
-    private void updateLblSucioLimpioObstaculo() {
-    int x = (int) spinnerX.getValue();
-    int y = (int) spinnerY.getValue();
-    String status = getLabelStatus(y, x);
-    lblSucioLimpioObstaculo.setText(status);
-}
-    
+
     private void setupSpinnerListeners() {
-    ChangeListener spinnerListener = new ChangeListener() {
-        @Override
-        public void stateChanged(ChangeEvent e) {
-            updateLblSucioLimpioObstaculo();
-        }
-    };
+        ChangeListener spinnerListener = new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                updateLblSucioLimpioObstaculo();
+                VentanaSecundaria.this.requestFocusInWindow();
+            }
+        };
 
-    spinnerX.addChangeListener(spinnerListener);
-    spinnerY.addChangeListener(spinnerListener);
-}
+        spinnerX.addChangeListener(spinnerListener);
+        spinnerY.addChangeListener(spinnerListener);
+
+        FocusAdapter focusAdapter = new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                VentanaSecundaria.this.requestFocusInWindow();
+            }
+        };
+
+        spinnerX.addFocusListener(focusAdapter);
+        spinnerY.addFocusListener(focusAdapter);
+    }
+
+    private void setupGlobalKeyListener() {
+        globalKeyListener = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                moveRobot(e.getKeyCode());
+            }
+        };
+
+        this.addKeyListener(globalKeyListener);
+        this.setFocusable(true);
+
+        addKeyListenerToAllComponents(this);
+    }
+
+    private void addKeyListenerToAllComponents(Container container) {
+        for (Component component : container.getComponents()) {
+            component.addKeyListener(globalKeyListener);
+            if (component instanceof Container) {
+                addKeyListenerToAllComponents((Container) component);
+            }
+        }
+    }
+
+    private void setupKeyListener() {
+        this.requestFocusInWindow();
+    }
+
+    private String getLabelStatus(int row, int col) {
+        JLabel label = getLabelAt(row, col);
+        if (label != null) {
+            Color backgroundColor = label.getBackground();
+            if (backgroundColor == Color.RED) {
+                return "Obstaculo";
+            } else if (backgroundColor == Color.WHITE) {
+                return "Limpio";
+            } else if (backgroundColor == Color.GREEN) {
+                return "Sucio";
+            } else if (backgroundColor == Color.BLUE) {
+                return "Inicio";
+            }
+        }
+        return "Desconocido";
+
+    }
+
+    private void updateLblSucioLimpioObstaculo() {
+        int x = (int) spinnerX.getValue();
+        int y = (int) spinnerY.getValue();
+        String status = getLabelStatus(y, x);
+        lblSucioLimpioObstaculo.setText(status);
+    }
 
     private void manejarLabelVerde(int row, int col) {
         JLabel label = getLabelAt(row, col);
@@ -1332,11 +1360,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         updateMovimientos();
         updateCambiosVerdeABlanco();
         updatePosicionLabel();
-        updateSuciaLabel(); // Actualiza el porcentaje de suciedad al reiniciar la matriz
+        updateSuciaLabel();
+        updateLblSucioLimpioObstaculo();
 
-        // Solicitar el foco para RobotPanel
-        RobotPanel.setFocusable(true);
-        RobotPanel.requestFocusInWindow();
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
 
     public static void main(String args[]) {
