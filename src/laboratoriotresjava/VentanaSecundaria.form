@@ -25,9 +25,12 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="PanelPrincipal" max="32767" attributes="0"/>
-                  <Component id="PanelArriba" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="PanelPrincipal" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="PanelArriba" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="PanelDerecha" min="-2" max="-2" attributes="0"/>
@@ -59,7 +62,7 @@
                       <Component id="PanelFila" max="32767" attributes="0"/>
                       <Component id="PanelMatriz" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1875,16 +1878,56 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Component id="lblInformacionMovimiento" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="btnCantidadPosicionesRecorridas" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="btnListaEspaciosSucios" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="41" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="btnListaEspaciosLimpios" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="spinnerMatrices" min="-2" pref="46" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnListaEspaciosConObstaculos" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPorcentajeSuciedad" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="93" max="32767" attributes="0"/>
+                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="spinnerMatrices" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPorcentajeSuciedad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnListaEspaciosLimpios" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnListaEspaciosSucios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnListaEspaciosConObstaculos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCantidadPosicionesRecorridas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
                   <Component id="lblInformacionMovimiento" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -1894,6 +1937,46 @@
         <Component class="javax.swing.JLabel" name="lblInformacionMovimiento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Debe utilizar W, arriba, S, abajo, D, derecha, A, izquierda"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Informacion sobre cada matriz:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spinnerMatrices">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnListaEspaciosSucios">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Lista de espacios sucios"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListaEspaciosSuciosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnListaEspaciosConObstaculos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Lista de espacios con obst&#xe1;culos"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCantidadPosicionesRecorridas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cantidad de posiciones recorridas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnPorcentajeSuciedad">
+          <Properties>
+            <Property name="text" type="java.lang.String" value=" Porcentaje de suciedad"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnListaEspaciosLimpios">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Lista de espacios limpios"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -1945,19 +2028,6 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace pref="89" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblPosicionRecorrida" min="-2" pref="27" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblPosicionLimpiada" min="-2" pref="14" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1976,6 +2046,19 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lblSucioLimpioObstaculo" min="-2" pref="84" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="89" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lblPosicionRecorrida" min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lblPosicionLimpiada" min="-2" pref="14" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

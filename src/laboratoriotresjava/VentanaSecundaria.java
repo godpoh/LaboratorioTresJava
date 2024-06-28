@@ -13,14 +13,25 @@ import javax.swing.event.ChangeListener;
 
 public class VentanaSecundaria extends javax.swing.JDialog {
 
-    private JPanel RobotPanel;
     private int currentRow = 0;
     private int totalGreenSquares = 0;
     private int currentCol = 0;
     private int contadorPasos = 0;
     private int contadorCambioVerdeABlanco = 0;
+
     String message = "un cuadro rojo";
+
     private KeyListener globalKeyListener;
+    private JPanel RobotPanel;
+
+    private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
+    List<JLabel> labels = new ArrayList<>();
+    ArrayList<JLabel> colorBlanco = new ArrayList();
+    ArrayList<JLabel> colorRojo = new ArrayList();
+    ArrayList<JLabel> colorVerde = new ArrayList();
+
+    HashMap<Integer, HashMap> diccionarioDeDiccionarioDeMatrices = new HashMap<>();
+    HashMap<String, Integer> diccionarioInformacionSobreMatrices = new HashMap<>();
 
     public VentanaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -40,7 +51,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         RobotPanel.setComponentZOrder(Robot, 0);
         getContentPane().add(RobotPanel, 0);
 
-        // Add ComponentListener for resizing
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -49,7 +59,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             }
         });
 
-        // Initialize Robot position
+        // inicializa la posicion del robot
         currentRow = 0;
         currentCol = 0;
 
@@ -63,13 +73,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         setupSpinnerListeners();
         setupGlobalKeyListener();
     }
-
-    List<JLabel> labels = new ArrayList<>();
-    ArrayList<JLabel> colorBlanco = new ArrayList();
-    ArrayList<JLabel> colorRojo = new ArrayList();
-    ArrayList<JLabel> colorVerde = new ArrayList();
-
-    private final Color[] colores = {Color.WHITE, Color.RED, Color.GREEN};
 
     private void setRobotImageIcon() {
         ImageIcon originalIcon = new ImageIcon(getClass().getResource("/resources/robotfoto.png"));
@@ -85,12 +88,12 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         int x = currentCol * cellWidth;
         int y = currentRow * cellHeight;
 
-        // Get the position of PanelMatriz relative to the RobotPanel
+        // obtiene la posicion de panelmatriz en relativo con el robotpanel
         Point panelPosition = SwingUtilities.convertPoint(PanelMatriz, 0, 0, RobotPanel);
 
         Robot.setBounds(panelPosition.x + x, panelPosition.y + y, cellWidth, cellHeight);
 
-        // Bring the Robot to the front
+        // trae al robot al frente
         Robot.getParent().setComponentZOrder(Robot, 0);
 
         RobotPanel.revalidate();
@@ -108,8 +111,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             }
         });
     }
-
-
 
     private void moveRobot(int keyCode) {
         int newRow = currentRow;
@@ -174,17 +175,16 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                     currentLabel.setBackground(Color.WHITE);
                     colorVerde.remove(currentLabel);
                     colorBlanco.add(currentLabel);
-                    contadorCambioVerdeABlanco++;
                     updateCambiosVerdeABlanco();
                     message = "Cuadro verde limpiado correctamente";
                     updateRazonNoSeMovio(); // Actualizar mensaje solo si se limpia un cuadro verde
                 }
             } else {
-                message = ""; // Limpiar mensaje si no hay obstáculo ni cuadro verde
+                message = ""; // limpiar mensaje si no hay obstaculo ni cuadro verde
                 updateRazonNoSeMovio();
             }
         } else {
-            message = ""; // Limpiar mensaje si no hay label en la nueva posición
+            message = ""; // limpiar mensaje si no hay label en la nueva posición
             updateRazonNoSeMovio();
         }
 
@@ -197,7 +197,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             updatePosicionLabel();
             manejarLabelVerde(currentRow, currentCol);
 
-            // Bring the Robot to the front
             Robot.getParent().setComponentZOrder(Robot, 0);
             Robot.getParent().repaint();
         }
@@ -260,9 +259,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             label.setBackground(assignedColor);
 
         }
-
-        totalGreenSquares = greenCount; // Initialize total green squares
-        updateSuciaLabel(); // Update initial percentage of dirty squares
+        totalGreenSquares = greenCount; // inicializa todos los cuadros verdes
+        updateSuciaLabel(); // actualiza el porcentaje actual de los cuadros sucios
         updateLblSucioLimpioObstaculo();
 
     }
@@ -351,10 +349,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             contadorCambioVerdeABlanco++;
             updateCambiosVerdeABlanco();
 
-            // Update the percentage of remaining dirty squares
             updateSuciaLabel();
 
-            // Bring the Robot to the front
             Robot.getParent().setComponentZOrder(Robot, 0);
             Robot.getParent().repaint();
         }
@@ -484,6 +480,13 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         SieteSiete = new javax.swing.JLabel();
         PanelArriba = new javax.swing.JPanel();
         lblInformacionMovimiento = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        spinnerMatrices = new javax.swing.JSpinner();
+        btnListaEspaciosSucios = new javax.swing.JButton();
+        btnListaEspaciosConObstaculos = new javax.swing.JButton();
+        btnCantidadPosicionesRecorridas = new javax.swing.JButton();
+        btnPorcentajeSuciedad = new javax.swing.JButton();
+        btnListaEspaciosLimpios = new javax.swing.JButton();
         PanelDerecha = new javax.swing.JPanel();
         PosicionRecorridas = new javax.swing.JLabel();
         lblPosicionesLimpiadas = new javax.swing.JLabel();
@@ -1147,7 +1150,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                 .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PanelFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1164,19 +1167,70 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         lblInformacionMovimiento.setText("Debe utilizar W, arriba, S, abajo, D, derecha, A, izquierda");
 
+        jLabel14.setText("Informacion sobre cada matriz:");
+
+        spinnerMatrices.setModel(new javax.swing.SpinnerNumberModel());
+
+        btnListaEspaciosSucios.setText("Lista de espacios sucios");
+        btnListaEspaciosSucios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaEspaciosSuciosActionPerformed(evt);
+            }
+        });
+
+        btnListaEspaciosConObstaculos.setText("Lista de espacios con obstáculos");
+
+        btnCantidadPosicionesRecorridas.setText("Cantidad de posiciones recorridas");
+
+        btnPorcentajeSuciedad.setText(" Porcentaje de suciedad");
+
+        btnListaEspaciosLimpios.setText("Lista de espacios limpios");
+
         javax.swing.GroupLayout PanelArribaLayout = new javax.swing.GroupLayout(PanelArriba);
         PanelArriba.setLayout(PanelArribaLayout);
         PanelArribaLayout.setHorizontalGroup(
             PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelArribaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblInformacionMovimiento)
                 .addGap(142, 142, 142))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelArribaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelArribaLayout.createSequentialGroup()
+                        .addComponent(btnCantidadPosicionesRecorridas)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnListaEspaciosSucios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
+                    .addGroup(PanelArribaLayout.createSequentialGroup()
+                        .addComponent(btnListaEspaciosLimpios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(spinnerMatrices, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)))
+                .addGroup(PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnListaEspaciosConObstaculos)
+                    .addComponent(btnPorcentajeSuciedad, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelArribaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addGap(230, 230, 230))
         );
         PanelArribaLayout.setVerticalGroup(
             PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelArribaLayout.createSequentialGroup()
-                .addGap(0, 93, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spinnerMatrices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPorcentajeSuciedad)
+                    .addComponent(btnListaEspaciosLimpios))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelArribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnListaEspaciosSucios)
+                    .addComponent(btnListaEspaciosConObstaculos)
+                    .addComponent(btnCantidadPosicionesRecorridas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(lblInformacionMovimiento))
         );
 
@@ -1259,15 +1313,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                                     .addComponent(spinnerY, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(PanelDerechaLayout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
-                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
-                        .addComponent(lblPosicionRecorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
-                        .addComponent(lblPosicionLimpiada, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1283,6 +1328,15 @@ public class VentanaSecundaria extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
                         .addComponent(lblSucioLimpioObstaculo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53))))
+            .addGroup(PanelDerechaLayout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addGroup(PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                        .addComponent(lblPosicionRecorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDerechaLayout.createSequentialGroup()
+                        .addComponent(lblPosicionLimpiada, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))))
         );
         PanelDerechaLayout.setVerticalGroup(
             PanelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1331,9 +1385,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelArriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(PanelArriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PanelDerecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1365,6 +1421,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         this.requestFocusInWindow();
     }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
+
+    private void btnListaEspaciosSuciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEspaciosSuciosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListaEspaciosSuciosActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1454,12 +1514,18 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private javax.swing.JLabel UnoSiete;
     private javax.swing.JLabel UnoTres;
     private javax.swing.JLabel UnoUno;
+    private javax.swing.JButton btnCantidadPosicionesRecorridas;
+    private javax.swing.JButton btnListaEspaciosConObstaculos;
+    private javax.swing.JButton btnListaEspaciosLimpios;
+    private javax.swing.JButton btnListaEspaciosSucios;
+    private javax.swing.JButton btnPorcentajeSuciedad;
     private javax.swing.JButton btnReiniciarMatriz;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1485,6 +1551,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private javax.swing.JLabel lblPosicionesLimpiadas;
     private javax.swing.JLabel lblSucioLimpioObstaculo;
     private javax.swing.JLabel lblXYContador;
+    private javax.swing.JSpinner spinnerMatrices;
     private javax.swing.JSpinner spinnerX;
     private javax.swing.JSpinner spinnerY;
     // End of variables declaration//GEN-END:variables
