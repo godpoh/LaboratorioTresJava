@@ -1550,7 +1550,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private void btnCantidadPosicionesRecorridasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCantidadPosicionesRecorridasActionPerformed
         int selectedMatrix = (int) spinnerMatrices.getValue();
         if (selectedMatrix == matrixCount) {
-            // If it's the current matrix, show the current value
+            // si es the matriz actual, muestra el valor actual
             String message = "Cantidad de posiciones recorridas para la matriz actual:\n" + contadorPasos;
             JOptionPane.showMessageDialog(this, message, "Posiciones Recorridas", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -1578,7 +1578,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private void btnPorcentajeSuciedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorcentajeSuciedadActionPerformed
         int selectedMatrix = (int) spinnerMatrices.getValue();
         if (selectedMatrix == matrixCount) {
-            // If it's the current matrix, calculate and show the current percentage
+            // si es the matriz actual, muestra el valor actual del porcentaje
             int currentPercentage = calcularPorcentajeSuciedad();
             String message = "Porcentaje de suciedad para la matriz actual:\n" + currentPercentage + "%";
             JOptionPane.showMessageDialog(this, message, "Porcentaje de Suciedad", JOptionPane.INFORMATION_MESSAGE);
