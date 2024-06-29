@@ -386,7 +386,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             for (int j = 0; j < 8; j++) {
                 JLabel label = getLabelAt(i, j);
                 if (label != null && label.getBackground() == Color.RED) {
-                    sb.append(j).append(",").append(i).append(";");
+                    sb.append(j).append(",").append(i).append(" | ");
                 }
             }
         }
