@@ -13,6 +13,7 @@ import javax.swing.event.ChangeListener;
 
 public class VentanaSecundaria extends javax.swing.JDialog {
 
+    private int matrixCount = 0;
     private int currentRow = 0;
     private int totalGreenSquares = 0;
     private int currentCol = 0;
@@ -29,9 +30,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     ArrayList<JLabel> colorBlanco = new ArrayList();
     ArrayList<JLabel> colorRojo = new ArrayList();
     ArrayList<JLabel> colorVerde = new ArrayList();
-
-    HashMap<Integer, HashMap> diccionarioDeDiccionarioDeMatrices = new HashMap<>();
-    HashMap<String, Integer> diccionarioInformacionSobreMatrices = new HashMap<>();
 
     public VentanaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -265,56 +263,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
     }
 
-    private void setupSpinnerListeners() {
-        ChangeListener spinnerListener = new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                updateLblSucioLimpioObstaculo();
-                VentanaSecundaria.this.requestFocusInWindow();
-            }
-        };
-
-        spinnerX.addChangeListener(spinnerListener);
-        spinnerY.addChangeListener(spinnerListener);
-
-        FocusAdapter focusAdapter = new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                VentanaSecundaria.this.requestFocusInWindow();
-            }
-        };
-
-        spinnerX.addFocusListener(focusAdapter);
-        spinnerY.addFocusListener(focusAdapter);
-    }
-
-    private void setupGlobalKeyListener() {
-        globalKeyListener = new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                moveRobot(e.getKeyCode());
-            }
-        };
-
-        this.addKeyListener(globalKeyListener);
-        this.setFocusable(true);
-
-        addKeyListenerToAllComponents(this);
-    }
-
-    private void addKeyListenerToAllComponents(Container container) {
-        for (Component component : container.getComponents()) {
-            component.addKeyListener(globalKeyListener);
-            if (component instanceof Container) {
-                addKeyListenerToAllComponents((Container) component);
-            }
-        }
-    }
-
-    private void setupKeyListener() {
-        this.requestFocusInWindow();
-    }
-
     private String getLabelStatus(int row, int col) {
         JLabel label = getLabelAt(row, col);
         if (label != null) {
@@ -388,6 +336,76 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
     private void updateMovimientos() {
         lblPosicionRecorrida.setText(contadorPasos + "");
+    }
+
+    private String getCleanSpaces() {
+        // Implement logic to get list of clean spaces
+        return "clean spaces representation";
+    }
+
+    private String getDirtySpaces() {
+        // Implement logic to get list of dirty spaces
+        return "dirty spaces representation";
+    }
+
+    private String getObstacleSpaces() {
+        // Implement logic to get list of obstacle spaces
+        return "obstacle spaces representation";
+    }
+
+    private int calculateDirtinessPercentage() {
+        // Implement logic to calculate dirtiness percentage
+        return 0;
+    }
+
+    private void setupSpinnerListeners() {
+        ChangeListener spinnerListener = new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                updateLblSucioLimpioObstaculo();
+                VentanaSecundaria.this.requestFocusInWindow();
+            }
+        };
+
+        spinnerX.addChangeListener(spinnerListener);
+        spinnerY.addChangeListener(spinnerListener);
+
+        FocusAdapter focusAdapter = new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                VentanaSecundaria.this.requestFocusInWindow();
+            }
+        };
+
+        spinnerX.addFocusListener(focusAdapter);
+        spinnerY.addFocusListener(focusAdapter);
+    }
+
+    private void setupGlobalKeyListener() {
+        globalKeyListener = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                moveRobot(e.getKeyCode());
+            }
+        };
+
+        this.addKeyListener(globalKeyListener);
+        this.setFocusable(true);
+
+        addKeyListenerToAllComponents(this);
+    }
+
+    private void addKeyListenerToAllComponents(Container container) {
+        for (Component component : container.getComponents()) {
+            component.addKeyListener(globalKeyListener);
+            if (component instanceof Container) {
+                addKeyListenerToAllComponents((Container) component);
+            }
+        }
+    }
+
+    private void setupKeyListener() {
+        this.requestFocusInWindow();
     }
 
     @SuppressWarnings("unchecked")
@@ -1427,6 +1445,18 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReiniciarMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarMatrizActionPerformed
+        String xyEspaciosLimpios = getCleanSpaces();
+        String xyEspaciosSucios = getDirtySpaces();
+        String xyEspaciosObstaculos = getObstacleSpaces();
+        int cantidadPosicionesRecorridas = contadorPasos;
+        int porcentajeSuciedad = calculateDirtinessPercentage();
+
+        // Create a new AlmacenamientoObjecto and store it in the HashMap
+        AlmacenamientoObjecto info = new AlmacenamientoObjecto(xyEspaciosLimpios, xyEspaciosSucios, xyEspaciosObstaculos, cantidadPosicionesRecorridas, porcentajeSuciedad);
+        matrixCount++;
+        AlmacenamientoObjecto.informacionMatricesEIndices.put(matrixCount, info);
+
+        // Reset the matrix and related variables
         randomizarColores();
         currentRow = 0;
         currentCol = 0;
