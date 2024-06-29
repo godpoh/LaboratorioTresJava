@@ -121,7 +121,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             case KeyEvent.VK_UP:
                 if (currentRow == 0) {
                     hitBorder = true;
-                    message = "No puede pasar: Techo del aula";
+                    message = "No puede pasar: Techo del salon";
                 } else {
                     newRow = currentRow - 1;
                 }
@@ -130,7 +130,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             case KeyEvent.VK_DOWN:
                 if (currentRow == 7) {
                     hitBorder = true;
-                    message = "No puede pasar: Piso del aula";
+                    message = "No puede pasar: Piso del salon";
                 } else {
                     newRow = currentRow + 1;
                 }
@@ -139,7 +139,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             case KeyEvent.VK_LEFT:
                 if (currentCol == 0) {
                     hitBorder = true;
-                    message = "No puede pasar: Pared izquierda del aula";
+                    message = "No puede pasar: Pared izquierda del salon";
                 } else {
                     newCol = currentCol - 1;
                 }
@@ -148,7 +148,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             case KeyEvent.VK_RIGHT:
                 if (currentCol == 7) {
                     hitBorder = true;
-                    message = "No puede pasar: Pared derecha del aula";
+                    message = "No puede pasar: Pared derecha del salon";
                 } else {
                     newCol = currentCol + 1;
                 }
@@ -195,6 +195,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             updateMovimientos();
             updatePosicionLabel();
             manejarLabelVerde(currentRow, currentCol);
+            
+            
 
             Robot.getParent().setComponentZOrder(Robot, 0);
             Robot.getParent().repaint();
@@ -279,7 +281,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             }
         }
         return "Desconocido";
-
     }
 
     private void updateLblSucioLimpioObstaculo() {
@@ -316,10 +317,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
     private void updateSuciaLabel() {
         int remainingGreenSquares = colorVerde.size();
-        int percentageRemaining = (int) ((remainingGreenSquares / (double) totalGreenSquares) * 100);
+        int percentageRemaining = (int) ((remainingGreenSquares / (double) totalGreenSquares) * 100 / 2);
         jLabel10.setText(percentageRemaining + "%");
         if (percentageRemaining == 0) {
-            JOptionPane.showMessageDialog(this, "Felicidades, has limpiado por completo el aula!");
+            JOptionPane.showMessageDialog(this, "Felicidades, has limpiado por completo el salon!");
         }
     }
 
@@ -394,7 +395,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }
 
     private int calculateDirtinessPercentage() {
-        int totalSquares = 64; // 8x8 grid
+        int totalSquares = 64;
         int dirtySquares = colorVerde.size();
         return (dirtySquares * 100) / totalSquares;
     }
@@ -1464,11 +1465,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(PanelArriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(PanelArriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PanelDerecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1508,10 +1508,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         int selectedMatrix = (int) spinnerMatrices.getValue();
         AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
         if (info != null) {
-            String message = "Espacios sucios (X,Y) para la matriz " + selectedMatrix + ":\n" + info.getXyEspaciosSucioss();
+            String message = "Espacios sucios INICIALES(X,Y) para la matriz " + selectedMatrix + ":\n" + info.getXyEspaciosSucioss();
             JOptionPane.showMessageDialog(this, message, "Espacios Sucios", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay informacion disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnListaEspaciosSuciosActionPerformed
 
@@ -1519,10 +1519,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         int selectedMatrix = (int) spinnerMatrices.getValue();
         AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
         if (info != null) {
-            String message = "Espacios limpios (X,Y) para la matriz " + selectedMatrix + ":\n" + info.getXyEspaciosLimpioss();
+            String message = "Espacios limpios INICIALES(X,Y) para la matriz " + selectedMatrix + ":\n" + info.getXyEspaciosLimpioss();
             JOptionPane.showMessageDialog(this, message, "Espacios Limpios", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay informacion disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnListaEspaciosLimpiosActionPerformed
 
@@ -1533,7 +1533,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             String message = "Cantidad de posiciones recorridas para la matriz " + selectedMatrix + ":\n" + info.getCantidadPosicionesRecorridass();
             JOptionPane.showMessageDialog(this, message, "Posiciones Recorridas", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay informacion disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCantidadPosicionesRecorridasActionPerformed
 
@@ -1541,10 +1541,10 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         int selectedMatrix = (int) spinnerMatrices.getValue();
         AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
         if (info != null) {
-            String message = "Espacios con obstáculos (X,Y) para la matriz " + selectedMatrix + ":\n" + info.getXyEspaciosObstaculoss();
-            JOptionPane.showMessageDialog(this, message, "Espacios con Obstáculos", JOptionPane.INFORMATION_MESSAGE);
+            String message = "Espacios con obstculos INICIALES(X,Y) para la matriz " + selectedMatrix + ":\n" + info.getXyEspaciosObstaculoss();
+            JOptionPane.showMessageDialog(this, message, "Espacios con Obstaculos", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay informacion disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnListaEspaciosConObstaculosActionPerformed
 
@@ -1555,7 +1555,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             String message = "Porcentaje de suciedad para la matriz " + selectedMatrix + ":\n" + info.getPorcentajeSuciedadd() + "%";
             JOptionPane.showMessageDialog(this, message, "Porcentaje de Suciedad", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay informacion disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPorcentajeSuciedadActionPerformed
 
