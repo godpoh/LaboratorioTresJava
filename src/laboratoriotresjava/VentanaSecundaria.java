@@ -70,6 +70,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         setRobotImageIcon();
         setupSpinnerListeners();
         setupGlobalKeyListener();
+        saveCurrentMatrixInfo();
     }
 
     private void setRobotImageIcon() {
@@ -322,6 +323,21 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         }
     }
 
+    private void saveCurrentMatrixInfo() {
+        String xyEspaciosLimpios = getCleanSpaces();
+        String xyEspaciosSucios = getDirtySpaces();
+        String xyEspaciosObstaculos = getObstacleSpaces();
+        int cantidadPosicionesRecorridas = contadorPasos;
+        int porcentajeSuciedad = calculateDirtinessPercentage();
+
+        AlmacenamientoObjecto info = new AlmacenamientoObjecto(xyEspaciosLimpios, xyEspaciosSucios, xyEspaciosObstaculos, cantidadPosicionesRecorridas, porcentajeSuciedad);
+        matrixCount++;
+        AlmacenamientoObjecto.informacionMatricesEIndices.put(matrixCount, info);
+
+        // Update the spinner with the new matrix count
+        spinnerMatrices.setModel(new SpinnerNumberModel(matrixCount, 1, matrixCount, 1));
+    }
+
     private void updateCambiosVerdeABlanco() {
         lblPosicionLimpiada.setText(contadorCambioVerdeABlanco + "");
     }
@@ -339,23 +355,48 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }
 
     private String getCleanSpaces() {
-        // Implement logic to get list of clean spaces
-        return "clean spaces representation";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                JLabel label = getLabelAt(i, j);
+                if (label != null && label.getBackground() == Color.WHITE) {
+                    sb.append(j).append(",").append(i).append(" | ");
+                }
+            }
+        }
+        return sb.toString();
     }
 
     private String getDirtySpaces() {
-        // Implement logic to get list of dirty spaces
-        return "dirty spaces representation";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                JLabel label = getLabelAt(i, j);
+                if (label != null && label.getBackground() == Color.GREEN) {
+                    sb.append(j).append(",").append(i).append(" | ");
+                }
+            }
+        }
+        return sb.toString();
     }
 
     private String getObstacleSpaces() {
-        // Implement logic to get list of obstacle spaces
-        return "obstacle spaces representation";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                JLabel label = getLabelAt(i, j);
+                if (label != null && label.getBackground() == Color.RED) {
+                    sb.append(j).append(",").append(i).append(";");
+                }
+            }
+        }
+        return sb.toString();
     }
 
     private int calculateDirtinessPercentage() {
-        // Implement logic to calculate dirtiness percentage
-        return 0;
+        int totalSquares = 64; // 8x8 grid
+        int dirtySquares = colorVerde.size();
+        return (dirtySquares * 100) / totalSquares;
     }
 
     private void setupSpinnerListeners() {
@@ -1445,16 +1486,6 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReiniciarMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarMatrizActionPerformed
-        String xyEspaciosLimpios = getCleanSpaces();
-        String xyEspaciosSucios = getDirtySpaces();
-        String xyEspaciosObstaculos = getObstacleSpaces();
-        int cantidadPosicionesRecorridas = contadorPasos;
-        int porcentajeSuciedad = calculateDirtinessPercentage();
-
-        // Create a new AlmacenamientoObjecto and store it in the HashMap
-        AlmacenamientoObjecto info = new AlmacenamientoObjecto(xyEspaciosLimpios, xyEspaciosSucios, xyEspaciosObstaculos, cantidadPosicionesRecorridas, porcentajeSuciedad);
-        matrixCount++;
-        AlmacenamientoObjecto.informacionMatricesEIndices.put(matrixCount, info);
 
         // Reset the matrix and related variables
         randomizarColores();
@@ -1470,26 +1501,62 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         updateLblSucioLimpioObstaculo();
 
         this.requestFocusInWindow();
+        saveCurrentMatrixInfo();
     }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
 
     private void btnListaEspaciosSuciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEspaciosSuciosActionPerformed
-        // TODO add your handling code here:
+        int selectedMatrix = (int) spinnerMatrices.getValue();
+        AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
+        if (info != null) {
+            String message = "Espacios sucios (X,Y) para la matriz " + selectedMatrix + ":\n" + info.getXyEspaciosSucioss();
+            JOptionPane.showMessageDialog(this, message, "Espacios Sucios", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnListaEspaciosSuciosActionPerformed
 
     private void btnListaEspaciosLimpiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEspaciosLimpiosActionPerformed
-        // TODO add your handling code here:
+        int selectedMatrix = (int) spinnerMatrices.getValue();
+        AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
+        if (info != null) {
+            String message = "Espacios limpios (X,Y) para la matriz " + selectedMatrix + ":\n" + info.getXyEspaciosLimpioss();
+            JOptionPane.showMessageDialog(this, message, "Espacios Limpios", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnListaEspaciosLimpiosActionPerformed
 
     private void btnCantidadPosicionesRecorridasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCantidadPosicionesRecorridasActionPerformed
-        // TODO add your handling code here:
+        int selectedMatrix = (int) spinnerMatrices.getValue();
+        AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
+        if (info != null) {
+            String message = "Cantidad de posiciones recorridas para la matriz " + selectedMatrix + ":\n" + info.getCantidadPosicionesRecorridass();
+            JOptionPane.showMessageDialog(this, message, "Posiciones Recorridas", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCantidadPosicionesRecorridasActionPerformed
 
     private void btnListaEspaciosConObstaculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEspaciosConObstaculosActionPerformed
-        // TODO add your handling code here:
+        int selectedMatrix = (int) spinnerMatrices.getValue();
+        AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
+        if (info != null) {
+            String message = "Espacios con obstáculos (X,Y) para la matriz " + selectedMatrix + ":\n" + info.getXyEspaciosObstaculoss();
+            JOptionPane.showMessageDialog(this, message, "Espacios con Obstáculos", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnListaEspaciosConObstaculosActionPerformed
 
     private void btnPorcentajeSuciedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorcentajeSuciedadActionPerformed
-        // TODO add your handling code here:
+        int selectedMatrix = (int) spinnerMatrices.getValue();
+        AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
+        if (info != null) {
+            String message = "Porcentaje de suciedad para la matriz " + selectedMatrix + ":\n" + info.getPorcentajeSuciedadd() + "%";
+            JOptionPane.showMessageDialog(this, message, "Porcentaje de Suciedad", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPorcentajeSuciedadActionPerformed
 
     public static void main(String args[]) {
