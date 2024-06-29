@@ -71,10 +71,13 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         setupSpinnerListeners();
         setupGlobalKeyListener();
         saveCurrentMatrixInfo();
+
+        makeSpinnerReadOnly(spinnerMatrices);
+        makeSpinnerReadOnly(spinnerX);
+        makeSpinnerReadOnly(spinnerY);
     }
 
     private void setRobotImageIcon() {
-        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/resources/robotfoto.png"));
         int cellWidth = PanelMatriz.getWidth() / 8;
         int cellHeight = PanelMatriz.getHeight() / 8;
         Robot.setSize(cellWidth, cellHeight);
@@ -195,7 +198,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             updateMovimientos();
             updatePosicionLabel();
             manejarLabelVerde(currentRow, currentCol);
-            
+
             updateCurrentMatrixInfo();
 
             Robot.getParent().setComponentZOrder(Robot, 0);
@@ -300,7 +303,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             updateCambiosVerdeABlanco();
 
             updateSuciaLabel();
-            
+
             updateCurrentMatrixInfo();
 
             Robot.getParent().setComponentZOrder(Robot, 0);
@@ -324,6 +327,12 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         if (percentageRemaining == 0) {
             JOptionPane.showMessageDialog(this, "Felicidades, has limpiado por completo el salon!");
         }
+    }
+
+    private void makeSpinnerReadOnly(JSpinner spinner) {
+        JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) spinner.getEditor();
+        JTextField textField = editor.getTextField();
+        textField.setEditable(false);
     }
 
     private void saveCurrentMatrixInfo() {
@@ -401,16 +410,16 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         int dirtySquares = colorVerde.size();
         return (dirtySquares * 100) / totalSquares;
     }
-    
+
     private void updateCurrentMatrixInfo() {
-    if (matrixCount > 0) {
-        AlmacenamientoObjecto currentInfo = AlmacenamientoObjecto.informacionMatricesEIndices.get(matrixCount);
-        if (currentInfo != null) {
-            currentInfo.setCantidadPosicionesRecorridass(contadorPasos);
-            currentInfo.setPorcentajeSuciedadd(calculateDirtinessPercentage());
+        if (matrixCount > 0) {
+            AlmacenamientoObjecto currentInfo = AlmacenamientoObjecto.informacionMatricesEIndices.get(matrixCount);
+            if (currentInfo != null) {
+                currentInfo.setCantidadPosicionesRecorridass(contadorPasos);
+                currentInfo.setPorcentajeSuciedadd(calculateDirtinessPercentage());
+            }
         }
     }
-}
 
     private void setupSpinnerListeners() {
         ChangeListener spinnerListener = new ChangeListener() {
@@ -1539,20 +1548,20 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }//GEN-LAST:event_btnListaEspaciosLimpiosActionPerformed
 
     private void btnCantidadPosicionesRecorridasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCantidadPosicionesRecorridasActionPerformed
-         int selectedMatrix = (int) spinnerMatrices.getValue();
-    if (selectedMatrix == matrixCount) {
-        // If it's the current matrix, show the current value
-        String message = "Cantidad de posiciones recorridas para la matriz actual:\n" + contadorPasos;
-        JOptionPane.showMessageDialog(this, message, "Posiciones Recorridas", JOptionPane.INFORMATION_MESSAGE);
-    } else {
-        AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
-        if (info != null) {
-            String message = "Cantidad de posiciones recorridas para la matriz " + selectedMatrix + ":\n" + info.getCantidadPosicionesRecorridass();
+        int selectedMatrix = (int) spinnerMatrices.getValue();
+        if (selectedMatrix == matrixCount) {
+            // If it's the current matrix, show the current value
+            String message = "Cantidad de posiciones recorridas para la matriz actual:\n" + contadorPasos;
             JOptionPane.showMessageDialog(this, message, "Posiciones Recorridas", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+            AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
+            if (info != null) {
+                String message = "Cantidad de posiciones recorridas para la matriz " + selectedMatrix + ":\n" + info.getCantidadPosicionesRecorridass();
+                JOptionPane.showMessageDialog(this, message, "Posiciones Recorridas", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-    }
     }//GEN-LAST:event_btnCantidadPosicionesRecorridasActionPerformed
 
     private void btnListaEspaciosConObstaculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEspaciosConObstaculosActionPerformed
@@ -1568,20 +1577,20 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
     private void btnPorcentajeSuciedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorcentajeSuciedadActionPerformed
         int selectedMatrix = (int) spinnerMatrices.getValue();
-    if (selectedMatrix == matrixCount) {
-        // If it's the current matrix, calculate and show the current percentage
-        int currentPercentage = calculateDirtinessPercentage();
-        String message = "Porcentaje de suciedad para la matriz actual:\n" + currentPercentage + "%";
-        JOptionPane.showMessageDialog(this, message, "Porcentaje de Suciedad", JOptionPane.INFORMATION_MESSAGE);
-    } else {
-        AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
-        if (info != null) {
-            String message = "Porcentaje de suciedad para la matriz " + selectedMatrix + ":\n" + info.getPorcentajeSuciedadd() + "%";
+        if (selectedMatrix == matrixCount) {
+            // If it's the current matrix, calculate and show the current percentage
+            int currentPercentage = calculateDirtinessPercentage();
+            String message = "Porcentaje de suciedad para la matriz actual:\n" + currentPercentage + "%";
             JOptionPane.showMessageDialog(this, message, "Porcentaje de Suciedad", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+            AlmacenamientoObjecto info = AlmacenamientoObjecto.informacionMatricesEIndices.get(selectedMatrix);
+            if (info != null) {
+                String message = "Porcentaje de suciedad para la matriz " + selectedMatrix + ":\n" + info.getPorcentajeSuciedadd() + "%";
+                JOptionPane.showMessageDialog(this, message, "Porcentaje de Suciedad", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay información disponible para la matriz " + selectedMatrix, "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-    }
     }//GEN-LAST:event_btnPorcentajeSuciedadActionPerformed
 
     public static void main(String args[]) {
