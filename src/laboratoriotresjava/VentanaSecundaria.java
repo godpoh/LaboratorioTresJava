@@ -14,9 +14,9 @@ import javax.swing.event.ChangeListener;
 public class VentanaSecundaria extends javax.swing.JDialog {
 
     private int matrixCount = 0;
-    private int currentRow = 0;
-    private int totalGreenSquares = 0;
-    private int currentCol = 0;
+    private int LineaActual = 0;
+    private int cuadrosVerdesTotales = 0;
+    private int ColumnaActual = 0;
     private int contadorPasos = 0;
     private int contadorCambioVerdeABlanco = 0;
 
@@ -39,7 +39,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         addPanelMatrizListener();
 
-        // Set up RobotPanel
+        // configuracion del robot panel
         RobotPanel = new javax.swing.JPanel();
         RobotPanel.setLayout(null);
         RobotPanel.setBounds(0, 0, getWidth(), getHeight());
@@ -53,28 +53,28 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             @Override
             public void componentResized(ComponentEvent e) {
                 RobotPanel.setBounds(0, 0, getWidth(), getHeight());
-                updateRobotPosition();
+                actualizarPosicionRobot();
             }
         });
 
         // inicializa la posicion del robot
-        currentRow = 0;
-        currentCol = 0;
+        LineaActual = 0;
+        ColumnaActual = 0;
 
         revalidate();
         repaint();
 
-        updateRobotPosition();
+        actualizarPosicionRobot();
 
         setupKeyListener();
         setRobotImageIcon();
         setupSpinnerListeners();
         setupGlobalKeyListener();
-        saveCurrentMatrixInfo();
+        guardarInfoActualMatriz();
 
-        makeSpinnerReadOnly(spinnerMatrices);
-        makeSpinnerReadOnly(spinnerX);
-        makeSpinnerReadOnly(spinnerY);
+        hacerSpinnerSoloLeible(spinnerMatrices);
+        hacerSpinnerSoloLeible(spinnerX);
+        hacerSpinnerSoloLeible(spinnerY);
     }
 
     private void setRobotImageIcon() {
@@ -84,11 +84,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         Robot.setOpaque(false);
     }
 
-    private void updateRobotPosition() {
+    private void actualizarPosicionRobot() {
         int cellWidth = PanelMatriz.getWidth() / 8;
         int cellHeight = PanelMatriz.getHeight() / 8;
-        int x = currentCol * cellWidth;
-        int y = currentRow * cellHeight;
+        int x = ColumnaActual * cellWidth;
+        int y = LineaActual * cellHeight;
 
         // obtiene la posicion de panelmatriz en relativo con el robotpanel
         Point panelPosition = SwingUtilities.convertPoint(PanelMatriz, 0, 0, RobotPanel);
@@ -102,58 +102,46 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         RobotPanel.repaint();
     }
 
-    private void addPanelMatrizListener() {
-        PanelMatriz.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentMoved(java.awt.event.ComponentEvent evt) {
-                updateRobotPosition();
-            }
-
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                updateRobotPosition();
-            }
-        });
-    }
-
-    private void moveRobot(int keyCode) {
-        int newRow = currentRow;
-        int newCol = currentCol;
+    private void moverRobot(int keyCode) {
+        int nuevaLinea = LineaActual;
+        int nuevaCol = ColumnaActual;
         boolean hitBorder = false;
 
         switch (keyCode) {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
-                if (currentRow == 0) {
+                if (LineaActual == 0) {
                     hitBorder = true;
                     message = "No puede pasar: Techo del salon";
                 } else {
-                    newRow = currentRow - 1;
+                    nuevaLinea = LineaActual - 1;
                 }
                 break;
             case KeyEvent.VK_S:
             case KeyEvent.VK_DOWN:
-                if (currentRow == 7) {
+                if (LineaActual == 7) {
                     hitBorder = true;
                     message = "No puede pasar: Piso del salon";
                 } else {
-                    newRow = currentRow + 1;
+                    nuevaLinea = LineaActual + 1;
                 }
                 break;
             case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
-                if (currentCol == 0) {
+                if (ColumnaActual == 0) {
                     hitBorder = true;
                     message = "No puede pasar: Pared izquierda del salon";
                 } else {
-                    newCol = currentCol - 1;
+                    nuevaCol = ColumnaActual - 1;
                 }
                 break;
             case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
-                if (currentCol == 7) {
+                if (ColumnaActual == 7) {
                     hitBorder = true;
                     message = "No puede pasar: Pared derecha del salon";
                 } else {
-                    newCol = currentCol + 1;
+                    nuevaCol = ColumnaActual + 1;
                 }
                 break;
         }
@@ -163,8 +151,8 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             return;
         }
 
-        JLabel currentLabel = getLabelAt(currentRow, currentCol);
-        JLabel newLabel = getLabelAt(newRow, newCol);
+        JLabel currentLabel = obtenerLabelA(LineaActual, ColumnaActual);
+        JLabel newLabel = obtenerLabelA(nuevaLinea, nuevaCol);
 
         if (newLabel != null) {
             Color backgroundColor = newLabel.getBackground();
@@ -190,16 +178,16 @@ public class VentanaSecundaria extends javax.swing.JDialog {
             updateRazonNoSeMovio();
         }
 
-        if (newRow != currentRow || newCol != currentCol) {
-            currentRow = newRow;
-            currentCol = newCol;
-            updateRobotPosition();
+        if (nuevaLinea != LineaActual || nuevaCol != ColumnaActual) {
+            LineaActual = nuevaLinea;
+            ColumnaActual = nuevaCol;
+            actualizarPosicionRobot();
             contadorPasos++;
             updateMovimientos();
             updatePosicionLabel();
-            manejarLabelVerde(currentRow, currentCol);
+            manejarLabelVerde(LineaActual, ColumnaActual);
 
-            updateCurrentMatrixInfo();
+            actualizarInfoMatrizActual();
 
             Robot.getParent().setComponentZOrder(Robot, 0);
             Robot.getParent().repaint();
@@ -224,53 +212,53 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         int redLabels = totalLabels * 15 / 100;
         int whiteLabels = totalLabels - greenLabels - redLabels - 1; // -1 por el label azul
 
-        List<JLabel> shuffledLabels = new ArrayList<>(labels.subList(1, totalLabels));
-        Collections.shuffle(shuffledLabels);
+        List<JLabel> LabelsBarajados = new ArrayList<>(labels.subList(1, totalLabels));
+        Collections.shuffle(LabelsBarajados);
 
         labels.get(0).setBackground(Color.BLUE);
 
-        int greenCount = 0;
-        int redCount = 0;
-        int whiteCount = 0;
+        int contadorVerde = 0;
+        int contadorRojo = 0;
+        int contadorBlanco = 0;
 
-        for (int i = 0; i < shuffledLabels.size(); i++) {
-            JLabel label = shuffledLabels.get(i);
-            Color assignedColor;
+        for (int i = 0; i < LabelsBarajados.size(); i++) {
+            JLabel label = LabelsBarajados.get(i);
+            Color colorAsignado;
 
-            if (greenCount < greenLabels) {
-                assignedColor = Color.GREEN;
-                greenCount++;
+            if (contadorVerde < greenLabels) {
+                colorAsignado = Color.GREEN;
+                contadorVerde++;
                 colorVerde.add(label);
-            } else if (redCount < redLabels) {
-                assignedColor = Color.RED;
-                redCount++;
+            } else if (contadorRojo < redLabels) {
+                colorAsignado = Color.RED;
+                contadorRojo++;
                 colorRojo.add(label);
-            } else if (whiteCount < whiteLabels) {
-                assignedColor = Color.WHITE;
-                whiteCount++;
+            } else if (contadorBlanco < whiteLabels) {
+                colorAsignado = Color.WHITE;
+                contadorBlanco++;
                 colorBlanco.add(label);
             } else {
-                assignedColor = colores[rand.nextInt(colores.length)];
-                if (assignedColor == Color.GREEN) {
+                colorAsignado = colores[rand.nextInt(colores.length)];
+                if (colorAsignado == Color.GREEN) {
                     colorVerde.add(label);
-                } else if (assignedColor == Color.RED) {
+                } else if (colorAsignado == Color.RED) {
                     colorRojo.add(label);
-                } else if (assignedColor == Color.WHITE) {
+                } else if (colorAsignado == Color.WHITE) {
                     colorBlanco.add(label);
                 }
             }
 
-            label.setBackground(assignedColor);
+            label.setBackground(colorAsignado);
 
         }
-        totalGreenSquares = greenCount; // inicializa todos los cuadros verdes
+        cuadrosVerdesTotales = contadorVerde; // inicializa todos los cuadros verdes
         updateSuciaLabel(); // actualiza el porcentaje actual de los cuadros sucios
         updateLblSucioLimpioObstaculo();
 
     }
 
-    private String getLabelStatus(int row, int col) {
-        JLabel label = getLabelAt(row, col);
+    private String obtenerEstadoLabel(int row, int col) {
+        JLabel label = obtenerLabelA(row, col);
         if (label != null) {
             Color backgroundColor = label.getBackground();
             if (backgroundColor == Color.RED) {
@@ -289,12 +277,12 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     private void updateLblSucioLimpioObstaculo() {
         int x = (int) spinnerX.getValue();
         int y = (int) spinnerY.getValue();
-        String status = getLabelStatus(y, x);
-        lblSucioLimpioObstaculo.setText(status);
+        String estado = obtenerEstadoLabel(y, x);
+        lblSucioLimpioObstaculo.setText(estado);
     }
 
     private void manejarLabelVerde(int row, int col) {
-        JLabel label = getLabelAt(row, col);
+        JLabel label = obtenerLabelA(row, col);
         if (label != null && label.getBackground() == Color.GREEN) {
             label.setBackground(Color.WHITE);
             colorVerde.remove(label);
@@ -304,16 +292,16 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
             updateSuciaLabel();
 
-            updateCurrentMatrixInfo();
+            actualizarInfoMatrizActual();
 
             Robot.getParent().setComponentZOrder(Robot, 0);
             Robot.getParent().repaint();
         }
     }
 
-    private JLabel getLabelAt(int row, int col) {
-        int index = row * 8 + col;
-        Component comp = PanelMatriz.getComponent(index);
+    private JLabel obtenerLabelA(int Flecha, int Columna) {
+        int indice = Flecha * 8 + Columna;
+        Component comp = PanelMatriz.getComponent(indice);
         if (comp instanceof JLabel) {
             return (JLabel) comp;
         }
@@ -321,32 +309,32 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }
 
     private void updateSuciaLabel() {
-        int remainingGreenSquares = colorVerde.size();
-        int percentageRemaining = (int) ((remainingGreenSquares / (double) totalGreenSquares) * 100 / 2);
-        jLabel10.setText(percentageRemaining + "%");
-        if (percentageRemaining == 0) {
+        int cuadrosVerdesRestantes = colorVerde.size();
+        int porcentajeRestante = (int) ((cuadrosVerdesRestantes / (double) cuadrosVerdesTotales) * 100 / 2);
+        jLabel10.setText(porcentajeRestante + "%");
+        if (porcentajeRestante == 0) {
             JOptionPane.showMessageDialog(this, "Felicidades, has limpiado por completo el salon!");
         }
     }
 
-    private void makeSpinnerReadOnly(JSpinner spinner) {
+    private void hacerSpinnerSoloLeible(JSpinner spinner) {
         JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) spinner.getEditor();
         JTextField textField = editor.getTextField();
         textField.setEditable(false);
     }
 
-    private void saveCurrentMatrixInfo() {
-        String xyEspaciosLimpios = getCleanSpaces();
-        String xyEspaciosSucios = getDirtySpaces();
-        String xyEspaciosObstaculos = getObstacleSpaces();
+    private void guardarInfoActualMatriz() {
+        String xyEspaciosLimpios = obtenerEspaciosLimpios();
+        String xyEspaciosSucios = obtenerEspaciosSucios();
+        String xyEspaciosObstaculos = obtenerEspaciosObstaculos();
         int cantidadPosicionesRecorridas = contadorPasos;
-        int porcentajeSuciedad = calculateDirtinessPercentage();
+        int porcentajeSuciedad = calcularPorcentajeSuciedad();
 
         AlmacenamientoObjecto info = new AlmacenamientoObjecto(xyEspaciosLimpios, xyEspaciosSucios, xyEspaciosObstaculos, cantidadPosicionesRecorridas, porcentajeSuciedad);
         matrixCount++;
         AlmacenamientoObjecto.informacionMatricesEIndices.put(matrixCount, info);
 
-        // Update the spinner with the new matrix count
+        // actualizar el spinner con el nuevo indice de matriz
         spinnerMatrices.setModel(new SpinnerNumberModel(matrixCount, 1, matrixCount, 1));
     }
 
@@ -355,7 +343,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
     }
 
     private void updatePosicionLabel() {
-        lblXYContador.setText(currentCol + "," + currentRow);
+        lblXYContador.setText(ColumnaActual + "," + LineaActual);
     }
 
     private void updateRazonNoSeMovio() {
@@ -366,11 +354,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         lblPosicionRecorrida.setText(contadorPasos + "");
     }
 
-    private String getCleanSpaces() {
+    private String obtenerEspaciosLimpios() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                JLabel label = getLabelAt(i, j);
+                JLabel label = obtenerLabelA(i, j);
                 if (label != null && label.getBackground() == Color.WHITE) {
                     sb.append(j).append(",").append(i).append(" | ");
                 }
@@ -379,11 +367,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         return sb.toString();
     }
 
-    private String getDirtySpaces() {
+    private String obtenerEspaciosSucios() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                JLabel label = getLabelAt(i, j);
+                JLabel label = obtenerLabelA(i, j);
                 if (label != null && label.getBackground() == Color.GREEN) {
                     sb.append(j).append(",").append(i).append(" | ");
                 }
@@ -392,11 +380,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         return sb.toString();
     }
 
-    private String getObstacleSpaces() {
+    private String obtenerEspaciosObstaculos() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                JLabel label = getLabelAt(i, j);
+                JLabel label = obtenerLabelA(i, j);
                 if (label != null && label.getBackground() == Color.RED) {
                     sb.append(j).append(",").append(i).append(" | ");
                 }
@@ -405,18 +393,18 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         return sb.toString();
     }
 
-    private int calculateDirtinessPercentage() {
-        int totalSquares = 64;
-        int dirtySquares = colorVerde.size();
-        return (dirtySquares * 100) / totalSquares;
+    private int calcularPorcentajeSuciedad() {
+        int cuadrosTotales = 64;
+        int cuadrosSucios = colorVerde.size();
+        return (cuadrosSucios * 100) / cuadrosTotales;
     }
 
-    private void updateCurrentMatrixInfo() {
+    private void actualizarInfoMatrizActual() {
         if (matrixCount > 0) {
             AlmacenamientoObjecto currentInfo = AlmacenamientoObjecto.informacionMatricesEIndices.get(matrixCount);
             if (currentInfo != null) {
                 currentInfo.setCantidadPosicionesRecorridass(contadorPasos);
-                currentInfo.setPorcentajeSuciedadd(calculateDirtinessPercentage());
+                currentInfo.setPorcentajeSuciedadd(calcularPorcentajeSuciedad());
             }
         }
     }
@@ -448,7 +436,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         globalKeyListener = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                moveRobot(e.getKeyCode());
+                moverRobot(e.getKeyCode());
             }
         };
 
@@ -469,6 +457,18 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
     private void setupKeyListener() {
         this.requestFocusInWindow();
+    }
+
+    private void addPanelMatrizListener() {
+        PanelMatriz.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                actualizarPosicionRobot();
+            }
+
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                actualizarPosicionRobot();
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -1510,11 +1510,11 @@ public class VentanaSecundaria extends javax.swing.JDialog {
 
         // Reset the matrix and related variables
         randomizarColores();
-        currentRow = 0;
-        currentCol = 0;
+        LineaActual = 0;
+        ColumnaActual = 0;
         contadorPasos = 0;
         contadorCambioVerdeABlanco = 0;
-        updateRobotPosition();
+        actualizarPosicionRobot();
         updateMovimientos();
         updateCambiosVerdeABlanco();
         updatePosicionLabel();
@@ -1522,7 +1522,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         updateLblSucioLimpioObstaculo();
 
         this.requestFocusInWindow();
-        saveCurrentMatrixInfo();
+        guardarInfoActualMatriz();
     }//GEN-LAST:event_btnReiniciarMatrizActionPerformed
 
     private void btnListaEspaciosSuciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEspaciosSuciosActionPerformed
@@ -1579,7 +1579,7 @@ public class VentanaSecundaria extends javax.swing.JDialog {
         int selectedMatrix = (int) spinnerMatrices.getValue();
         if (selectedMatrix == matrixCount) {
             // If it's the current matrix, calculate and show the current percentage
-            int currentPercentage = calculateDirtinessPercentage();
+            int currentPercentage = calcularPorcentajeSuciedad();
             String message = "Porcentaje de suciedad para la matriz actual:\n" + currentPercentage + "%";
             JOptionPane.showMessageDialog(this, message, "Porcentaje de Suciedad", JOptionPane.INFORMATION_MESSAGE);
         } else {
